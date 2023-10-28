@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { Link as LinkScroll } from "react-scroll";
 import { useState } from "react";
