@@ -1,7 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -251,11 +256,14 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       backgroundImage: {
-        "green-gradient": "linear-gradient(90.13deg, #00a762 30%, #00492c 100.5%)",
-        "green-gradient-hover": "linear-gradient(90.13deg, #01C577 30%, #01C577 100.5%)",
+        "green-gradient":
+          "linear-gradient(90.13deg, #00a762 30%, #00492c 100.5%)",
+        "green-gradient-hover":
+          "linear-gradient(90.13deg, #01C577 30%, #01C577 100.5%)",
         "dark-gradient": "linear-gradient(90deg,  #101012 30%, #121417 90%)",
         "red-gradient-500": "linear-gradient(90deg, #FF5A5A 30%, #FF5A5A 90%)",
-        "red-gradient-500-hover": "linear-gradient(90deg, #FF5A5A 30%, #FF5A5A 90%)",
+        "red-gradient-500-hover":
+          "linear-gradient(90deg, #FF5A5A 30%, #FF5A5A 90%)",
       },
     },
   },
