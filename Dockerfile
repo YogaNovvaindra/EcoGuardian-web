@@ -22,12 +22,14 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/images ./images
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/.next/ ./.next
-COPY --from=builder /app/.env ./.env
+COPY --from=builder /app/example.env ./.env
 
 ENV DATABASE_URL=mysql://root:abogoboga@10.1.1.13:3306/ecoguardian_db
 ENV NEXTAUTH_URL=http://localhost:3000
 ENV NEXT_PUBLIC_SITE_URL=http://localhost:3000
-VOLUME ["/app/photos"]
+ENV GOOGLE_CLIENT_ID=
+ENV GOOGLE_CLIENT_SECRET=
+VOLUME ["/app/images"]
 
 EXPOSE 3000
 
