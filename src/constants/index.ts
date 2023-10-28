@@ -25,3 +25,45 @@ export const sidebarLinks = [
     label: "AP Image Detector",
   },
 ];
+
+export const listNavigationBar = [
+  {
+    link: "HeroLandingPage",
+    label: "Home",
+  },
+  {
+    link: "MonitoringLandingPage",
+    label: "Moitoring",
+  },
+  {
+    link: "AboutLandingPage",
+    label: "About Website",
+  },
+  {
+    link: "CustomerServicesLandingPage",
+    label: "Customer Services",
+  },
+];
+
+export const informationMonitoring = [
+  {
+    title: "Temperature",
+    unit: "00 °C",
+    date: "Today",
+  },
+  {
+    title: "Humadity",
+    unit: "00 %",
+    date: "Today",
+  },
+  {
+    title: "Air Pollution Image",
+    unit: "00 %",
+    date: "Today",
+  },
+  {
+    title: "Air Quality",
+    unit: "00",
+    date: "Today",
+  },
+];
