@@ -5,7 +5,18 @@ import { hash } from "bcrypt";
 //create get esp function
 export async function GET() {
   try {
-    const esp = await db.esp.findMany();
+    const esp = await db.esp.findMany(
+      {
+        include: {
+          data: {
+            orderBy: {
+              createdAt: "desc",
+            },
+            take: 1,
+          },
+        },
+      }
+    );
     return NextResponse.json(esp, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: "Something went wrong!" }, { status: 500 });
