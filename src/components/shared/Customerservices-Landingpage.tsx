@@ -1,6 +1,6 @@
 const CustomerServicesLandingPage = () => {
   return (
-    <div
+    <section
       id="CustomerServicesLandingPage"
       className="h-screen flex flex-col gap-4 items-center landingpage"
     >
@@ -26,7 +26,7 @@ const CustomerServicesLandingPage = () => {
           <p>www.ecoguardian.com</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -2,12 +2,18 @@
 import { SocketIndicator } from "@/components/common/Socket-indicator";
 import AreaChartContainer from "@/components/common/chart/AreaChartContainer";
 import Temperature from "@/components/common/chart/temperature";
+import Chart from "@/components/shared/Chart";
+import MonitoringLandingPage from "@/components/shared/Monitoring-Landingpage";
+import { informationMonitoring } from "@/constants";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 // import addNotification, { Notifications } from 'react-push-notification';
 
 type Props = {};
 
 const Page = (props: Props) => {
+  const pathname = usePathname();
   // const apiUrl sama dengan url api/sensor dengan params sensor date ?= sehari
   const apiUrl = "/api/sensor?date=sehari";
 
@@ -24,99 +30,40 @@ const Page = (props: Props) => {
     });
   };
 
-  // const showNotification = () => {
-  //     const title = 'Halo';
-  //     const options = {
-  //         body: 'Ini notifikasi sederhana.',
-  //         //   icon: '/path/to/icon.png', // Ganti dengan path ke ikon notifikasi Anda
-  //     };
-
-  //     new Notification(title, options);
-  // };
-
-  // const sendNotification = () => {
-  //     if ('Notification' in window && Notification.permission === 'granted') {
-  //         new Notification('Halo!', {
-  //             body: 'Ini notifikasi sederhana.',
-  //         });
-  //     }
-  // }
-
-  // const requestNotificationPermission = useCallback(() => {
-  //     if ('notification' in window) {
-  //         Notification.requestPermission().then((permission) => {
-  //             if (permission === 'granted') {
-  //                 sendNotification();
-  //             }
-  //         });
-  //     }
-  // }, []);
-
-  // useEffect(() => {
-  //     if ('Notification' in window) {
-  //         requestNotificationPermission();
-  //     }
-  // }, [requestNotificationPermission]);
-
-  const data = [
-    { x: "Jan", y: 10 },
-    { x: "Feb", y: 60 },
-    { x: "Mar", y: 15 },
-    // Tambahkan data sesuai dengan kebutuhan Anda
-    { x: "Apr", y: 25 },
-    { x: "May", y: 45 },
-    { x: "Jun", y: 30 },
-    { x: "Jul", y: 70 },
-    { x: "Aug", y: 55 },
-    { x: "Sep", y: 40 },
-    { x: "Oct", y: 85 },
-    { x: "Nov", y: 20 },
-    { x: "Dec", y: 75 },
-    { x: "Jan", y: 5 },
-    { x: "Feb", y: 35 },
-    { x: "Mar", y: 45 },
-    { x: "Apr", y: 60 },
-    { x: "May", y: 20 },
-    { x: "Jun", y: 90 },
-    { x: "Jul", y: 15 },
-    { x: "Aug", y: 70 },
-    { x: "Sep", y: 30 },
-    { x: "Oct", y: 80 },
-    { x: "Nov", y: 25 },
-    { x: "Dec", y: 50 },
-    { x: "Jan", y: 10 },
-    { x: "Feb", y: 40 },
-    { x: "Mar", y: 65 },
-    { x: "Apr", y: 30 },
-    { x: "May", y: 70 },
-    { x: "Jun", y: 15 },
-    { x: "Jul", y: 50 },
-    { x: "Aug", y: 20 },
-    { x: "Sep", y: 85 },
-    { x: "Oct", y: 40 },
-    // Lanjutkan sampai bulan ke-30
-  ];
-
   return (
-    <div className="text-white ">
-      {/* <Notifications /> */}
-      <SocketIndicator />
-      <button onClick={TryNotification}>Trigger Notifikasi</button>
-      <AreaChartContainer data={data} size={{ height: 300, width: 500 }} />
-      <div className="">
-        <div className="mt-10">
-          <Temperature
-            apiUrl={apiUrl}
-            // paramKey="sensorId"
-            // paramValue={""}
-            // socketUrl="/api/socket/dht"
-            // socketQuery={{
-            //     sensorId: "",
-            // }}
+    <section className="h-full w-full flex flex-col gap-4 md:overflow-auto">
+      <div>
+        <h1 className="text-heading1-semibold">Dashboard</h1>
+        <span>{pathname}</span>
+      </div>
+      <div className="w-full bg-light-1 flex rounded-md overflow-hidden h-40">
+        <div>
+          <Image
+            src="/public/../assets/vector-people-mointoring.png"
+            alt=""
+            width={100}
+            height={100}
           />
         </div>
+        <div className="px-4 py-2">
+          <h3>What is the air quality at Jember State Polytechnic now?</h3>
+          <p>Deskripsi</p>
+        </div>
       </div>
-    </div>
+      <div className="w-full flex gap-6 flex-wrap">
+        {informationMonitoring.map((item) => (
+          <div
+            key={item.title}
+            className="grow min-w-[150px] p-4 bg-white rounded-md"
+          >
+            <p>{item.title}</p>
+            <p className="text-heading2-bold">{item.unit}</p>
+            <p>{item.date}</p>
+          </div>
+        ))}
+      </div>
+      <Chart />
+    </section>
   );
 };
 

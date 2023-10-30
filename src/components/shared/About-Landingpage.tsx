@@ -1,6 +1,6 @@
 const AboutLandingPage = () => {
   return (
-    <div
+    <section
       id="AboutLandingPage"
       className="h-screen flex flex-col gap-4 items-center landingpage"
     >
@@ -14,7 +14,7 @@ const AboutLandingPage = () => {
         nesciunt laborum, repellat molestiae repellendus aperiam quod commodi
         perferendis voluptatem.
       </p>
-    </div>
+    </section>
   );
 };
 

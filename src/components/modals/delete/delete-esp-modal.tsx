@@ -38,13 +38,13 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export const EditEspModal = () => {
+export const DeleteEsp = () => {
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const queryClient = useQueryClient();
   // menampung state error
 
-  const isModalOpen = isOpen && type === "editEsp";
+  const isModalOpen = isOpen && type === "deleteEsp";
 
   const { esp } = data;
 
@@ -103,14 +103,14 @@ export const EditEspModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent className="bg-neutral-100 text-black p-0 overflow-hidden">
+      <DialogContent className="bg-neutral text-black p-0 overflow-hidden px-4">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Edit Esp
+            Delete Esp
           </DialogTitle>
         </DialogHeader>
-
-        <form
+        <p className="text-center">Apakah Anda yakin menghapus ESP 1</p>
+        {/* <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-10 px-6"
         >
@@ -164,7 +164,21 @@ export const EditEspModal = () => {
               Edit Esp
             </Button>
           </DialogFooter>
-        </form>
+        </form> */}
+        <DialogFooter className="px-6 pb-8">
+          <Button
+            type="button"
+            variant="default"
+            className="bg-neutral-800 hover:bg-neutral-800/80 text-light-2"
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
+
+          <Button type="submit" variant="themeMode">
+            Edit Esp
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

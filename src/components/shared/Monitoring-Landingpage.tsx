@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const MonitoringLandingPage = () => {
   return (
-    <div
+    <section
       id="MonitoringLandingPage"
       className="h-screen bg-sky-200 flex flex-col gap-4 items-center landingpage lg:px-60"
     >
@@ -34,7 +34,7 @@ const MonitoringLandingPage = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
