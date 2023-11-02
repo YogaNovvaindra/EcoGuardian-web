@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-import { CreateEspModal } from "@/components/modals/creates/create-esp-modal";
-import { EditEspModal } from "@/components/modals/updates/edit-esp-modal";
 import { DeleteEsp } from "../modals/delete/delete-esp-modal";
+import { CreateEspModal } from "@/components/modals/creates/create-esp-modal";
+import { CreateFeedbacQuestionskModal } from "../modals/creates/create-feedbackquestions-modal";
+import { CreateFeedbacResponseModal } from "../modals/creates/create-feedbackresponse-modal";
+import { EditEspModal } from '@/components/modals/updates/edit-esp-modal';
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,6 +24,8 @@ export const ModalProvider = () => {
       <CreateEspModal />
       <EditEspModal />
       <DeleteEsp />
+      <CreateFeedbacQuestionskModal />
+      <CreateFeedbacResponseModal />
     </>
   );
 };

@@ -117,3 +117,12 @@ export const data = [
     amt: 2100,
   },
 ];
+
+export const selectItemFeedbackQuestions = [
+  "Agimul Karim",
+  "Ikhwanul Karim",
+  "Zeinul Karim",
+  "Irsad Maulana",
+  "Alvin Yanuar",
+  "Ammar TV",
+];

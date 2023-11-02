@@ -4,6 +4,7 @@ import { Link as LinkScroll } from "react-scroll";
 import { useState } from "react";
 import { listNavigationBar } from "@/constants";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const NavbarLandingPage = () => {
   const [activeClass, setActiveClass] = useState<boolean>(false);
@@ -49,7 +50,9 @@ const NavbarLandingPage = () => {
             </li>
           ))}
         </ul>
-        <Button variant="secondary">Sign In</Button>
+        <Link href="/login">
+          <Button variant="secondary">Sign In</Button>
+        </Link>
       </div>
     </nav>
   );
