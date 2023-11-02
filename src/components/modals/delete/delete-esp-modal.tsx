@@ -21,7 +21,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { UploadCloud } from "lucide-react";
-import { Label } from "@/components/ui/label";
+import { Label } from "../../ui/label";
 
 const formSchema = z.object({
   nama: z
@@ -31,22 +31,22 @@ const formSchema = z.object({
       message: "Kandang name is required and must not be empty",
       path: [],
     }),
+  // gambar_kandang dengan typedata file
   latitude: z.number(),
   longitude: z.number(),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
-export const EditEspModal = () => {
+export const DeleteEsp = () => {
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const queryClient = useQueryClient();
   // menampung state error
 
-  const isModalOpen = isOpen && type === "editEsp";
+  const isModalOpen = isOpen && type === "deleteEsp";
 
   const { esp } = data;
-  console.log("data", data);
 
   const {
     register,
@@ -73,25 +73,22 @@ export const EditEspModal = () => {
   }, [esp, resetField, setValue, reset]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const { nama, latitude, longitude } = data;
-    console.log("id", esp?.id);
+    console.log(esp?.id);
     console.log(data);
 
-    const response = {
-      nama: nama,
-      latitude: latitude,
-      longitude: longitude,
-    };
-    try {
-      await axios.put(`/api/kandang/${esp?.id}`, response);
-      router.refresh();
-      reset();
-      onClose();
-    } catch (error) {
-      console.log("Error: ", error);
-    }
+    const formData = new FormData();
+    formData.append("nama", data.nama);
+    formData.append("latitude", data.latitude.toString());
+    formData.append("longitude", data.longitude.toString());
+
+    const response = await axios.put(`/api/esp/${esp?.id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
     // consol log
+    console.log(response.data);
 
     queryClient.invalidateQueries(["esp"]);
     onClose();
@@ -106,24 +103,24 @@ export const EditEspModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent className="bg-neutral-100 text-black p-0 overflow-hidden">
+      <DialogContent className="bg-neutral text-black p-0 overflow-hidden px-4">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Edit Kandang
+            Delete Esp
           </DialogTitle>
         </DialogHeader>
-
-        <form
+        <p className="text-center">Apakah Anda yakin menghapus ESP 1</p>
+        {/* <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-10 px-6"
         >
           <div className="flex flex-col gap-2">
-            <Label htmlFor="nama">Nama Esp</Label>
+            <Label htmlFor="nama">Nama esp</Label>
             <Input
               id="nama"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="text"
-              placeholder="Nama Kandang"
+              placeholder="Nama Esp"
               defaultValue={esp?.nama ? esp?.nama : ""}
               {...register("nama")}
             />
@@ -135,19 +132,19 @@ export const EditEspModal = () => {
               id="latitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="number"
-              placeholder="Nama Kandang"
+              placeholder="Latitude"
               defaultValue={esp?.latitude ? esp?.latitude : ""}
               {...register("latitude")}
             />
             {errors.latitude && <div>{errors.latitude.message}</div>}
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="longitude">Nama Esp</Label>
+            <Label htmlFor="longitude">Longitude</Label>
             <Input
               id="longitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="number"
-              placeholder="Nama Kandang"
+              placeholder="Longitude"
               defaultValue={esp?.longitude ? esp?.longitude : ""}
               {...register("longitude")}
             />
@@ -167,7 +164,21 @@ export const EditEspModal = () => {
               Edit Esp
             </Button>
           </DialogFooter>
-        </form>
+        </form> */}
+        <DialogFooter className="px-6 pb-8">
+          <Button
+            type="button"
+            variant="default"
+            className="bg-neutral-800 hover:bg-neutral-800/80 text-light-2"
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
+
+          <Button type="submit" variant="themeMode">
+            Edit Esp
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

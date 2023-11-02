@@ -26,6 +26,12 @@ const Leftsidebar: FC<LeftsidebarProps> = ({}) => {
   return (
     <section className="custom-scrollbar leftsidebar greens-gradient dark:darks-gradient">
       <div className="flex w-full flex-1 flex-col gap-6 px-6">
+        <Link href="/dashboard" className="flex items-center gap-4">
+          <Image src="/logo.svg" alt="logo" width={28} height={28} />
+          <p className="text-heading3-bold text-light-1 hidden lg:inline-block">
+            Eco Guardian
+          </p>
+        </Link>
         {sidebarLinks.map((link) => {
           const isActive =
             (pathname?.includes(link.route) && link.route.length > 1) ||
@@ -45,6 +51,7 @@ const Leftsidebar: FC<LeftsidebarProps> = ({}) => {
                 alt={link.label}
                 width={24}
                 height={24}
+                className="min-w-[24px]"
               />
 
               <p className="text-light-1 max-lg:hidden">{link.label}</p>

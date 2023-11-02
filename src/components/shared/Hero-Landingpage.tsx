@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 const HeroLandingPage = () => {
   return (
-    <div
+    <section
       id="HeroLandingPage"
       className="h-screen flex flex-col gap md:flex-row md:items-center landingpage"
     >
@@ -29,7 +29,7 @@ const HeroLandingPage = () => {
         </div>
         <Button className="w-max">Get Started</Button>
       </div>
-    </div>
+    </section>
   );
 };
 
