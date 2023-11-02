@@ -38,13 +38,13 @@ const AuthenticatedLayout: FC<AuthenticatedLayoutProps> = async ({
     <Provider session={session}>
       <html lang="en">
         <body className={inter.className}>
-          <ThemeProvider
+          {/* <ThemeProvider
             attribute="class"
             defaultTheme="light"
             enableSystem={false}
             disableTransitionOnChange
             // storageKey="discord-theme"
-          >
+          > */}
             <main className="flex h-screen flex-row overflow-auto">
               <Leftsidebar />
               <div className="flex flex-col w-full h-screen">
@@ -64,7 +64,7 @@ const AuthenticatedLayout: FC<AuthenticatedLayoutProps> = async ({
               </div>
             </main>
             <Bottombar />
-          </ThemeProvider>
+          {/* </ThemeProvider> */}
         </body>
       </html>
     </Provider>
