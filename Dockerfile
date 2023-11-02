@@ -18,6 +18,7 @@ WORKDIR /app
 COPY --from=builder /app/package.json .
 COPY --from=builder /app/package-lock.json .
 COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/images ./images
 COPY --from=builder /app/node_modules ./node_modules
