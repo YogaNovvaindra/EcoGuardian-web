@@ -1,5 +1,6 @@
 import { informationMonitoring } from "@/constants";
 import Image from "next/image";
+import Chart from "./Chart";
 
 const MonitoringLandingPage = () => {
   return (
@@ -34,6 +35,7 @@ const MonitoringLandingPage = () => {
           </div>
         ))}
       </div>
+      {/* <Chart /> */}
     </section>
   );
 };

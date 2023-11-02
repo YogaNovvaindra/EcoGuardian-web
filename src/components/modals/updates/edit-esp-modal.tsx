@@ -21,7 +21,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { UploadCloud } from "lucide-react";
-import { Label } from "../../ui/label";
+import { Label } from "@/components/ui/label";
 
 const formSchema = z.object({
   nama: z
@@ -31,7 +31,6 @@ const formSchema = z.object({
       message: "Kandang name is required and must not be empty",
       path: [],
     }),
-  // gambar_kandang dengan typedata file
   latitude: z.number(),
   longitude: z.number(),
 });
@@ -47,6 +46,7 @@ export const EditEspModal = () => {
   const isModalOpen = isOpen && type === "editEsp";
 
   const { esp } = data;
+  console.log("data", data);
 
   const {
     register,
@@ -73,22 +73,25 @@ export const EditEspModal = () => {
   }, [esp, resetField, setValue, reset]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log(esp?.id);
+    const { nama, latitude, longitude } = data;
+    console.log("id", esp?.id);
     console.log(data);
 
-    const formData = new FormData();
-    formData.append("nama", data.nama);
-    formData.append("latitude", data.latitude.toString());
-    formData.append("longitude", data.longitude.toString());
-
-    const response = await axios.put(`/api/esp/${esp?.id}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const response = {
+      nama: nama,
+      latitude: latitude,
+      longitude: longitude,
+    };
+    try {
+      await axios.put(`/api/kandang/${esp?.id}`, response);
+      router.refresh();
+      reset();
+      onClose();
+    } catch (error) {
+      console.log("Error: ", error);
+    }
 
     // consol log
-    console.log(response.data);
 
     queryClient.invalidateQueries(["esp"]);
     onClose();
@@ -106,7 +109,7 @@ export const EditEspModal = () => {
       <DialogContent className="bg-neutral-100 text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Edit Esp
+            Edit Kandang
           </DialogTitle>
         </DialogHeader>
 
@@ -115,12 +118,12 @@ export const EditEspModal = () => {
           className="flex flex-col gap-10 px-6"
         >
           <div className="flex flex-col gap-2">
-            <Label htmlFor="nama">Nama esp</Label>
+            <Label htmlFor="nama">Nama Esp</Label>
             <Input
               id="nama"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="text"
-              placeholder="Nama Esp"
+              placeholder="Nama Kandang"
               defaultValue={esp?.nama ? esp?.nama : ""}
               {...register("nama")}
             />
@@ -132,19 +135,19 @@ export const EditEspModal = () => {
               id="latitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="number"
-              placeholder="Latitude"
+              placeholder="Nama Kandang"
               defaultValue={esp?.latitude ? esp?.latitude : ""}
               {...register("latitude")}
             />
             {errors.latitude && <div>{errors.latitude.message}</div>}
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="longitude">Longitude</Label>
+            <Label htmlFor="longitude">Nama Esp</Label>
             <Input
               id="longitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="number"
-              placeholder="Longitude"
+              placeholder="Nama Kandang"
               defaultValue={esp?.longitude ? esp?.longitude : ""}
               {...register("longitude")}
             />

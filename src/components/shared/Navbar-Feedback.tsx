@@ -15,7 +15,7 @@ const NavbarFeedback = () => {
                 : "bg-light-1"
             } px-4 py-2 rounded-tl-md`}
           >
-            Program
+            Questions
           </button>
         </Link>
       </li>

@@ -1,7 +1,20 @@
 import { esp, User } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "createFeedback" | "createEsp" | "createNotif" | "createUser" | "editEsp" | "editFeedback" | "editUser" | "deleteEsp" | "deleteFeedback" | "deleteUser";
+export type ModalType =
+  | "createFeedbackQuestions"
+  | "createFeedbackResponse"
+  | "createEsp"
+  | "createNotif"
+  | "createUser"
+  | "editEsp"
+  | "editFeedbackQuestions"
+  | "editFeedbackResponse"
+  | "editUser"
+  | "deleteEsp"
+  | "deleteFeedbackQuestions"
+  | "deleteFeedbackResponse"
+  | "deleteUser";
 
 interface ModalData {
   esp?: esp;

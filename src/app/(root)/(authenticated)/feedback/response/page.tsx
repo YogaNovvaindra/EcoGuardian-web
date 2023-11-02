@@ -11,6 +11,7 @@ import { ModalProvider } from "@/components/providers/modal-provider";
 import Link from "next/link";
 import { useModal } from "@/hooks/use-modal-store";
 import NavbarFeedback from "@/components/shared/Navbar-Feedback";
+import CardFeedback from "@/components/shared/Card-Feedback";
 
 type Props = {};
 
@@ -25,13 +26,19 @@ const Page = (props: Props) => {
       </div>
       <div className="flex flex-col h-full overflow-auto">
         <NavbarFeedback />
-        <div className="h-full bg-light-1 overflow-auto"></div>
+        <div className="h-full bg-light-1 overflow-auto p-6">
+          <CardFeedback />
+          <CardFeedback />
+          <CardFeedback />
+          <CardFeedback />
+          <CardFeedback />
+        </div>
       </div>
       <Button
         className="fixed bottom-28 right-6 md:bottom-6 md:right-6 text-[40px]"
         size="iconAdd"
-        onClick={() => onOpen("createEsp")}
-      > 
+        onClick={() => onOpen("createFeedbackResponse")}
+      >
         <MdAdd />
       </Button>
       <ModalProvider />
