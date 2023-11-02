@@ -41,7 +41,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            yoganovaindra/ecoguardian-web:latest
             yoganovaindra/ecoguardian-web:${{ env.VER_TAG }}
-            ghcr.io/yoganovvaindra/ecoguardian-web:latest
+            yoganovaindra/ecoguardian-web:latest
             ghcr.io/yoganovvaindra/ecoguardian-web:${{ env.VER_TAG }}            
+            ghcr.io/yoganovvaindra/ecoguardian-web:latest

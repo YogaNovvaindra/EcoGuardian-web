@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
@@ -14,16 +14,17 @@ datasource db {
 model User {
   id            String    @id @default(uuid())
   name          String?
-  email         String?   @unique   
+  email         String?   @unique
   username      String?   @unique
   password      String?
-  emailVerified DateTime?  @map("email_verified")
+  emailVerified DateTime? @map("email_verified")
   image         String?
-  role          userRole      //@default(user)
+  role          userRole //@default(user)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+
   @@map("users")
 }
 
@@ -32,22 +33,21 @@ enum userRole {
   admin
 }
 
-
 model Account {
-  id                 String    @id @default(cuid())
-  userId             String    @map("user_id")
-  type               String?
-  provider           String
-  providerAccountId  String    @map("provider_account_id")
-  token_type         String?
-  refresh_token      String?   @db.Text
-  access_token       String?   @db.Text
-  expires_at         Int?
-  scope              String?
-  id_token           String? @db.Text
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String   @id @default(cuid())
+  userId            String   @map("user_id")
+  type              String?
+  provider          String
+  providerAccountId String   @map("provider_account_id")
+  token_type        String?
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
+  expires_at        Int?
+  scope             String?
+  id_token          String?  @db.Text
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -56,10 +56,10 @@ model Account {
 model Session {
   id           String   @id @default(cuid())
   userId       String?  @map("user_id")
-  sessionToken String   @db.VarChar(255) @map("session_token") @unique
-  accessToken  String?  @db.Text @map("access_token")
+  sessionToken String   @unique @map("session_token") @db.VarChar(255)
+  accessToken  String?  @map("access_token") @db.Text
   expires      DateTime
-  user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
@@ -76,37 +76,53 @@ model VerificationRequest {
 
   @@unique([identifier, token])
 }
+
 model esp {
-  id           String   @id @default(cuid())
-  nama         String?
-  latitude     Float?
-  longitude    Float?
-  status       Boolean? @default(false)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  data         data[]
+  id        String   @id @default(cuid())
+  nama      String?
+  latitude  Float?
+  longitude Float?
+  status    Boolean? @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  data      data[]
+
   @@map("esp")
 }
 
 model data {
-  id           String   @id @default(cuid())
-  id_esp       String?  @map("esp_id")
-  suhu         Float?
-  kelembaban   Float?
-  mq2_smoke    Float?
-  mq2_lpg      Float?
-  mq7_co       Float?
-  mq135_co2    Float?
-  mq135_nh4    Float?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  esp          esp?     @relation(fields: [id_esp], references: [id], onDelete: Cascade)
-  @@map("data")  
+  id         String   @id @default(cuid())
+  id_esp     String?  @map("esp_id")
+  suhu       Float?
+  kelembaban Float?
+  mq2_smoke  Float?
+  mq2_lpg    Float?
+  mq7_co     Float?
+  mq135_co2  Float?
+  mq135_nh4  Float?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  esp        esp?     @relation(fields: [id_esp], references: [id], onDelete: Cascade)
+
+  @@map("data")
 }
 
 model notifications {
-  id_notifications           String   @id @default(cuid())
+  id_notifications      String   @id @default(cuid())
   message_notifications String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model dummy {
+  id          String   @id @default(cuid())
+  temperature Float
+  humidity    Float
+  co2         Float
+  pm25        Float
+  mq2         Float
+  mq7         Float
+  mq135       Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
