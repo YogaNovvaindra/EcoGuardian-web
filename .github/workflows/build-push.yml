@@ -11,7 +11,7 @@ permissions:
       packages: write
 
 env:
-  VER_TAG: v0.2.0
+  VER_TAG: v0.3.0
 
 jobs:
   docker:
@@ -41,7 +41,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            yoganovaindra/ecoguardian-web:latest
             yoganovaindra/ecoguardian-web:${{ env.VER_TAG }}
-            ghcr.io/yoganovvaindra/ecoguardian-web:latest
+            yoganovaindra/ecoguardian-web:latest
             ghcr.io/yoganovvaindra/ecoguardian-web:${{ env.VER_TAG }}            
+            ghcr.io/yoganovvaindra/ecoguardian-web:latest
