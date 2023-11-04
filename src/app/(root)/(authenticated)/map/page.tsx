@@ -1,5 +1,5 @@
 "use client";
-import CardMapMonitoringIot from "@/components/shared/Card-MapmonitoringIoT";
+import CardMapMonitoringIot from "@/components/common/card/Card-MapmonitoringIoT";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -48,7 +48,7 @@ const Page = (props: Props) => {
             <CardMapMonitoringIot key={index} espData={item} />
           ))}
           {loading && <p>Loading...</p>}
-          {error && <p>Error bang...</p>}s
+          {error && <p>Error bang...</p>}
         </div>
       </div>
       <Button

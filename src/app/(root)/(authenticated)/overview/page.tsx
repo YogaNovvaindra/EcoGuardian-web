@@ -1,6 +1,6 @@
 "use client";
 
-import Chart from "@/components/shared/Chart";
+import Chart from "@/components/common/chart/Chart";
 import { usePathname } from "next/navigation";
 import React from "react";
 
