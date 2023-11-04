@@ -26,9 +26,9 @@ export async function PUT(req: Request, { params }: { params: { id_user: string 
 
     try {
         const body = await req.json();
-        const { username, email, password, role} = body;
+        const { username, name, email, password, role} = body;
 
-        if (!username || !email || !password || !role) {
+        if (!username || !name || !email || !password || !role) {
             return NextResponse.json({ message: "Username, email, password, role, and image are required!" }, { status: 400 });
         }
 
@@ -38,6 +38,7 @@ export async function PUT(req: Request, { params }: { params: { id_user: string 
             },
             data: {
                 username: username,
+                name: name,
                 email: email,
                 password: password,
                 role: role,

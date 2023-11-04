@@ -1,9 +1,9 @@
-import HeroLandingPage from "@/components/shared/landingpage/Hero-Landingpage";
-import MonitoringLandingPage from "@/components/shared/landingpage/Monitoring-Landingpage";
-import AboutLandingPage from "@/components/shared/landingpage/About-Landingpage";
-import CustomerServicesLandingPage from "@/components/shared/landingpage/Customerservices-Landingpage";
-import FooterLandingPage from "@/components/shared/landingpage/Footer-Landingpage";
-import NavbarLandingPage from "@/components/shared/landingpage/Navbar-Landingpage";
+import HeroLandingPage from "@/components/shared/Hero-Landingpage";
+import MonitoringLandingPage from "@/components/shared/Monitoring-Landingpage";
+import AboutLandingPage from "@/components/shared/About-Landingpage";
+import CustomerServicesLandingPage from "@/components/shared/Customerservices-Landingpage";
+import FooterLandingPage from "@/components/shared/Footer-Landingpage";
+import NavbarLandingPage from "@/components/shared/Navbar-landingpage";
 
 export default function Home() {
   return (
