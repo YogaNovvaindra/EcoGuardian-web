@@ -1,15 +1,14 @@
 import { useModal } from "@/hooks/use-modal-store";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Switch } from "../ui/switch";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
+import { Switch } from "../../ui/switch";
 import { BiPencil } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
-import { ModalProvider } from "../providers/modal-provider";
+import { ModalProvider } from "../../providers/modal-provider";
 import React from "react";
-import { data } from "../../constants/index";
-import { esp } from "@prisma/client";
-import { ModalType } from "../../hooks/use-modal-store";
+import { ModalType } from "../../../hooks/use-modal-store";
 import DataCardMonitoringIot from "./Datacard-MapmonitoringIot";
+import { esp } from "@prisma/client";
 
 // interface ESP {
 //   id: string;
@@ -37,25 +36,15 @@ import DataCardMonitoringIot from "./Datacard-MapmonitoringIot";
 // }
 
 interface Props {
-  espData: any;
+  espData: esp;
 }
 
 const CardMapMonitoringIot: React.FC<Props> = ({ espData }) => {
   const { onOpen } = useModal();
 
-  console.log("oawkoakowa", espData);
-
   return (
     <section className="flex flex-col gap-6 bg-light-1 rounded-md p-6 border">
       <div>
-        {/* <button
-          className="bg-red-500"
-          onClick={() => {
-            console.log("oawkoakowa", espData);
-          }}
-        >
-          oawkowak
-        </button> */}
         <div className="flex justify-between">
           <div className="">
             <h2 className="text-body-semibold">{espData.nama}</h2>

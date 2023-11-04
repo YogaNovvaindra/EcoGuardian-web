@@ -12,7 +12,10 @@ export async function POST(req: Request) {
     });
 
     if (exisitngUserByEmail) {
-      return NextResponse.json({ user: null, message: "User with this email already exists" }, { status: 401 });
+      return NextResponse.json(
+        { user: null, message: "User with this email already exists" },
+        { status: 401 }
+      );
     }
 
     const exisitngUserByUsername = await db.user.findUnique({
@@ -20,7 +23,10 @@ export async function POST(req: Request) {
     });
 
     if (exisitngUserByUsername) {
-      return NextResponse.json({ user: null, message: "User with this username already exists" }, { status: 401 });
+      return NextResponse.json(
+        { user: null, message: "User with this username already exists" },
+        { status: 401 }
+      );
     }
 
     const hashedPassword = await hash(password, 10);
@@ -35,32 +41,48 @@ export async function POST(req: Request) {
     });
 
     const { password: newUserPassword, ...rest } = newUser;
-    return NextResponse.json({ user: rest, message: "User created Successfully" }, { status: 201 });
+    return NextResponse.json(
+      { user: rest, message: "User created Successfully" },
+      { status: 201 }
+    );
   } catch (error) {
-    return NextResponse.json({ message: "Something went wrong!" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Something went wrong!" },
+      { status: 500 }
+    );
   }
 }
 
-export async function GET()  {
+export async function GET() {
   try {
     const users = await db.user.findMany({
       select: {
         id: true,
         username: true,
         email: true,
+        password: true,
         role: true,
         image: true,
       },
     });
 
     if (!users) {
-      return NextResponse.json({ message: "Users not found!" }, { status: 404 });
+      return NextResponse.json(
+        { message: "Users not found!" },
+        { status: 404 }
+      );
     } else if (users.length === 0) {
-      return NextResponse.json({ message: "Users not found!" }, { status: 404 });
+      return NextResponse.json(
+        { message: "Users not found!" },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json(users, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: "Something went wrong!" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Something went wrong!" },
+      { status: 500 }
+    );
   }
 }

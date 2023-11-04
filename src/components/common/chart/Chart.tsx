@@ -1,58 +1,41 @@
-
-import { FC } from 'react';
+import { Tooltip } from "react-leaflet";
 import {
-    Area,
-    AreaChart,
-    Tooltip,
-    TooltipProps,
-} from 'recharts';
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { data } from "@/constants";
 
-type DefaultAreaChartProps = {
-    height: number;
-    width: number;
-    color: string;
-    children: React.ReactNode;
-    data: any[];
-    renderTooltip?: (point: TooltipProps<number, string>) => React.ReactNode;
-};
-
-export const DefaultAreaChart: FC<DefaultAreaChartProps> = ({
-    data,
-    height,
-    width,
-    color,
-    renderTooltip,
-    children,
-}) => {
-    return (
-        <AreaChart
-            data={data}
-            height={height}
-            width={width}
-            margin={{ left: 0, top: 0, right: 0, bottom: 0 }}
+const Chart = () => {
+  return (
+    <section className="flex flex-col gap-4 bg-light-1 p-4 h-80 overflow-auto border">
+      <div>
+        <h2 className="text-heading2-semibold">Title</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis,
+          perspiciatis.
+        </p>
+      </div>
+      <ResponsiveContainer width="100%">
+        <LineChart
+          data={data}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
-            <defs>
-                <linearGradient id={`gradient_${color}`} x1='0%' y1='0%' x2='0%' y2='100%'>
-                    <stop offset='0%' stopColor={color} stopOpacity={0.6} />
-                    <stop offset='80%' stopColor={color} stopOpacity={0} />
-                </linearGradient>
-            </defs>
-            <Area
-                type='monotone'
-                dataKey='y'
-                stroke={color}
-                strokeWidth={3}
-                fillOpacity={1}
-                fill={`url(#${`gradient_${color}`})`}
-                isAnimationActive={false}
-            />
-            {renderTooltip && (
-                <Tooltip<number, string>
-                    content={x => renderTooltip(x)}
-                    wrapperStyle={{ outline: 'none' }}
-                />
-            )}
-            {children}
-        </AreaChart>
-    );
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        </LineChart>
+      </ResponsiveContainer>
+    </section>
+  );
 };
+
+export default Chart;

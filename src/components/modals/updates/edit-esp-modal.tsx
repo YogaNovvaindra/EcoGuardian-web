@@ -31,8 +31,9 @@ const formSchema = z.object({
       message: "Kandang name is required and must not be empty",
       path: [],
     }),
-  latitude: z.number(),
-  longitude: z.number(),
+
+  latitude: z.string(),
+  longitude: z.string(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -46,7 +47,7 @@ export const EditEspModal = () => {
   const isModalOpen = isOpen && type === "editEsp";
 
   const { esp } = data;
-  console.log("data", data);
+  console.log(esp?.id)
 
   const {
     register,
@@ -66,25 +67,23 @@ export const EditEspModal = () => {
   useEffect(() => {
     if (esp) {
       reset();
-      setValue("nama", esp.nama || "");
-      setValue("latitude", esp.latitude || 0);
-      setValue("longitude", esp.longitude || 0);
+      setValue("nama", esp.nama ? esp.nama : "");
+      setValue("latitude", esp.latitude ? String(esp.latitude) : "");
+      setValue("longitude", esp.longitude ? String(esp.longitude) : "");
     }
   }, [esp, resetField, setValue, reset]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const { nama, latitude, longitude } = data;
-    console.log("id", esp?.id);
-    console.log(data);
-
     const response = {
       nama: nama,
-      latitude: latitude,
-      longitude: longitude,
+      latitude: parseFloat(latitude),
+      longitude: parseFloat(longitude),
     };
     try {
-      await axios.put(`/api/kandang/${esp?.id}`, response);
+      await axios.put(`/api/esp/${esp?.id}`, response);
       router.refresh();
+      console.log("data", esp?.id, "Berhasil Edit");
       reset();
       onClose();
     } catch (error) {

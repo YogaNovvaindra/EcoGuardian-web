@@ -1,6 +1,6 @@
 "use client";
 
-import CardMapMonitoringIot from "@/components/shared/Card-MapmonitoringIoT";
+import CardMapMonitoringIot from "@/components/common/card/Card-MapmonitoringIoT";
 import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -10,8 +10,8 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import Link from "next/link";
 import { useModal } from "@/hooks/use-modal-store";
-import NavbarFeedback from "@/components/shared/Navbar-Feedback";
-import CardFeedback from "@/components/shared/Card-Feedback";
+import NavbarFeedback from "@/components/common/navbar/Navbar-Feedback";
+import CardFeedback from "@/components/common/card/Card-Feedback";
 
 type Props = {};
 

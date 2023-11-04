@@ -77,6 +77,8 @@ export const CreateEspModal = () => {
       router.refresh();
       reset();
       onClose();
+
+      queryClient.invalidateQueries(["esp"]);
     } catch (error) {
       console.log(error);
     }

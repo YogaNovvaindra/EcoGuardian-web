@@ -11,7 +11,7 @@ export async function GET(req: Request, { params }: { params: { id_user: string 
             },
         });
         
-        if (!user) {
+        if (!user) {777
             return NextResponse.json({ message: "User not found!" }, { status: 404 });
         }
         return NextResponse.json(user, { status: 200 });

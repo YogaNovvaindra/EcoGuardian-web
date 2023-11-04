@@ -1,4 +1,4 @@
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 const CardFeedback = () => {
