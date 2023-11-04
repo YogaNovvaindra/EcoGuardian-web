@@ -1,6 +1,6 @@
 import { informationMonitoring } from "@/constants";
 import Image from "next/image";
-import Chart from "./Chart";
+import Chart from "../../common/chart/Chart";
 
 const MonitoringLandingPage = () => {
   return (

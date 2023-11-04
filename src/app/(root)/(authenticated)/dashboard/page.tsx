@@ -1,9 +1,8 @@
 "use client";
 import { SocketIndicator } from "@/components/common/Socket-indicator";
-import AreaChartContainer from "@/components/common/chart/AreaChartContainer";
 import Temperature from "@/components/common/chart/temperature";
-import Chart from "@/components/shared/Chart";
-import MonitoringLandingPage from "@/components/shared/Monitoring-Landingpage";
+import Chart from "@/components/common/chart/Chart";
+import MonitoringLandingPage from "@/components/shared/landingpage/Monitoring-Landingpage";
 import { informationMonitoring } from "@/constants";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
