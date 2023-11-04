@@ -52,3 +52,23 @@ export async function PUT(req: Request, { params }: { params: { id_esp: string }
         return NextResponse.json({ message: "Something went wrong!" }, { status: 500 });
     }
 }
+
+export async function DELETE(req: Request, { params }: { params: { id_esp: string }} ) {
+    const { id_esp } = params;
+
+    try {
+        const esp = await db.esp.delete({
+            where: {
+                id: id_esp,
+            },
+        });
+
+        if (!esp) {
+            return NextResponse.json({ message: "ESP not found!" }, { status: 404 });
+        }
+        return NextResponse.json({message: "Delete User with id "+id_esp+" Success", esp}, { status: 200 });
+    }
+    catch (error) {
+        return NextResponse.json({ message: "Something went wrong!" }, { status: 500 });
+    }
+}
