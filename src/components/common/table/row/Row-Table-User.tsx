@@ -9,7 +9,6 @@ interface Props {
 
 const RowTableUser: React.FC<Props> = ({ userData }) => {
   const { onOpen } = useModal();
-  console.log("userData: ", userData);
   return (
     <>
       {userData.map((item: User) => (
@@ -20,6 +19,9 @@ const RowTableUser: React.FC<Props> = ({ userData }) => {
           <td>{item.image}</td>
           <td>{item.role}</td>
           <td>
+            <Button onClick={() => onOpen("deleteUser", { User: item })}>
+              Hapus
+            </Button>
             <Button onClick={() => onOpen("createUser")}>Tambah</Button>
             <Button onClick={() => onOpen("editUser", { User: item })}>
               Edit
