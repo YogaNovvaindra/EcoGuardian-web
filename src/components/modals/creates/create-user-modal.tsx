@@ -18,7 +18,6 @@ import { Button } from "@/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { UploadCloud } from "lucide-react";
 import { Label } from "../../ui/label";
@@ -32,9 +31,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
 
 const formSchema = z.object({
-  name: z
+  nama: z
     .string()
     .min(3, { message: "Kandang name must be at least 3 characters long" })
     .refine((value) => !!value.trim(), {
@@ -50,16 +50,17 @@ const formSchema = z.object({
     }),
   email: z.string(),
   password: z.string(),
+  confirmPassword: z.string(),
+  // image: z.any(),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
 export const CreateUserModal = () => {
-  const [passwordAccount, setPasswordAccount] = useState("");
+  const [passwordUser, setPasswordUser] = useState("");
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const queryClient = useQueryClient();
-  const bcrypt = require("bcryptjs");
 
   // menampung state error
 
@@ -81,23 +82,37 @@ export const CreateUserModal = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const { name, username, email, password } = data;
+    const { nama, username, email, password, confirmPassword } = data;
 
-    const hashPassword = await bcrypt.hashSync(password, 10);
+    // console.log("file gambar: ", image[0]);
 
-    setPasswordAccount(hashPassword);
-    console.log("password bcrypt: ", passwordAccount);
+    if (password == confirmPassword) {
+      setPasswordUser(password);
+    } else {
+      return console.log("Salah Blok!");
+    }
+
+    const formData = new FormData();
+    formData.append("nama", nama);
+    formData.append("username", username);
+    formData.append("email", email);
+    // formData.append("image", image[0]);
+    formData.append("passwordUser", passwordUser);
 
     const response = {
-      nama: name,
+      nama: nama,
       username: username,
       email: email,
-      password: passwordAccount,
+      password: passwordUser,
     };
+
     console.log("Proses...");
 
     try {
-      await axios.post("/api/user", response);
+      await axios.post("/api/user", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
       console.log("Data Berhasil Ditambahkan!!");
       router.refresh();
       reset();
@@ -147,9 +162,9 @@ export const CreateUserModal = () => {
               type="text"
               placeholder="Nama"
               defaultValue={User?.name ? User?.name : ""}
-              {...register("name")}
+              {...register("nama")}
             />
-            {errors.name && <div>{errors.name.message}</div>}
+            {errors.nama && <div>{errors.nama.message}</div>}
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
@@ -164,17 +179,42 @@ export const CreateUserModal = () => {
             {errors.email && <div>{errors.email.message}</div>}
           </div>
 
+          {/* <div className="flex flex-col gap-2">
+            <Label htmlFor="image">Image</Label>
+            <Input
+              id="image"
+              className="bg-neutral-200 outline-none border-none focus:border-none"
+              type="file"
+              placeholder="iamge"
+              defaultValue={""}
+              {...register("image")}
+            />
+          </div> */}
           <div className="flex flex-col gap-2">
             <Label htmlFor="password">Password</Label>
             <Input
               id="password"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="password"
-              placeholder="Username"
+              placeholder="Password"
               defaultValue={""}
               {...register("password")}
             />
             {errors.password && <div>{errors.password.message}</div>}
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="confirmpassword">Konfirmasi Password</Label>
+            <Input
+              id="confirmpassword"
+              className="bg-neutral-200 outline-none border-none focus:border-none"
+              type="password"
+              placeholder="Masukkan Ulang Password"
+              defaultValue={""}
+              {...register("confirmPassword")}
+            />
+            {errors.confirmPassword && (
+              <div>{errors.confirmPassword.message}</div>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="role">Role</Label>
