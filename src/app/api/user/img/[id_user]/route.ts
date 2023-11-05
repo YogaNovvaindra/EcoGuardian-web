@@ -1,7 +1,5 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/auth";
 import { join } from "path";
 import { readFile, writeFile } from "fs/promises";
 import { v4 as uuidv4 } from "uuid";
@@ -28,7 +26,7 @@ export async function PUT(req: Request, { params }: { params: { id_user: string 
 
   // With the file data in the buffer, you can do whatever you want with it.
   // For this, we'll just write it to the filesystem in a new location
-  const path = join(process.cwd(), "/images/user", namaFile);
+  const path = join(process.cwd(), "/images/user/", namaFile);
 
   try {
     await writeFile(path, buffer);
@@ -63,7 +61,7 @@ export async function GET(req: Request, { params }: { params: { id_user: string 
   }
 
   const userImagePath = user.image
-  ? join(process.cwd(), 'images/user', user.image)
+  ? join(process.cwd(), 'images/user/', user.image)
   : null;
 
   if (!userImagePath) {
