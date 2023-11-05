@@ -47,7 +47,6 @@ export const EditEspModal = () => {
   const isModalOpen = isOpen && type === "editEsp";
 
   const { esp } = data;
-  console.log(esp?.id)
 
   const {
     register,
