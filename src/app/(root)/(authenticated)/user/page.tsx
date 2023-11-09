@@ -10,6 +10,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useModal } from "@/hooks/use-modal-store";
+import { User } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Import, Table } from "lucide-react";
 import Image from "next/image";
@@ -18,26 +20,18 @@ import React, { useEffect, useState } from "react";
 
 type Props = {};
 
-const Page = (props: Props) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get("/api/user");
-        setData(response.data);
-        setLoading(false);
-        console.log(data);
-      } catch (error) {
-        console.error("Error:", error);
-        setError(true);
-      }
-    }
-
-    fetchData();
-  }, []);
+const Page = () => {
+  const {
+    data: userData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["User"],
+    queryFn: async () => {
+      const { data } = await axios.get("/api/user");
+      return data;
+    },
+  });
 
   const { onOpen } = useModal();
   const pathname = usePathname();
@@ -49,26 +43,13 @@ const Page = (props: Props) => {
         <span>{pathname}</span>
       </div>
       <div className="w-full h-full bg-light-1 flex flex-col gap-4 rounded-md h-40 p-6 overflow-auto">
-        {/* <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">username</TableCell>
-              <TableCell>email</TableCell>
-              <TableCell>role</TableCell>
-              <TableCell className="text-right">image</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table> */}
-        <TableUser userData={data}/>
+        {isLoading ? (
+          <p className="text-black">Loading...</p>
+        ) : isError ? (
+          <p>Error: Failed to fetch data</p>
+        ) : (
+          <TableUser userData={userData} />
+        )}
       </div>
     </section>
   );

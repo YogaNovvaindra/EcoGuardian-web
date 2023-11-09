@@ -14,11 +14,11 @@ export const sidebarLinks = [
     route: "/overview",
     label: "Detail Overview",
   },
-  {
-    imgUrl: "/assets/comment.svg",
-    route: "/feedback/questions",
-    label: "Anonymus Feedback",
-  },
+  // {
+  //   imgUrl: "/assets/comment.svg",
+  //   route: "/feedback/questions",
+  //   label: "Anonymus Feedback",
+  // },
   {
     imgUrl: "/assets/capture.svg",
     route: "/image",
@@ -50,26 +50,45 @@ export const listNavigationBar = [
   },
 ];
 
-export const informationMonitoring = [
+export const informationMonitoringDashboard = [
   {
     title: "Temperature",
-    unit: "00 °C",
-    date: "Today",
+    show: ["temperature", "co2", "mq2", "humidity", "pm25"],
   },
   {
-    title: "Humadity",
-    unit: "00 %",
-    date: "Today",
+    title: "Humidity",
+    show: ["humidity", "co2"],
   },
   {
     title: "Air Pollution Image",
-    unit: "00 %",
-    date: "Today",
+    show: ["mq2", "temperature"],
   },
   {
     title: "Air Quality",
-    unit: "00",
-    date: "Today",
+    show: ["mq2"],
+  },
+];
+
+export const informationMonitoringOverview = [
+  {
+    title: "Temperature",
+    description: "Deskripsi Temperature",
+    show: ["temperature", "co2", "mq2", "humidity", "pm25"],
+  },
+  {
+    title: "Humidity",
+    description: "Deskripsi Humidity",
+    show: ["humidity", "co2"],
+  },
+  {
+    title: "Air Pollution Image",
+    description: "Deskripsi Air Pollution Image",
+    show: ["mq2", "temperature"],
+  },
+  {
+    title: "Air Quality",
+    description: "Deskripsi Air Quality",
+    show: ["mq2"],
   },
 ];
 

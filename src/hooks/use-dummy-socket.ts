@@ -10,13 +10,17 @@ type DummySocketProps = {
   queryKey: string;
 };
 
-export const useChartSocket = ({ addKey, updateKey, queryKey }: DummySocketProps) => {
+export const useDummySocket = ({
+  addKey,
+  updateKey,
+  queryKey,
+}: DummySocketProps) => {
   const { socket } = useSocket();
   const queryClient = useQueryClient();
 
   function showNotification(title: string, options: NotificationOptions) {
     if (Notification.permission === "granted") {
-      const notification = new Notification(title, options);
+      new Notification(title, options);
     }
   }
 
@@ -24,8 +28,21 @@ export const useChartSocket = ({ addKey, updateKey, queryKey }: DummySocketProps
   useEffect(() => {
     if (socket) {
       const handleAddKey = (dummyData: dummy) => {
-        // Tampilkan notifikasi saat ada data baru dari WebSocket
-        showNotification("Data dummy Baru", { body: `Temperatur: ${dummyData.createdAt}°C` });
+        // Mengecek izin notifikasi
+        if (Notification.permission !== "granted") {
+          // Jika pengguna belum memberikan izin, tampilkan permintaan izin notifikasi
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              // Izin diberikan, tampilkan notifikasi
+              showNotification("Pesan Baru", {
+                body: `${dummyData.createdAt}`,
+              });
+            }
+          });
+        } else {
+          // Izin sudah diberikan, tampilkan notifikasi
+          showNotification("Pesan Baru", { body: `${dummyData.createdAt}` });
+        }
       };
 
       socket.on(addKey, handleAddKey);
