@@ -10,6 +10,9 @@ const nextConfig = {
 
     return config;
   },
+  env: {
+    TZ: 'Asia/Jakarta', // Use the IANA time zone identifier for UTC+7
+  },
 };
 
 module.exports = nextConfig;
