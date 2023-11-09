@@ -1,8 +1,37 @@
-import { informationMonitoring } from "@/constants";
+"use client";
+
+import { informationMonitoringDashboard } from "@/constants";
 import Image from "next/image";
-import Chart from "../../common/chart/Chart";
+import Chart from "../../common/chart/Chart-Dashboard";
+import { useDummySocket } from "@/hooks/use-dummy-socket";
+import { useEffect, useState } from "react";
+import { format } from "date-fns";
+import ChartDashboard from "../../common/chart/Chart-Dashboard";
+import vector from "../../../../public/assets/vector-people-mointoring.png";
 
 const MonitoringLandingPage = () => {
+  const [activeCard, setActiveCard] = useState(0);
+  const [showChart, setShowChart] = useState(informationMonitoringDashboard[0]);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const realtimeClock = () => {
+      setCurrentTime(new Date());
+    };
+
+    const intervalTime = setInterval(realtimeClock, 1000);
+
+    return () => {
+      clearInterval(intervalTime);
+    };
+  }, []);
+
+  const formattedDate = format(currentTime, "dd MMMM yyyy");
+
+  const handleCardClick = (index: any) => {
+    setActiveCard(index);
+    setShowChart(informationMonitoringDashboard[index]);
+  };
   return (
     <section
       id="MonitoringLandingPage"
@@ -11,12 +40,7 @@ const MonitoringLandingPage = () => {
       <h1 className="text-heading3-bold">Information Monitoring</h1>
       <div className="w-full bg-light-1 flex rounded-md overflow-hidden">
         <div>
-          <Image
-            src="/public/../assets/vector-people-mointoring.png"
-            alt=""
-            width={100}
-            height={100}
-          />
+          <Image src={vector} alt="vector" width={100} height={100} />
         </div>
         <div className="px-4 py-2">
           <h3>What is the air quality at Jember State Polytechnic now?</h3>
@@ -24,18 +48,22 @@ const MonitoringLandingPage = () => {
         </div>
       </div>
       <div className="w-full flex gap-6 flex-wrap">
-        {informationMonitoring.map((item) => (
+        {informationMonitoringDashboard.map((item, index) => (
           <div
-            key={item.title}
-            className="grow min-w-[150px] p-4 bg-white rounded-md"
+            key={index}
+            className={`grow min-w-[150px] p-4 rounded-md ${
+              index === activeCard ? "bg-green-500" : "bg-white"
+            }`}
+            onClick={() => handleCardClick(index)}
           >
             <p>{item.title}</p>
-            <p className="text-heading2-bold">{item.unit}</p>
-            <p>{item.date}</p>
+            <p className="text-heading2-bold">00</p>
+
+            <p>{formattedDate}</p>
           </div>
         ))}
       </div>
-      {/* <Chart /> */}
+      {/* <ChartDashboard showData={showChart} /> */}
     </section>
   );
 };

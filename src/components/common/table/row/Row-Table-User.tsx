@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/use-modal-store";
 import { User } from "@prisma/client";
+import { AnyARecord, AnyNsRecord } from "dns";
 import React from "react";
+import { UseFormRegister } from "react-hook-form";
 
 interface Props {
   userData: any;
