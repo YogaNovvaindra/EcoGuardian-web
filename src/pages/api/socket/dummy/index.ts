@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
     });
 
     // emit data using server.io if available
-    res?.socket?.server?.io?.emit("dummy", dummyData);
+    res?.socket?.server?.io?.emit("addDummy", dummyData);
 
     console.log("dummyData", dummyData);
     // consol log adddummyData

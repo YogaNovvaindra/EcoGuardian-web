@@ -1,9 +1,6 @@
 "use client";
 
 import axios from "axios";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
 
 import {
   Dialog,
@@ -18,27 +15,8 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { UploadCloud } from "lucide-react";
-import { Label } from "../../ui/label";
 
-const formSchema = z.object({
-  nama: z
-    .string()
-    .min(3, { message: "Kandang name must be at least 3 characters long" })
-    .refine((value) => !!value.trim(), {
-      message: "Kandang name is required and must not be empty",
-      path: [],
-    }),
-  // gambar_kandang dengan typedata file
-  latitude: z.number(),
-  longitude: z.number(),
-});
-
-type FormData = z.infer<typeof formSchema>;
-
-export const DeleteEsp = () => {
+export const DeleteEspModal = () => {
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -48,44 +26,11 @@ export const DeleteEsp = () => {
 
   const { esp } = data;
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    reset,
-    resetField,
-
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-  });
-
-  // ketika open modal, set value form reset field
-
-  useEffect(() => {
-    if (esp) {
-      reset();
-      setValue("nama", esp.nama || "");
-      setValue("latitude", esp.latitude || 0);
-      setValue("longitude", esp.longitude || 0);
-    }
-  }, [esp, resetField, setValue, reset]);
-
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log(esp?.id);
+  const onSubmit = async () => {
+    console.log("esp id: ", esp?.id);
     console.log(data);
 
-    const formData = new FormData();
-    formData.append("nama", data.nama);
-    formData.append("latitude", data.latitude.toString());
-    formData.append("longitude", data.longitude.toString());
-
-    const response = await axios.put(`/api/esp/${esp?.id}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const response = await axios.delete(`/api/esp/${esp?.id}`);
 
     // consol log
     console.log(response.data);
@@ -97,7 +42,6 @@ export const DeleteEsp = () => {
   const handleClose = () => {
     // reset form
     // resetField("nama_kandang");
-    reset();
     onClose();
   };
 
@@ -109,62 +53,7 @@ export const DeleteEsp = () => {
             Delete Esp
           </DialogTitle>
         </DialogHeader>
-        <p className="text-center">Apakah Anda yakin menghapus ESP 1</p>
-        {/* <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-10 px-6"
-        >
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="nama">Nama esp</Label>
-            <Input
-              id="nama"
-              className="bg-neutral-200 outline-none border-none focus:border-none"
-              type="text"
-              placeholder="Nama Esp"
-              defaultValue={esp?.nama ? esp?.nama : ""}
-              {...register("nama")}
-            />
-            {errors.nama && <div>{errors.nama.message}</div>}
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="latitude">Latitude</Label>
-            <Input
-              id="latitude"
-              className="bg-neutral-200 outline-none border-none focus:border-none"
-              type="number"
-              placeholder="Latitude"
-              defaultValue={esp?.latitude ? esp?.latitude : ""}
-              {...register("latitude")}
-            />
-            {errors.latitude && <div>{errors.latitude.message}</div>}
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="longitude">Longitude</Label>
-            <Input
-              id="longitude"
-              className="bg-neutral-200 outline-none border-none focus:border-none"
-              type="number"
-              placeholder="Longitude"
-              defaultValue={esp?.longitude ? esp?.longitude : ""}
-              {...register("longitude")}
-            />
-            {errors.longitude && <div>{errors.longitude.message}</div>}
-          </div>
-          <DialogFooter className="px-6 pb-8">
-            <Button
-              type="button"
-              variant="default"
-              className="bg-neutral-800 hover:bg-neutral-800/80 text-light-2"
-              onClick={handleClose}
-            >
-              Cancel
-            </Button>
-
-            <Button type="submit" variant="themeMode">
-              Edit Esp
-            </Button>
-          </DialogFooter>
-        </form> */}
+        <p className="text-center">Apakah Anda yakin menghapus {esp?.nama}</p>
         <DialogFooter className="px-6 pb-8">
           <Button
             type="button"
@@ -175,8 +64,8 @@ export const DeleteEsp = () => {
             Cancel
           </Button>
 
-          <Button type="submit" variant="themeMode">
-            Edit Esp
+          <Button type="button" onClick={onSubmit} variant="themeMode">
+            Delete Esp
           </Button>
         </DialogFooter>
       </DialogContent>

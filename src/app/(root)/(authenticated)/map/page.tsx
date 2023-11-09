@@ -9,7 +9,9 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { ModalType, useModal } from "../../../../hooks/use-modal-store";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import axios from "axios";
-import { UseQueryOptions } from "@tanstack/react-query";
+import { UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { esp } from "@prisma/client";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = {};
 
@@ -18,20 +20,32 @@ const Page = (props: Props) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get("/api/esp");
-        setData(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error:", error);
-        setError(true);
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const response = await axios.get("/api/esp");
+  //       setData(response.data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //       setError(true);
+  //     }
+  //   }
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
+
+  const {
+    data: espData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["esp"],
+    queryFn: async () => {
+      const { data } = await axios.get("/api/esp");
+      return data;
+    },
+  });
 
   const { onOpen } = useModal();
   const pathname = usePathname();
@@ -44,11 +58,44 @@ const Page = (props: Props) => {
       </div>
       <div className="h-full p-6 bg-light-1 rounded-md overflow-auto">
         <div className="grid grid-cols-1 h-full xl:grid-cols-2 gap-6 overflow-y-auto">
-          {data.map((item, index) => (
-            <CardMapMonitoringIot key={index} espData={item} />
-          ))}
-          {loading && <p>Loading...</p>}
-          {error && <p>Error bang...</p>}
+          {isLoading ? (
+            <>
+              <div className="flex flex-col gap-6 bg-light-1 rounded-md p-6 border">
+                <div className="flex flex-col gap-2 ">
+                  <Skeleton className="h-6 w-20" />
+                  <Skeleton className="h-5 w-40" />
+                </div>
+                <Skeleton className="h-full w-full" />
+              </div>
+              <div className="flex flex-col gap-6 bg-light-1 rounded-md p-6 border">
+                <div className="flex flex-col gap-2 ">
+                  <Skeleton className="h-6 w-20" />
+                  <Skeleton className="h-5 w-40" />
+                </div>
+                <Skeleton className="h-full w-full" />
+              </div>
+              <div className="flex flex-col gap-6 bg-light-1 rounded-md p-6 border">
+                <div className="flex flex-col gap-2 ">
+                  <Skeleton className="h-6 w-20" />
+                  <Skeleton className="h-5 w-40" />
+                </div>
+                <Skeleton className="h-full w-full" />
+              </div>
+              <div className="flex flex-col gap-6 bg-light-1 rounded-md p-6 border">
+                <div className="flex flex-col gap-2 ">
+                  <Skeleton className="h-6 w-20" />
+                  <Skeleton className="h-5 w-40" />
+                </div>
+                <Skeleton className="h-full w-full" />
+              </div>
+            </>
+          ) : isError ? (
+            <p>Error: Failed to fetch data</p>
+          ) : (
+            espData.map((item: esp) => (
+              <CardMapMonitoringIot key={item.id} espData={item} />
+            ))
+          )}
         </div>
       </div>
       <Button

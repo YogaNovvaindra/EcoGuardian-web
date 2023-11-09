@@ -92,12 +92,12 @@ export const CreateUserModal = () => {
       return console.log("Salah Blok!");
     }
 
-    const formData = new FormData();
-    formData.append("nama", nama);
-    formData.append("username", username);
-    formData.append("email", email);
-    // formData.append("image", image[0]);
-    formData.append("passwordUser", passwordUser);
+    // const formData = new FormData();
+    // formData.append("nama", nama);
+    // formData.append("username", username);
+    // formData.append("email", email);
+    // // formData.append("image", image[0]);
+    // formData.append("passwordUser", passwordUser);
 
     const response = {
       nama: nama,
@@ -109,9 +109,7 @@ export const CreateUserModal = () => {
     console.log("Proses...");
 
     try {
-      await axios.post("/api/user", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post("/api/user", response);
 
       console.log("Data Berhasil Ditambahkan!!");
       router.refresh();
