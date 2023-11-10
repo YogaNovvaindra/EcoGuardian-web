@@ -91,8 +91,8 @@ model esp {
 }
 
 model data {
-  id             String   @id @default(cuid())
-  id_esp         String?  @map("esp_id")
+  id             String    @id @default(cuid())
+  id_esp         String?   @map("esp_id")
   temperature    Float?
   humidity       Float?
   mq135_co       Float?
@@ -111,11 +111,11 @@ model data {
   mq7_ch4        Float?
   mq7_co         Float?
   mq7_alcohol    Float?
-  pm1            Float?
+  pm10           Float?
   pm25           Float?
-  createdAt      DateTime @default(now())
+  createdAt      DateTime  @default(now())
   updatedAt      DateTime? @updatedAt
-  esp            esp?     @relation(fields: [id_esp], references: [id], onDelete: Cascade)
+  esp            esp?      @relation(fields: [id_esp], references: [id], onDelete: Cascade)
 
   @@map("data")
 }
@@ -137,5 +137,5 @@ model dummy {
   mq7         Float
   mq135       Float
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  updatedAt   DateTime? @updatedAt
 }

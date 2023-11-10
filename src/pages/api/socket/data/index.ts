@@ -52,7 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
             mq7_ch4,
             mq7_co,
             mq7_alcohol,
-            pm1,
+            pm10,
             pm25, } = req.body;
 
         const sensorData = await db.data.create({
@@ -76,7 +76,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
                 mq7_ch4,
                 mq7_co,
                 mq7_alcohol,
-                pm1,
+                pm10,
                 pm25,
             },
         });
