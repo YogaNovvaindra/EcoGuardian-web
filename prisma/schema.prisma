@@ -91,31 +91,31 @@ model esp {
 }
 
 model data {
-  id             String    @id @default(cuid())
-  id_esp         String?   @map("esp_id")
-  temperature    Float?
-  humidity       Float?
-  mq135_co       Float?
-  msq135_alcohol Float?
-  mq135_co2      Float?
-  mq135_toluen   Float?
-  mq135_nh4      Float?
-  mq135_aceton   Float?
-  mq2_h2         Float?
-  mq2_lpg        Float?
-  mq2_co         Float?
-  mq2_alcohol    Float?
-  mq2_propane    Float?
-  mq7_h2         Float?
-  mq7_lpg        Float?
-  mq7_ch4        Float?
-  mq7_co         Float?
-  mq7_alcohol    Float?
-  pm10           Float?
-  pm25           Float?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime? @updatedAt
-  esp            esp?      @relation(fields: [id_esp], references: [id], onDelete: Cascade)
+  id            String    @id @default(cuid())
+  id_esp        String?   @map("esp_id")
+  temperature   Float?
+  humidity      Float?
+  mq135_co      Float?
+  mq135_alcohol Float?
+  mq135_co2     Float?
+  mq135_toluen  Float?
+  mq135_nh4     Float?
+  mq135_aceton  Float?
+  mq2_h2        Float?
+  mq2_lpg       Float?
+  mq2_co        Float?
+  mq2_alcohol   Float?
+  mq2_propane   Float?
+  mq7_h2        Float?
+  mq7_lpg       Float?
+  mq7_ch4       Float?
+  mq7_co        Float?
+  mq7_alcohol   Float?
+  pm10          Float?
+  pm25          Float?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime? @updatedAt
+  esp           esp?      @relation(fields: [id_esp], references: [id], onDelete: Cascade)
 
   @@map("data")
 }
@@ -128,7 +128,7 @@ model notifications {
 }
 
 model dummy {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   temperature Float
   humidity    Float
   co2         Float
@@ -136,6 +136,6 @@ model dummy {
   mq2         Float
   mq7         Float
   mq135       Float
-  createdAt   DateTime @default(now())
+  createdAt   DateTime  @default(now())
   updatedAt   DateTime? @updatedAt
 }
