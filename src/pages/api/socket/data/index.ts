@@ -77,7 +77,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
                 mq7_co,
                 mq7_alcohol,
                 pm10,
-                pm25,
+                pm25
             },
         });
 
