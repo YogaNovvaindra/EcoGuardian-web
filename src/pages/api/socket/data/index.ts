@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
             temperature, 
             humidity, 
             mq135_co, 
-            msq135_alcohol,
+            mq135_alcohol,
             mq135_co2,
             mq135_toluen,
             mq135_nh4,
@@ -52,7 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
             mq7_ch4,
             mq7_co,
             mq7_alcohol,
-            pm1,
+            pm10,
             pm25, } = req.body;
 
         const sensorData = await db.data.create({
@@ -61,7 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
                 temperature,
                 humidity,
                 mq135_co,
-                msq135_alcohol,
+                mq135_alcohol,
                 mq135_co2,
                 mq135_toluen,
                 mq135_nh4,
@@ -76,8 +76,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
                 mq7_ch4,
                 mq7_co,
                 mq7_alcohol,
-                pm1,
-                pm25,
+                pm10,
+                pm25
             },
         });
 

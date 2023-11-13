@@ -5,6 +5,8 @@ import { useState } from "react";
 import { listNavigationBar } from "@/constants";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { signOut } from 'next-auth/react'
+
 
 const NavbarLandingPage = () => {
   const [activeClass, setActiveClass] = useState<boolean>(false);
@@ -50,7 +52,7 @@ const NavbarLandingPage = () => {
             </li>
           ))}
         </ul>
-        <Link href="/login">
+        <Link href="/sign-in">
           <Button variant="secondary">Sign In</Button>
         </Link>
       </div>
