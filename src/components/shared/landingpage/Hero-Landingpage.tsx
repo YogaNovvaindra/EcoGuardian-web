@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Button } from "../../ui/button";
-import vector from "../../../../public/assets/vector.png";
 
 const HeroLandingPage = () => {
   return (
@@ -9,7 +8,12 @@ const HeroLandingPage = () => {
       className="h-screen flex flex-col gap md:flex-row md:items-center landingpage"
     >
       <div className="md:order-2 w-full">
-        <Image src={vector} alt="vector" width={1000} height={1000} />
+        {/* <Image
+          src={"/../../public/../assets/vector.png"}
+          alt="vector"
+          width={1000}
+          height={1000}
+        /> */}
       </div>
       <div className="flex flex-col gap-4 w-full">
         <div>

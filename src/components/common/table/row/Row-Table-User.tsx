@@ -24,7 +24,6 @@ const RowTableUser: React.FC<Props> = ({ userData }) => {
             <Button onClick={() => onOpen("deleteUser", { User: item })}>
               Hapus
             </Button>
-            <Button onClick={() => onOpen("createUser")}>Tambah</Button>
             <Button onClick={() => onOpen("editUser", { User: item })}>
               Edit
             </Button>
