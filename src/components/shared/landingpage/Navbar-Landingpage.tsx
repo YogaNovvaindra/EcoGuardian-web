@@ -52,7 +52,7 @@ const NavbarLandingPage = () => {
             </li>
           ))}
         </ul>
-        <Link href="/login">
+        <Link href="/sign-in">
           <Button variant="secondary">Sign In</Button>
         </Link>
       </div>

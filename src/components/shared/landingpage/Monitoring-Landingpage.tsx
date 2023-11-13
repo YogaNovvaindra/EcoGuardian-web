@@ -48,7 +48,8 @@ const MonitoringLandingPage = () => {
         </div>
       </div>
       <div className="w-full flex gap-6 flex-wrap">
-        {informationMonitoringDashboard.map((item, index) => (
+      <iframe src="http://192.168.2.15:3002/d-solo/f073b157-ee25-4bad-8ce5-d0de3543be4f/ecoguardian?orgId=1&from=1699668036244&to=1699711176244&refresh=5s&theme=light&panelId=1" width="900" height="400"></iframe>
+        {/* {informationMonitoringDashboard.map((item, index) => (
           <div
             key={index}
             className={`grow min-w-[150px] p-4 rounded-md ${
@@ -61,7 +62,7 @@ const MonitoringLandingPage = () => {
 
             <p>{formattedDate}</p>
           </div>
-        ))}
+        ))} */}
       </div>
       {/* <ChartDashboard showData={showChart} /> */}
     </section>
