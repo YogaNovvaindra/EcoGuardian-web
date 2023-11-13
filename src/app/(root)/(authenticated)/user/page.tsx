@@ -1,6 +1,7 @@
 "use client";
 
 import TableUser from "@/components/common/table/Table-User";
+import { Button } from "@/components/ui/button";
 import {
   TableBody,
   TableCaption,
@@ -17,6 +18,7 @@ import { Import, Table } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { MdAdd } from "react-icons/md";
 
 type Props = {};
 
@@ -51,6 +53,13 @@ const Page = () => {
           <TableUser userData={userData} />
         )}
       </div>
+      <Button
+        className="fixed bottom-28 right-6 md:bottom-6 md:right-6 text-[40px]"
+        size="iconAdd"
+        onClick={() => onOpen("createUser")}
+      >
+        <MdAdd />
+      </Button>
     </section>
   );
 };

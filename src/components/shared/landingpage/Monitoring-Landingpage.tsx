@@ -7,7 +7,6 @@ import { useDummySocket } from "@/hooks/use-dummy-socket";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import ChartDashboard from "../../common/chart/Chart-Dashboard";
-import vector from "../../../../public/assets/vector-people-mointoring.png";
 
 const MonitoringLandingPage = () => {
   const [activeCard, setActiveCard] = useState(0);
@@ -40,7 +39,12 @@ const MonitoringLandingPage = () => {
       <h1 className="text-heading3-bold">Information Monitoring</h1>
       <div className="w-full bg-light-1 flex rounded-md overflow-hidden">
         <div>
-          <Image src={vector} alt="vector" width={100} height={100} />
+          {/* <Image
+            src="/../../public/../assets/vector-people-mointoring.png"
+            alt="vector"
+            width={100}
+            height={100}
+          /> */}
         </div>
         <div className="px-4 py-2">
           <h3>What is the air quality at Jember State Polytechnic now?</h3>

@@ -103,7 +103,16 @@ const Page = (props: Props) => {
           </div>
         ))}
       </div>
-      <ChartDashboard showData={showChart} />
+      {/* <ChartDashboard showData={showChart} /> */}
+      <div className="h-full bg-light-1">
+        <iframe
+          src="http://192.168.2.15:3002/d-solo/f073b157-ee25-4bad-8ce5-d0de3543be4f/ecoguardian?orgId=1&refresh=5s&panelId=1"
+          width="100%"
+          height="100%"
+          frameBorder="0"
+          className="bg-light-1"
+        ></iframe>
+      </div>
     </section>
   );
 };
