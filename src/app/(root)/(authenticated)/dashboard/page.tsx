@@ -13,7 +13,6 @@ import Dummy from "@/components/common/chart/Dummy";
 import { useQuery } from "@/hooks/use-query";
 import { useDummySocket } from "@/hooks/use-dummy-socket";
 import ChartDashboard from "@/components/common/chart/Chart-Dashboard";
-// import addNotification, { Notifications } from 'react-push-notification';
 
 type Props = {};
 
@@ -21,49 +20,11 @@ const Page = (props: Props) => {
   const pathname = usePathname();
   const [activeCard, setActiveCard] = useState(0);
   const [showChart, setShowChart] = useState(informationMonitoringDashboard[0]);
-  const [currentTime, setCurrentTime] = useState(new Date());
-
-  // Socket Dummy
-  // const queryKey = `dummy`;
-  // const addKey = `addDummy`;
-
-  // const { data, status } = useQuery({
-  //   queryKey,
-  //   apiUrl: "api/dummy",
-  // });
-  // useDummySocket({ queryKey, addKey });
-
-  useEffect(() => {
-    const realtimeClock = () => {
-      setCurrentTime(new Date());
-    };
-
-    const intervalTime = setInterval(realtimeClock, 1000);
-
-    return () => {
-      clearInterval(intervalTime);
-    };
-  }, []);
-
-  // Date Now
-  const formattedDate = format(currentTime, "dd MMMM yyyy");
-
-  const TryNotification = () => {
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        new Notification("example notification", {
-          body: "This is an example notification",
-          data: {
-            hello: "world",
-          },
-        });
-      }
-    });
-  };
 
   const handleCardClick = (index: any) => {
     setActiveCard(index);
     setShowChart(informationMonitoringDashboard[index]);
+    console.log("Show Chart: ", showChart);
   };
 
   return (
@@ -97,13 +58,28 @@ const Page = (props: Props) => {
             onClick={() => handleCardClick(index)}
           >
             <p>{item.title}</p>
-            <p className="text-heading2-bold">00</p>
-
-            <p>{formattedDate}</p>
+            <div className="flex justify-between">
+              <div>
+                <p className="text-heading2-bold">00</p>
+                <p>Now</p>
+              </div>
+              <div>
+                <p className="text-heading2-bold">00</p>
+                <p>+1 hour</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
-      <ChartDashboard showData={showChart} />
+      {/* <ChartDashboard showData={showChart} /> */}
+      <div className="h-full bg-light-1">
+        <iframe
+          src={showChart.link}
+          width="100%"
+          height="100%"
+          frameBorder="0"
+        ></iframe>
+      </div>
     </section>
   );
 };

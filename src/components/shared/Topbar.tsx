@@ -14,44 +14,89 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { signOut, useSession } from "next-auth/react";
 
 interface TopbarProps {
   // title?: string
 }
 
 const Topbar: FC<TopbarProps> = ({}) => {
-  // const [time, setTime] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   // useEffect(() => {
-  //   const realtimeClock = () => {
-  //     setTime(new Date());
-  //   };
+  //   const intervalId = setInterval(() => {
+  //     setCurrentDate(new Date());
+  //   }, 1000); // Update setiap detik
 
-  //   const intervalTime = setInterval(realtimeClock, 1000);
-
-  //   return () => {
-  //     clearInterval(intervalTime);
-  //   };
+  //   return () => clearInterval(intervalId);
   // }, []);
 
-  const { data: session } = useSession();
+  // // Date Now
+  // const options: any = {
+  //   weekday: "long",
+  //   year: "numeric",
+  //   month: "long",
+  //   day: "numeric",
+  //   hour: "numeric",
+  //   minute: "numeric",
+  //   second: "numeric",
+  // };
 
-  // const hours = time.getHours();
-  // const minutes = time.getMinutes();
-  // const seconds = time.getSeconds();
+  // // Helper function to format the day as "Day" (e.g., "Monday")
+  // const getFormattedDay = (date: any) => {
+  //   const dayNames = [
+  //     "Sunday",
+  //     "Monday",
+  //     "Tuesday",
+  //     "Wednesday",
+  //     "Thursday",
+  //     "Friday",
+  //     "Saturday",
+  //   ];
 
-  // const formattedHours = hours < 10 ? `0${hours}` : hours;
-  // const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-  // const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-  // const formattedDate = format(time, "EEEE, dd MMMM yyyy");
+  //   return dayNames[date.getDay()];
+  // };
+
+  // // Helper function to format the time as "HH:MM:SS"
+  // const getFormattedTime = (date: any) => {
+  //   const hours = String(date.getHours()).padStart(2, "0");
+  //   const minutes = String(date.getMinutes()).padStart(2, "0");
+  //   const seconds = String(date.getSeconds()).padStart(2, "0");
+  //   return `${hours}:${minutes}:${seconds}`;
+  // };
+
+  // // Helper function to format the date as "YYYY-MM-DD"
+  // const getFormattedDate = (date: any) => {
+  //   console.log("Date: ", date);
+  //   const year = date.getFullYear();
+  //   const monthNames = [
+  //     "January",
+  //     "February",
+  //     "March",
+  //     "April",
+  //     "May",
+  //     "June",
+  //     "July",
+  //     "August",
+  //     "September",
+  //     "October",
+  //     "November",
+  //     "December",
+  //   ];
+  //   const month = monthNames[date.getMonth()];
+  //   const day = String(date.getDate()).padStart(2, "0");
+  //   return `${day} ${month} ${year}`;
+  // };
+
+  // const formattedDateTime = `${getFormattedTime(currentDate)} ${getFormattedDay(
+  //   currentDate
+  // )}, ${getFormattedDate(currentDate)} `;
 
   return (
     <nav className="topbar">
-      {/* <p className="text-light-1">{`${formattedHours}:${formattedMinutes}:${formattedSeconds} ${formattedDate}`}</p> */}
+      <p className="text-light-1">kosongi sek</p>
       <Dialog>
         <DialogTrigger>
-          {/* <button className="relative">
+          <div className="relative">
             <div className="w-6 h-6 bg-red-500 absolute top-1 right-1 flex justify-center items-center rounded-full">
               <p className="text-light-1 text-small-regular">10</p>
             </div>
@@ -63,7 +108,7 @@ const Topbar: FC<TopbarProps> = ({}) => {
                 height={32}
               ></Image>
             </div>
-          </button> */}
+          </div>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -75,7 +120,10 @@ const Topbar: FC<TopbarProps> = ({}) => {
           </DialogHeader>
         </DialogContent>
       </Dialog>
-      {/* <div className="w-8 h-8 bg-red-500 rounded-full overflow-clip">
+      <Link
+        href={"/profile"}
+        className="w-8 h-8 bg-red-500 rounded-full overflow-clip"
+      >
         <Image
           alt=""
           src="/public/../assets/img/example-user.jpeg"
@@ -83,16 +131,16 @@ const Topbar: FC<TopbarProps> = ({}) => {
           height={24}
           className="object-cover w-full h-full"
         />
-      </div> */}
-      {session ? (
-          <Button variant="outline" onClick={() => signOut()}>
-            Sign Out
-          </Button>
-        ) : (
-          <Link href="/login">
-            <Button variant="secondary">Sign In</Button>
-          </Link>
-        )}
+      </Link>
+      {/* {session ? (
+        <Button variant="outline" onClick={() => signOut()}>
+          Sign Out
+        </Button>
+      ) : (
+        <Link href="/login">
+          <Button variant="secondary">Sign In</Button>
+        </Link>
+      )} */}
     </nav>
   );
 };

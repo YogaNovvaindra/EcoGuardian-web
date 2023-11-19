@@ -45,25 +45,25 @@ const AuthenticatedLayout: FC<AuthenticatedLayoutProps> = async ({
             disableTransitionOnChange
             // storageKey="discord-theme"
           > */}
-            <main className="flex h-screen flex-row overflow-auto">
-              <Leftsidebar />
-              <div className="flex flex-col w-full h-screen">
-                <Topbar />
-                <section className="main-container h-full overflow-auto">
-                  <div className="w-full h-full overflow-auto">
-                    <SocketProvider>
-                      <QueryProvider>
-                        <Notifikasi apiUrl={apiUrl} />
-                        <ModalProvider />
-                        {children}
-                      </QueryProvider>
-                    </SocketProvider>
-                  </div>
-                </section>
-                {/* <Rightsidebar /> */}
-              </div>
-            </main>
-            <Bottombar />
+          <main className="flex h-screen flex-row overflow-auto">
+            <Leftsidebar />
+            <div className="flex flex-col w-full h-screen">
+              <Topbar />
+              <section className="main-container h-full overflow-auto">
+                <div className="w-full h-full overflow-auto">
+                  <SocketProvider>
+                    <QueryProvider>
+                      <Notifikasi apiUrl={apiUrl} />
+                      <ModalProvider />
+                      {children}
+                    </QueryProvider>
+                  </SocketProvider>
+                </div>
+              </section>
+              {/* <Rightsidebar /> */}
+            </div>
+          </main>
+          <Bottombar />
           {/* </ThemeProvider> */}
         </body>
       </html>

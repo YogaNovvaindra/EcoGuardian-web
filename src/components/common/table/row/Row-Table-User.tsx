@@ -14,17 +14,16 @@ const RowTableUser: React.FC<Props> = ({ userData }) => {
   return (
     <>
       {userData.map((item: User) => (
-        <tr key={item.id}>
-          <td>{item.username}</td>
-          <td>{item.name}</td>
-          <td>{item.email}</td>
-          <td>{item.image}</td>
-          <td>{item.role}</td>
-          <td>
+        <tr key={item.id} className="border-b-2">
+          <td className="styletablebodyuser">{item.username}</td>
+          <td className="styletablebodyuser">{item.name}</td>
+          <td className="styletablebodyuser">{item.email}</td>
+          <td className="styletablebodyuser">{item.image}</td>
+          <td className="styletablebodyuser">{item.role}</td>
+          <td className="styletablebodyuser">
             <Button onClick={() => onOpen("deleteUser", { User: item })}>
               Hapus
             </Button>
-            <Button onClick={() => onOpen("createUser")}>Tambah</Button>
             <Button onClick={() => onOpen("editUser", { User: item })}>
               Edit
             </Button>
