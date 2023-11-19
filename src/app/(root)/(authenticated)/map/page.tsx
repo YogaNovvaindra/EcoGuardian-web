@@ -20,21 +20,6 @@ const Page = (props: Props) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const response = await axios.get("/api/esp");
-  //       setData(response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //       setError(true);
-  //     }
-  //   }
-
-  //   fetchData();
-  // }, []);
-
   const {
     data: espData,
     isLoading,

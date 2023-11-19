@@ -169,6 +169,10 @@
     @apply md:gap-8 pt-24 pb-4 px-8;
   }
 
+  .styletablebodyuser {
+    @apply p-3;
+  }
+
   .bg-greens-gradient {
     background: linear-gradient(90.13deg, #00492c 1.9%, #00a762 97.5%);
     background: -webkit-linear-gradient(

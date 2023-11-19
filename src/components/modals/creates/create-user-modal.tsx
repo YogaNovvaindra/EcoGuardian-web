@@ -32,6 +32,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
+import ImageUser from "@/app/(root)/(authenticated)/user/imageuser/page";
 
 const formSchema = z.object({
   nama: z
@@ -113,6 +114,7 @@ export const CreateUserModal = () => {
 
       console.log("Data Berhasil Ditambahkan!!");
       router.refresh();
+      console.log("id user: ", User?.id);
       reset();
       onClose();
 
@@ -176,18 +178,7 @@ export const CreateUserModal = () => {
             />
             {errors.email && <div>{errors.email.message}</div>}
           </div>
-
-          {/* <div className="flex flex-col gap-2">
-            <Label htmlFor="image">Image</Label>
-            <Input
-              id="image"
-              className="bg-neutral-200 outline-none border-none focus:border-none"
-              type="file"
-              placeholder="iamge"
-              defaultValue={""}
-              {...register("image")}
-            />
-          </div> */}
+          {/* <ImageUser /> */}
           <div className="flex flex-col gap-2">
             <Label htmlFor="password">Password</Label>
             <Input

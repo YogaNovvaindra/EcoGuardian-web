@@ -51,7 +51,6 @@ const formSchema = z.object({
   email: z.string(),
   password: z.string(),
   role: z.enum(["user", "admin"]),
-  image: z.string().nullable(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -90,12 +89,12 @@ export const EditUserModal = () => {
       setValue("email", User.email ? User.email : "");
       // setValue("password", User.password ? User.password : "");
       setValue("role", User.role ? userRole[User.role] : "user");
-      setValue("image", User.image ? User.image : null);
+      // setValue("image", User.image ? User.image : null);
     }
   }, [User, resetField, setValue, reset]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const { username, email, password, role, image } = data;
+    const { username, email, password, role } = data;
     console.log("password lama: ", User?.password);
     console.log("password baru: ", password);
 
@@ -104,7 +103,7 @@ export const EditUserModal = () => {
       email: email,
       password: User?.password,
       role: role,
-      image: image,
+      // image: image,
     };
 
     try {
@@ -174,7 +173,7 @@ export const EditUserModal = () => {
             />
             {errors.email && <div>{errors.email.message}</div>}
           </div>
-          <div className="flex flex-col gap-2">
+          {/* <div className="flex flex-col gap-2">
             <Label htmlFor="image">Image</Label>
             <Input
               id="email"
@@ -185,7 +184,7 @@ export const EditUserModal = () => {
               {...register("image")}
             />
             {errors.email && <div>{errors.email.message}</div>}
-          </div>
+          </div> */}
           <div className="flex flex-col gap-2">
             <Label htmlFor="role">Role</Label>
             <Select>
