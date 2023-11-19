@@ -10,7 +10,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { data } from "@/constants";
 import { useQuery } from "@/hooks/use-query";
 import { useDummySocket } from "@/hooks/use-dummy-socket";
 import React from "react";

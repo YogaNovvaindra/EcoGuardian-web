@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -8,7 +8,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../../ui/form';
+} from "../../ui/form";
 import {
   Card,
   CardContent,
@@ -16,25 +16,24 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../ui/card"
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from '../../ui/input';
-import { Button } from '../../ui/button';
-import Link from 'next/link';
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react';
-import { loginValidation } from '@/lib/validation/user-validation';
-
+} from "../../ui/card";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { loginValidation } from "@/lib/validation/user-validation";
 
 const SignInForm = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof loginValidation>>({
     resolver: zodResolver(loginValidation),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
   });
   const [error, setError] = useState<string | null>(null);
@@ -51,7 +50,7 @@ const SignInForm = () => {
       } else {
         // Redirect to home page
         router.refresh();
-        router.push('/dashboard');
+        router.push("/dashboard");
       }
     } catch (error) {
       const errorMessage = error as string;
@@ -66,14 +65,7 @@ const SignInForm = () => {
         }
       }
     }
-
   };
-
-
-  const loginWithGoogle = () => signIn('google', {
-    callbackUrl: 'http://localhost:3000/admin'
-  })
-
   return (
     <Card>
       <CardHeader className="space-y-1">
@@ -83,40 +75,19 @@ const SignInForm = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
-        <div className="grid grid-cols-2 gap-6">
-          <Button variant="outline">
-            {/* <Icons.gitHub className="mr-2 h-4 w-4" /> */}
-            Github
-          </Button>
-          <Button variant="outline" onClick={loginWithGoogle}>
-            {/* <Icons.google className="mr-2 h-4 w-4" /> */}
-            Google
-          </Button>
-        </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">
-                  Or continue with
-                </span>
-              </div>
-            </div>
+            <div className="relative"></div>
             <div className="space-y-2">
-
               <div className="grid gap-2">
                 <FormField
                   control={form.control}
-                  name='email'
+                  name="email"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder='mail@example.com' {...field} />
+                        <Input placeholder="mail@example.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -126,14 +97,14 @@ const SignInForm = () => {
               <div className="grid gap-2">
                 <FormField
                   control={form.control}
-                  name='password'
+                  name="password"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
                         <Input
-                          type='password'
-                          placeholder='Enter your password'
+                          type="password"
+                          placeholder="Enter your password"
                           {...field}
                         />
                       </FormControl>
@@ -143,17 +114,17 @@ const SignInForm = () => {
                 />
               </div>
             </div>
-            <div className="text-2xl">
-              {error}
-            </div>
-            <Button className="w-full mt-5" type='submit'>Sign In</Button>
+            <div className="text-2xl">{error}</div>
+            <Button className="w-full mt-5" type="submit">
+              Sign In
+            </Button>
           </form>
         </Form>
       </CardContent>
       <CardFooter>
-        <p className='text-center text-sm text-gray-600 '>
+        <p className="text-center text-sm text-gray-600 ">
           If you don&apos;t have an account, please&nbsp;
-          <Link className='text-blue-500 hover:underline' href='/sign-up'>
+          <Link className="text-blue-500 hover:underline" href="/sign-up">
             Sign up
           </Link>
         </p>

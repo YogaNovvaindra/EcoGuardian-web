@@ -18,6 +18,7 @@ interface LeftsidebarProps {
 
 const Leftsidebar: FC<LeftsidebarProps> = ({}) => {
   const { data: session } = useSession();
+  if (session) console.log("data session: ", session);
 
   const router = useRouter();
   const pathname = usePathname();

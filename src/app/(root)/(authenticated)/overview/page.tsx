@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { informationMonitoringOverview } from "@/constants";
+import { CHART_URL } from "@/utils/url";
 
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
@@ -18,10 +19,9 @@ import React, { useState } from "react";
 type Props = {};
 
 const Page = (props: Props) => {
-  const [selectValue, setSelectvalue] = useState("today");
+  const [selectTime, setSelectTime] = useState("from=now-24h&to=now-1m");
+  const [selectEsp, setSelectEsp] = useState("");
   const pathname = usePathname();
-
-  console.log(selectValue);
 
   return (
     <section className="flex flex-col gap-4 h-full overflow-auto">
@@ -30,24 +30,50 @@ const Page = (props: Props) => {
         <span>{pathname}</span>
       </div>
       <div className="h-full p-6 flex flex-col bg-light-1 rounded-md overflow-auto gap-2 box-border">
-        <Select onValueChange={setSelectvalue}>
+        {/* <div className=""> */}
+        <Select onValueChange={setSelectTime}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Selct a time" />
+            <SelectValue placeholder="Today" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Time</SelectLabel>
-              <SelectItem value="today">Today</SelectItem>
-              <SelectItem value="1hour">1 hour ago</SelectItem>
-              <SelectItem value="2hours">2 hours ago</SelectItem>
-              <SelectItem value="3hours">3 hours ago</SelectItem>
-              <SelectItem value="1week">1 week</SelectItem>
+              <SelectItem value="from=now-24h&to=now-1m">Today</SelectItem>
+              <SelectItem value="&from=now-1h&to=now-1m">1 hour ago</SelectItem>
+              <SelectItem value="&from=now-3h&to=now-1m">
+                3 hours ago
+              </SelectItem>
+              <SelectItem value="&from=now-6h&to=now-1m">
+                6 hours ago
+              </SelectItem>
+              <SelectItem value="&from=now%2Fw&to=now%2Fw">1 week</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
+        {/* <Select onValueChange={setSelectEsp}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Selct a time" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Time</SelectLabel>
+                <SelectItem value="today">Today</SelectItem>
+                <SelectItem value="1hour">1 hour ago</SelectIte   m>
+                <SelectItem value="2hours">2 hours ago</SelectItem>
+                <SelectItem value="3hours">3 hours ago</SelectItem>
+                <SelectItem value="1week">1 week</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select> */}
+        {/* </div> */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {informationMonitoringOverview.map((item, index) => (
-            <ChartOverview key={index} showData={item} />
+            <iframe
+              key={index}
+              src={`${CHART_URL}/d-solo/f073b157-ee25-4bad-8ce5-d0de3543be4f/ecoguardian?orgId=1&refresh=1m${selectTime}${item}`}
+              width="100%"
+              height="300"
+              frameBorder="0"
+            />
           ))}
         </div>
       </div>
