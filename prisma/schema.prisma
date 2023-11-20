@@ -123,37 +123,34 @@ model data {
 }
 
 model ispu {
-  id         String   @id @default(cuid())
-  id_esp     String?  @map("esp_id")
-  nilai_ispu Float?
-  text_ispu  String?
-  jenis_gas  gas?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  esp        esp?     @relation(fields: [id_esp], references: [id], onDelete: Cascade)
+  id        String   @id @default(cuid())
+  id_esp    String?  @map("esp_id")
+  pm10      Float?
+  pm25      Float?
+  mq135_co  Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  esp       esp?     @relation(fields: [id_esp], references: [id], onDelete: Cascade)
 
   @@map("ispu")
 }
 
-enum gas {
-  mq135_co
-  mq135_alcohol
-  mq135_co2
-  mq135_toluen
-  mq135_nh4
-  mq135_aceton
-  mq2_h2
-  mq2_lpg
-  mq2_co
-  mq2_alcohol
-  mq2_propane
-  mq7_h2
-  mq7_lpg
-  mq7_ch4
-  mq7_co
-  mq7_alcohol
-  pm10
-  pm25
+model ispu_mean {
+  id        String   @id @default(cuid())
+  ispu      Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ispu_mean")
+}
+
+model ispu_mean_forecast {
+  id        String   @id @default(cuid())
+  ispu      Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ispu_mean_forecast")
 }
 
 model forecast {
@@ -179,7 +176,7 @@ model forecast {
   mq7_alcohol   Float?
   pm10          Float?
   pm25          Float?
-  state         Boolean? @default(false)
+  state         Boolean? @default(true)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   esp           esp?     @relation(fields: [id_esp], references: [id], onDelete: Cascade)
@@ -187,13 +184,70 @@ model forecast {
   @@map("forecast")
 }
 
-model image_detector {
+model mean {
   id            String   @id @default(cuid())
-  label label?
-  confidence    Float?
-  img           String?
+  temperature   Float?
+  humidity      Float?
+  mq135_co      Float?
+  mq135_alcohol Float?
+  mq135_co2     Float?
+  mq135_toluen  Float?
+  mq135_nh4     Float?
+  mq135_aceton  Float?
+  mq2_h2        Float?
+  mq2_lpg       Float?
+  mq2_co        Float?
+  mq2_alcohol   Float?
+  mq2_propane   Float?
+  mq7_h2        Float?
+  mq7_lpg       Float?
+  mq7_ch4       Float?
+  mq7_co        Float?
+  mq7_alcohol   Float?
+  pm10          Float?
+  pm25          Float?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+
+  @@map("mean")
+}
+
+model forecast_mean {
+  id            String   @id @default(cuid())
+  temperature   Float?
+  humidity      Float?
+  mq135_co      Float?
+  mq135_alcohol Float?
+  mq135_co2     Float?
+  mq135_toluen  Float?
+  mq135_nh4     Float?
+  mq135_aceton  Float?
+  mq2_h2        Float?
+  mq2_lpg       Float?
+  mq2_co        Float?
+  mq2_alcohol   Float?
+  mq2_propane   Float?
+  mq7_h2        Float?
+  mq7_lpg       Float?
+  mq7_ch4       Float?
+  mq7_co        Float?
+  mq7_alcohol   Float?
+  pm10          Float?
+  pm25          Float?
+  state         Boolean? @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("forecast_mean")
+}
+
+model image_detector {
+  id         String   @id @default(cuid())
+  label      label?
+  confidence Float?
+  img        String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("image_detector")
 }

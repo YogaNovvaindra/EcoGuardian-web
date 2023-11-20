@@ -2,7 +2,7 @@ name: Build and Push
 
 on:
   workflow_run:
-    workflows: ["Docker Image CI"]
+    workflows: ["Node.js CI"]
     types: 
       - completed
 
@@ -11,7 +11,7 @@ permissions:
       packages: write
 
 env:
-  VER_TAG: v0.6.0
+  VER_TAG: v0.7.0
 
 jobs:
   docker:
