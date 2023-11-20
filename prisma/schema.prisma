@@ -137,13 +137,20 @@ model ispu {
 
 model ispu_mean {
   id        String   @id @default(cuid())
-  pm10      Float?
-  pm25      Float?
-  mq135_co  Float?
+  ispu      Float?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("ispu_mean")
+}
+
+model ispu_mean_forecast {
+  id        String   @id @default(cuid())
+  ispu      Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ispu_mean_forecast")
 }
 
 model forecast {
