@@ -10,6 +10,7 @@ const nextConfig = {
   },
   env: {
     TZ: 'Asia/Jakarta', // Use the IANA time zone identifier for UTC+7
+    NEXT_PUBLIC_CHART_URL: process.env.NEXT_PUBLIC_CHART_URL,
   },
 };
 
