@@ -38,7 +38,7 @@ export async function PUT(req: Request, { params }: { params: { id_user: string 
             },
             data: {
                 username: username,
-                name: name,
+                // name: name,
                 email: email,
                 password: password,
                 role: role,

@@ -6,20 +6,17 @@ import { Button } from "@/components/ui/button";
 import { MdAdd } from "react-icons/md";
 import { CreateEspModal } from "@/components/modals/creates/create-esp-modal";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { ModalType, useModal } from "../../../../hooks/use-modal-store";
+import { ModalType, useModal } from "../../../../../hooks/use-modal-store";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import axios from "axios";
-import { UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { esp } from "@prisma/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import NavbarMap from "@/components/common/navbar/Navbar-Map";
 
 type Props = {};
 
 const Page = (props: Props) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
-
   const {
     data: espData,
     isLoading,
@@ -42,6 +39,7 @@ const Page = (props: Props) => {
         <span>{pathname}</span>
       </div>
       <div className="h-full p-6 bg-light-1 rounded-md overflow-auto">
+        <NavbarMap />
         <div className="grid grid-cols-1 h-full xl:grid-cols-2 gap-6 overflow-y-auto">
           {isLoading ? (
             <>
