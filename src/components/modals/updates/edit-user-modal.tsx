@@ -34,13 +34,13 @@ import {
 import { userRole } from "@prisma/client";
 
 const formSchema = z.object({
-  // name: z
-  //   .string()
-  //   .min(3, { message: "Kandang name must be at least 3 characters long" })
-  //   .refine((value) => !!value.trim(), {
-  //     message: "Kandang name is required and must not be empty",
-  //     path: [],
-  //   }),
+  name: z
+    .string()
+    .min(3, { message: "Kandang name must be at least 3 characters long" })
+    .refine((value) => !!value.trim(), {
+      message: "Kandang name is required and must not be empty",
+      path: [],
+    }),
   username: z
     .string()
     .min(3, { message: "Kandang name must be at least 3 characters long" })
@@ -60,12 +60,11 @@ export const EditUserModal = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const router = useRouter();
   const queryClient = useQueryClient();
-  // const bcrypt = require("bcryptjs");
-  // menampung state error
 
   const isModalOpen = isOpen && type === "editUser";
 
   const { User } = data;
+  console.log("Id Select User: ", User?.id);
   const {
     register,
     handleSubmit,
@@ -84,7 +83,7 @@ export const EditUserModal = () => {
   useEffect(() => {
     if (User) {
       reset();
-      // setValue("name", User.name ? User.name : "");
+      setValue("name", User.name ? User.name : "");
       setValue("username", User.username ? User.username : "");
       setValue("email", User.email ? User.email : "");
       // setValue("password", User.password ? User.password : "");
@@ -94,12 +93,13 @@ export const EditUserModal = () => {
   }, [User, resetField, setValue, reset]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const { username, email, password, role } = data;
+    const { username, name, email, password, role } = data;
     console.log("password lama: ", User?.password);
     console.log("password baru: ", password);
 
     const response = {
       username: username,
+      name: name,
       email: email,
       password: User?.password,
       role: role,
@@ -148,6 +148,18 @@ export const EditUserModal = () => {
               {...register("username")}
             />
             {errors.username && <div>{errors.username.message}</div>}
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="name">name</Label>
+            <Input
+              id="name"
+              className="bg-neutral-200 outline-none border-none focus:border-none"
+              type="text"
+              placeholder="name"
+              defaultValue={User?.name ? User?.name : ""}
+              {...register("name")}
+            />
+            {errors.name && <div>{errors.name.message}</div>}
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>

@@ -8,13 +8,13 @@ export const sidebarLinks = [
   },
   {
     imgUrl: "/assets/map.svg",
-    route: "/map",
+    route: "/map/location",
     label: "Map Monitoring IOT",
   },
   {
     imgUrl: "/assets/overview.svg",
     route: "/overview",
-    label: "Detail Overview",
+    label: "History",
   },
   // {
   //   imgUrl: "/assets/comment.svg",
@@ -25,6 +25,11 @@ export const sidebarLinks = [
     imgUrl: "/assets/capture.svg",
     route: "/image",
     label: "AP Image Detector",
+  },
+  {
+    imgUrl: "/assets/capture.svg",
+    route: "/image",
+    label: "Detail Forecast",
   },
   {
     imgUrl: "/assets/user.svg",
@@ -55,29 +60,33 @@ export const listNavigationBar = [
 export const informationMonitoringDashboard = [
   {
     title: "Temperature",
+    data: "temperature",
+    unit: "°C",
+    forecast: "forecast_temperature",
     link: `${CHART_URL}/d-solo/f073b157-ee25-4bad-8ce5-d0de3543be4f/ecoguardian?orgId=1&refresh=1m&theme=light&panelId=7`,
   },
   {
     title: "Humidity",
+    data: "humidity",
+    unit: "%",
+    forecast: "forecast_humidity",
     link: `${CHART_URL}/d-solo/f073b157-ee25-4bad-8ce5-d0de3543be4f/ecoguardian?orgId=1&refresh=1m&theme=light&panelId=8`,
   },
   {
     title: "Air Pollution Image",
+    data: "",
+    forecast: "",
     link: "",
   },
   {
     title: "Air Quality",
+    data: "",
+    forecast: "",
     link: "",
   },
 ];
 
 export const informationMonitoringOverview = [
-  // `${CHART_URL}&theme=light&panelId=1`,
-  // `${CHART_URL}&theme=light&panelId=2`,
-  // `${CHART_URL}&theme=light&panelId=3`,
-  // `${CHART_URL}&theme=light&panelId=4`,
-  // `${CHART_URL}&theme=light&panelId=5`,
-  // `${CHART_URL}&theme=light&panelId=6`,
   "&theme=light&panelId=1",
   "&theme=light&panelId=2",
   "&theme=light&panelId=3",
