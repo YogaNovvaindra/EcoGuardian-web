@@ -8,11 +8,8 @@ import { informationMonitoringDashboard } from "@/constants";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
-import { format } from "date-fns";
-import Dummy from "@/components/common/chart/Dummy";
-import { useQuery } from "@/hooks/use-query";
-import { useDummySocket } from "@/hooks/use-dummy-socket";
-import ChartDashboard from "@/components/common/chart/Chart-Dashboard";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 type Props = {};
 
@@ -20,6 +17,22 @@ const Page = (props: Props) => {
   const pathname = usePathname();
   const [activeCard, setActiveCard] = useState(0);
   const [showChart, setShowChart] = useState(informationMonitoringDashboard[0]);
+
+  const {
+    data: dashboardData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["dashboard"],
+    queryFn: async () => {
+      const { data } = await axios.get("/api/dashboard");
+
+      console.log("data dashboard: ", data);
+
+      return data;
+    },
+    refetchInterval: 60000,
+  });
 
   const handleCardClick = (index: any) => {
     setActiveCard(index);
@@ -33,7 +46,6 @@ const Page = (props: Props) => {
         <h1 className="text-heading1-semibold">Dashboard</h1>
         <span>{pathname}</span>
       </div>
-      {/* <Dummy /> */}
       <div className="w-full bg-light-1 flex rounded-md overflow-hidden h-40">
         <div>
           <Image
@@ -49,29 +61,49 @@ const Page = (props: Props) => {
         </div>
       </div>
       <div className="w-full flex gap-6 flex-wrap">
-        {informationMonitoringDashboard.map((item, index) => (
-          <div
-            key={index}
-            className={`grow min-w-[150px] p-4 rounded-md ${
-              index === activeCard ? "bg-green-500" : "bg-white"
-            }`}
-            onClick={() => handleCardClick(index)}
-          >
-            <p>{item.title}</p>
-            <div className="flex justify-between">
-              <div>
-                <p className="text-heading2-bold">00</p>
-                <p>Now</p>
+        {isLoading ? (
+          <></>
+        ) : isError ? (
+          <p>Error: Failed to fetch data</p>
+        ) : (
+          <>
+            {" "}
+            {informationMonitoringDashboard.map((item, index) => (
+              <div
+                key={index}
+                className={`grow min-w-[150px] p-4 rounded-md ${
+                  index === activeCard ? "bg-green-500" : "bg-white"
+                }`}
+                onClick={() => handleCardClick(index)}
+              >
+                <p>{item.title}</p>
+                <div className="flex justify-between">
+                  <div>
+                    {item.data in dashboardData ? (
+                      <p className="text-heading2-bold">
+                        {dashboardData[item.data]} {item.unit}
+                      </p>
+                    ) : (
+                      <p className="text-heading2-bold">-</p>
+                    )}
+                    <p>Now</p>
+                  </div>
+                  <div>
+                    {item.forecast in dashboardData ? (
+                      <p className="text-heading2-bold">
+                        {dashboardData[item.forecast]} {item.unit}
+                      </p>
+                    ) : (
+                      <p className="text-heading2-bold">-</p>
+                    )}
+                    <p>+1 hour</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p className="text-heading2-bold">00</p>
-                <p>+1 hour</p>
-              </div>
-            </div>
-          </div>
-        ))}
+            ))}
+          </>
+        )}
       </div>
-      {/* <ChartDashboard showData={showChart} /> */}
       <div className="h-full bg-light-1">
         <iframe
           src={showChart.link}
