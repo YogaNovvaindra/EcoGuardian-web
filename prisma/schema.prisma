@@ -83,6 +83,7 @@ model esp {
   latitude  Float?
   longitude Float?
   status    Boolean?   @default(false)
+  image     String?    @db.LongText
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   data      data[]
@@ -147,6 +148,7 @@ model ispu_mean {
 model ispu_mean_forecast {
   id        String   @id @default(cuid())
   ispu      Float?
+  state     Boolean? @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
