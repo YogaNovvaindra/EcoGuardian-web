@@ -247,7 +247,7 @@ model image_detector {
   id         String   @id @default(cuid())
   label      label?
   confidence Float?
-  img        String?
+  image      String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
