@@ -74,7 +74,6 @@ export const CreateEspModal = () => {
     try {
       await axios.post("/api/esp", response);
       console.log("Data Berhasil Ditambahkan!!");
-      router.refresh();
       reset();
       onClose();
 

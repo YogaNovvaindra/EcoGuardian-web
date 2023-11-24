@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = {};
 
@@ -62,7 +63,14 @@ const Page = (props: Props) => {
       </div>
       <div className="w-full flex gap-6 flex-wrap">
         {isLoading ? (
-          <></>
+          <>
+            {informationMonitoringDashboard.map((item, index) => (
+              <Skeleton
+                key={index}
+                className="grow h-32 min-w-[150px] p-4 rounded-md"
+              />
+            ))}
+          </>
         ) : isError ? (
           <p>Error: Failed to fetch data</p>
         ) : (
@@ -71,7 +79,7 @@ const Page = (props: Props) => {
             {informationMonitoringDashboard.map((item, index) => (
               <div
                 key={index}
-                className={`grow min-w-[150px] p-4 rounded-md ${
+                className={`grow h-32 min-w-[150px] p-4 rounded-md ${
                   index === activeCard ? "bg-green-500" : "bg-white"
                 }`}
                 onClick={() => handleCardClick(index)}
@@ -81,22 +89,22 @@ const Page = (props: Props) => {
                   <div>
                     {item.data in dashboardData ? (
                       <p className="text-heading2-bold">
-                        {dashboardData[item.data]} {item.unit}
+                        {dashboardData[item.data].toFixed(2)} {item.unit}
                       </p>
                     ) : (
                       <p className="text-heading2-bold">-</p>
                     )}
                     <p>Now</p>
                   </div>
-                  <div>
+                  <div className="flex flex-col items-end">
                     {item.forecast in dashboardData ? (
-                      <p className="text-heading2-bold">
-                        {dashboardData[item.forecast]} {item.unit}
+                      <p className="text-heading3-bold opacity-70">
+                        {dashboardData[item.forecast].toFixed(2)} {item.unit}
                       </p>
                     ) : (
-                      <p className="text-heading2-bold">-</p>
+                      <p className="text-heading3-bold">-</p>
                     )}
-                    <p>+1 hour</p>
+                    <p className="opacity-70">+1 hour</p>
                   </div>
                 </div>
               </div>

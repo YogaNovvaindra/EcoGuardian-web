@@ -113,7 +113,6 @@ export const CreateUserModal = () => {
       await axios.post("/api/user", response);
 
       console.log("Data Berhasil Ditambahkan!!");
-      router.refresh();
       console.log("id user: ", User?.id);
       reset();
       onClose();
