@@ -30,41 +30,43 @@ const Page = (props: Props) => {
         <span>{pathname}</span>
       </div>
       <div className="h-full p-6 flex flex-col bg-light-1 rounded-md overflow-auto gap-2 box-border">
-        {/* <div className=""> */}
-        <Select onValueChange={setSelectTime}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Today" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="from=now-24h&to=now-1m">Today</SelectItem>
-              <SelectItem value="&from=now-1h&to=now-1m">1 hour ago</SelectItem>
-              <SelectItem value="&from=now-3h&to=now-1m">
-                3 hours ago
-              </SelectItem>
-              <SelectItem value="&from=now-6h&to=now-1m">
-                6 hours ago
-              </SelectItem>
-              <SelectItem value="&from=now%2Fw&to=now%2Fw">1 week</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        {/* <Select onValueChange={setSelectEsp}>
+        <div className="flex gap-2">
+          <Select onValueChange={setSelectTime}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Selct a time" />
+              <SelectValue placeholder="Today" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Time</SelectLabel>
-                <SelectItem value="today">Today</SelectItem>
-                <SelectItem value="1hour">1 hour ago</SelectIte   m>
-                <SelectItem value="2hours">2 hours ago</SelectItem>
-                <SelectItem value="3hours">3 hours ago</SelectItem>
-                <SelectItem value="1week">1 week</SelectItem>
+                <SelectItem value="from=now-24h&to=now-1m">Today</SelectItem>
+                <SelectItem value="&from=now-1h&to=now-1m">
+                  1 hour ago
+                </SelectItem>
+                <SelectItem value="&from=now-3h&to=now-1m">
+                  3 hours ago
+                </SelectItem>
+                <SelectItem value="&from=now-6h&to=now-1m">
+                  6 hours ago
+                </SelectItem>
+                <SelectItem value="&from=now%2Fw&to=now%2Fw">1 week</SelectItem>
               </SelectGroup>
             </SelectContent>
-          </Select> */}
-        {/* </div> */}
+          </Select>
+          <Select onValueChange={setSelectEsp}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="All ESP" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>ESP</SelectLabel>
+                <SelectItem value="1hour">ESP Biru</SelectItem>
+                <SelectItem value="2hours">ESP Coklat</SelectItem>
+                <SelectItem value="3hours">ESP Hijau</SelectItem>
+                <SelectItem value="1week">ESP Merah</SelectItem>
+                <SelectItem value="1week">ESP Orange</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {informationMonitoringOverview.map((item, index) => (
             <iframe

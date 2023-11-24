@@ -10,21 +10,21 @@ const NavbarMap = () => {
           {" "}
           <button
             className={`${
-              pathname === "/feedback/questions"
+              pathname === "/map/location"
                 ? "bg-black text-light-1"
                 : "bg-light-1"
             } px-4 py-2 rounded-tl-md`}
           >
-            Map
+            Location
           </button>
         </Link>
       </li>
       <li>
-        <Link href="/feedback/action">
+        <Link href="/map/action">
           {" "}
           <button
             className={`${
-              pathname === "/feedback/response"
+              pathname === "/map/action"
                 ? "bg-black text-light-1"
                 : "bg-light-1"
             } px-4 py-2 rounded-tr-md`}
