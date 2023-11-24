@@ -63,14 +63,14 @@ export const informationMonitoringDashboard = [
     data: "temperature",
     unit: "°C",
     forecast: "forecast_temperature",
-    link: `${CHART_URL}/d-solo/f073b157-ee25-4bad-8ce5-d0de3543be4f/ecoguardian?orgId=1&refresh=1m&theme=light&panelId=7`,
+    link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=3`,
   },
   {
     title: "Humidity",
     data: "humidity",
     unit: "%",
     forecast: "forecast_humidity",
-    link: `${CHART_URL}/d-solo/f073b157-ee25-4bad-8ce5-d0de3543be4f/ecoguardian?orgId=1&refresh=1m&theme=light&panelId=8`,
+    link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=4`,
   },
   {
     title: "Air Pollution Image",
@@ -80,9 +80,9 @@ export const informationMonitoringDashboard = [
   },
   {
     title: "Air Quality",
-    data: "",
-    forecast: "",
-    link: "",
+    data: "ispu",
+    forecast: "forecast_ispu",
+    link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=5`,
   },
 ];
 

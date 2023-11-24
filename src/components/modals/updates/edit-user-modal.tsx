@@ -108,7 +108,6 @@ export const EditUserModal = () => {
 
     try {
       await axios.put(`/api/user/${User?.id}`, response);
-      router.refresh();
       console.log("data", User?.id, "Berhasil Edit");
       reset();
       onClose();

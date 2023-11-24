@@ -81,7 +81,6 @@ export const EditEspModal = () => {
     };
     try {
       await axios.put(`/api/esp/${esp?.id}`, response);
-      router.refresh();
       console.log("data", esp?.id, "Berhasil Edit");
       reset();
       onClose();
