@@ -15,12 +15,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import { UploadCloud } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -58,7 +55,6 @@ type FormData = z.infer<typeof formSchema>;
 export const EditUserModal = () => {
   const { isOpen, onClose, type, data } = useModal();
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const router = useRouter();
   const queryClient = useQueryClient();
 
   const isModalOpen = isOpen && type === "editUser";
