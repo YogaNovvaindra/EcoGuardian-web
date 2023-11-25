@@ -25,7 +25,7 @@ const CardMapMonitoringIot: React.FC<Props> = ({ espData }) => {
             <h2 className="text-body-semibold">{espData.nama}</h2>
             <p>Devices located in location 1</p>
           </div>
-          <Switch />
+          {/* <Switch /> */}
         </div>
         <DataCardMonitoringIot espData={espData} />
       </div>
