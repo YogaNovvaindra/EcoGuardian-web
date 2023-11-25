@@ -31,16 +31,32 @@ const formSchema = z.object({
       message: "Kandang name is required and must not be empty",
       path: [],
     }),
-  latitude: z.string(),
-  longitude: z.string(),
+  // latitude: z.number(),
+  // longitude: z.number(),
+  latitude: z.string().refine(
+    (value) => {
+      // Validasi menggunakan ekspresi reguler untuk angka dengan atau tanpa tanda minus
+      return /^-?\d*\.?\d*$/.test(value);
+    },
+    { message: "Invalid longitude value" }
+  ),
+  longitude: z.string().refine(
+    (value) => {
+      // Validasi menggunakan ekspresi reguler untuk angka dengan atau tanpa tanda minus
+      return /^-?\d*\.?\d*$/.test(value);
+    },
+    { message: "Invalid longitude value" }
+  ),
+  image: z.string(),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
 export const CreateEspModal = () => {
   const { isOpen, onClose, type, data } = useModal();
-  const router = useRouter();
   const queryClient = useQueryClient();
+  const [thisLongitude, setThisLongitude] = useState();
+  const [thisLatitude, setThisLatitude] = useState();
   // menampung state error
 
   const isModalOpen = isOpen && type === "createEsp";
@@ -61,15 +77,14 @@ export const CreateEspModal = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const { nama, latitude, longitude } = data;
+    const { nama, latitude, longitude, image } = data;
 
     const response = {
       nama: nama,
       latitude: parseFloat(latitude),
       longitude: parseFloat(longitude),
+      image: image,
     };
-    console.log(response.latitude);
-    console.log(typeof response.latitude);
 
     try {
       await axios.post("/api/esp", response);
@@ -87,6 +102,7 @@ export const CreateEspModal = () => {
     reset();
     onClose();
   };
+
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="bg-neutral-100 text-black p-0 overflow-hidden">
@@ -117,8 +133,9 @@ export const CreateEspModal = () => {
             <Input
               id="latitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
-              type="number"
-              placeholder="Nama Kandang"
+              type="text"
+              placeholder="Latitude"
+              min={-10}
               defaultValue={esp?.latitude ? esp?.latitude : ""}
               {...register("latitude")}
             />
@@ -129,12 +146,25 @@ export const CreateEspModal = () => {
             <Input
               id="longitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
-              type="number"
-              placeholder="Nama Kandang"
+              type="text"
+              placeholder="Longitude"
+              min={-10}
               defaultValue={esp?.longitude ? esp?.longitude : ""}
               {...register("longitude")}
             />
             {errors.longitude && <div>{errors.longitude.message}</div>}
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="longitudimagee">Link Image</Label>
+            <Input
+              id="image"
+              className="bg-neutral-200 outline-none border-none focus:border-none"
+              type="text"
+              placeholder="Nama Kandang"
+              defaultValue={esp?.image ? esp?.image : ""}
+              {...register("image")}
+            />
+            {errors.image && <div>{errors.image.message}</div>}
           </div>
 
           <DialogFooter className="px-6 pb-8">

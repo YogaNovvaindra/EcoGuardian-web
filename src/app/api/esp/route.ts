@@ -6,19 +6,19 @@ import { hash } from "bcrypt";
 export async function GET() {
   try {
     const esp = await db.esp.findMany({
-      include: {
-        data: {
-          orderBy: {
-            createdAt: "desc",
-          },
-          take: 1,
-        },
-      },
+      // include: {
+      //   data: {
+      //     orderBy: {
+      //       createdAt: "desc",
+      //     },
+      //     take: 1,
+      //   },
+      // },
     });
     return NextResponse.json(esp, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { message: "Something went wrong!" },
+      { message: "Something went wrong!" + error },
       { status: 500 }
     );
   }
@@ -27,13 +27,14 @@ export async function GET() {
 //create post esp function
 export async function POST(req: Request) {
   try {
-    const { nama, latitude, longitude } = await req.json();
+    const { nama, latitude, longitude, image } = await req.json();
 
     const esp = await db.esp.create({
       data: {
         nama: nama,
         latitude: latitude,
         longitude: longitude,
+        image: image,
       },
     });
     return NextResponse.json(esp, { status: 200 });

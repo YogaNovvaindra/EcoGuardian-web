@@ -31,9 +31,23 @@ const formSchema = z.object({
       message: "Kandang name is required and must not be empty",
       path: [],
     }),
-
-  latitude: z.string(),
-  longitude: z.string(),
+  latitude: z.string().refine(
+    (value) => {
+      // Validasi menggunakan ekspresi reguler untuk angka dengan atau tanpa tanda minus
+      return /^-?\d*\.?\d*$/.test(value);
+    },
+    { message: "Invalid longitude value" }
+  ),
+  longitude: z.string().refine(
+    (value) => {
+      // Validasi menggunakan ekspresi reguler untuk angka dengan atau tanpa tanda minus
+      return /^-?\d*\.?\d*$/.test(value);
+    },
+    { message: "Invalid longitude value" }
+  ),
+  // latitude: z.string(),
+  // longitude: z.string(),
+  image: z.string(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -47,6 +61,7 @@ export const EditEspModal = () => {
   const isModalOpen = isOpen && type === "editEsp";
 
   const { esp } = data;
+  console.log("id esp: ", esp?.id);
 
   const {
     register,
@@ -69,15 +84,17 @@ export const EditEspModal = () => {
       setValue("nama", esp.nama ? esp.nama : "");
       setValue("latitude", esp.latitude ? String(esp.latitude) : "");
       setValue("longitude", esp.longitude ? String(esp.longitude) : "");
+      setValue("image", esp.image ? String(esp.image) : "");
     }
   }, [esp, resetField, setValue, reset]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const { nama, latitude, longitude } = data;
+    const { nama, latitude, longitude, image } = data;
     const response = {
       nama: nama,
       latitude: parseFloat(latitude),
       longitude: parseFloat(longitude),
+      image: image,
     };
     try {
       await axios.put(`/api/esp/${esp?.id}`, response);
@@ -106,7 +123,7 @@ export const EditEspModal = () => {
       <DialogContent className="bg-neutral-100 text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Edit Kandang
+            Edit ESP
           </DialogTitle>
         </DialogHeader>
 
@@ -131,7 +148,7 @@ export const EditEspModal = () => {
             <Input
               id="latitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
-              type="number"
+              type="text"
               placeholder="Nama Kandang"
               defaultValue={esp?.latitude ? esp?.latitude : ""}
               {...register("latitude")}
@@ -139,16 +156,28 @@ export const EditEspModal = () => {
             {errors.latitude && <div>{errors.latitude.message}</div>}
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="longitude">Nama Esp</Label>
+            <Label htmlFor="longitude">Longitude</Label>
             <Input
               id="longitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
-              type="number"
+              type="text"
               placeholder="Nama Kandang"
               defaultValue={esp?.longitude ? esp?.longitude : ""}
               {...register("longitude")}
             />
             {errors.longitude && <div>{errors.longitude.message}</div>}
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="image">Link Image</Label>
+            <Input
+              id="image"
+              className="bg-neutral-200 outline-none border-none focus:border-none"
+              type="text"
+              placeholder="Nama Kandang"
+              defaultValue={esp?.image ? esp?.image : ""}
+              {...register("image")}
+            />
+            {errors.image && <div>{errors.image.message}</div>}
           </div>
           <DialogFooter className="px-6 pb-8">
             <Button
@@ -159,7 +188,6 @@ export const EditEspModal = () => {
             >
               Cancel
             </Button>
-
             <Button type="submit" variant="themeMode">
               Edit Esp
             </Button>

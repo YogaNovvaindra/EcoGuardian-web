@@ -26,7 +26,7 @@ export const ModalProvider = () => {
     <>
       <CreateUserModal />
       <DeleteUserModal />
-      {/* <EditUserModal /> */}
+      <EditUserModal />
       <CreateEspModal />
       <EditEspModal />
       <DeleteEspModal />
