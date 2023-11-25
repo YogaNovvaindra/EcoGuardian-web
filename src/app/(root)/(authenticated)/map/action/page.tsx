@@ -26,6 +26,8 @@ const Page = (props: Props) => {
     },
   });
 
+  
+
   const { onOpen } = useModal();
   const pathname = usePathname();
 
