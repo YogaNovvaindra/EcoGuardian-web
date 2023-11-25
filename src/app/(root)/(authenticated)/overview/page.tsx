@@ -19,9 +19,23 @@ import React, { useState } from "react";
 type Props = {};
 
 const Page = (props: Props) => {
-  const [selectTime, setSelectTime] = useState("from=now-24h&to=now-1m");
-  const [selectEsp, setSelectEsp] = useState("");
+  const [selectTime, setSelectTime] = useState("&from=now-24h&to=now");
+  const [selectEsp, setSelectEsp] = useState("ESP Biru");
   const pathname = usePathname();
+
+  const handlerSelectedESP = (selectedesp: String) => {
+    return informationMonitoringOverview.find(
+      (esp) => esp.name_esp === selectedesp
+    );
+  };
+
+  const selectedEsp = handlerSelectedESP(selectEsp);
+
+  console.log(
+    selectedEsp?.link_panel.map((item, index) => {
+      console.log("link ", index, item);
+    })
+  );
 
   return (
     <section className="flex flex-col gap-4 h-full overflow-auto">
@@ -37,41 +51,35 @@ const Page = (props: Props) => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="from=now-24h&to=now-1m">Today</SelectItem>
-                <SelectItem value="&from=now-1h&to=now-1m">
-                  1 hour ago
-                </SelectItem>
-                <SelectItem value="&from=now-3h&to=now-1m">
-                  3 hours ago
-                </SelectItem>
-                <SelectItem value="&from=now-6h&to=now-1m">
-                  6 hours ago
-                </SelectItem>
-                <SelectItem value="&from=now%2Fw&to=now%2Fw">1 week</SelectItem>
+                <SelectItem value="&from=now-24h&to=now-1m">Today</SelectItem>
+                <SelectItem value="&from=now-1h&to=now">1 hour ago</SelectItem>
+                <SelectItem value="&from=now-3h&to=now">3 hours ago</SelectItem>
+                <SelectItem value="&from=now-6h&to=now">6 hours ago</SelectItem>
+                <SelectItem value="&from=now-7d&to=now">1 week</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
           <Select onValueChange={setSelectEsp}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="All ESP" />
+              <SelectValue placeholder="ESP Biru" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>ESP</SelectLabel>
-                <SelectItem value="1hour">ESP Biru</SelectItem>
-                <SelectItem value="2hours">ESP Coklat</SelectItem>
-                <SelectItem value="3hours">ESP Hijau</SelectItem>
-                <SelectItem value="1week">ESP Merah</SelectItem>
-                <SelectItem value="1week">ESP Orange</SelectItem>
+                <SelectItem value="ESP Biru">ESP Biru</SelectItem>
+                <SelectItem value="ESP Coklat">ESP Coklat</SelectItem>
+                <SelectItem value="ESP Hijau">ESP Hijau</SelectItem>
+                <SelectItem value="ESP Merah">ESP Merah</SelectItem>
+                <SelectItem value="ESP Orange">ESP Orange</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </div>
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-          {informationMonitoringOverview.map((item, index) => (
+          {selectedEsp?.link_panel.map((item, index) => (
             <iframe
               key={index}
-              src={`${CHART_URL}/d-solo/f073b157-ee25-4bad-8ce5-d0de3543be4f/ecoguardian?orgId=1&refresh=1m${selectTime}${item}`}
+              src={`${item}${selectTime}`}
               width="100%"
               height="300"
               frameBorder="0"

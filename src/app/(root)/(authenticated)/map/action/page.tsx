@@ -4,10 +4,7 @@ import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { MdAdd } from "react-icons/md";
-import { CreateEspModal } from "@/components/modals/creates/create-esp-modal";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { ModalType, useModal } from "../../../../../hooks/use-modal-store";
-import { ModalProvider } from "@/components/providers/modal-provider";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { esp } from "@prisma/client";
@@ -28,6 +25,8 @@ const Page = (props: Props) => {
       return data;
     },
   });
+
+  
 
   const { onOpen } = useModal();
   const pathname = usePathname();
@@ -88,7 +87,6 @@ const Page = (props: Props) => {
       >
         <MdAdd />
       </Button>
-      <ModalProvider />
     </section>
   );
 };

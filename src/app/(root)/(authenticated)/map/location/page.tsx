@@ -32,7 +32,7 @@ const Page = (props: Props) => {
           <iframe src={MAP_URL} width="100%" height="100%" frameBorder="0" />
         </div>
       </div>
-      <ModalProvider />
+      {/* <ModalProvider /> */}
     </section>
   );
 };

@@ -43,7 +43,7 @@ export async function PUT(req: Request, { params }: { params: { id_image_detecto
     return NextResponse.json(updatedimage_detector, { status: 200 });
   } catch (error) {
     console.error('Error updating image_detector image:', error);
-    return NextResponse.json({ message: "Something went wrong!" }, { status: 500 });
+    return NextResponse.json({ message: "Something went wrong!" + error }, { status: 500 });
   }
 }
 
