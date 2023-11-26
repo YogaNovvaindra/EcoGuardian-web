@@ -6,6 +6,9 @@ import { hash } from "bcrypt";
 export async function GET() {
   try {
     const image_detector = await db.image_detector.findMany({
+      orderBy: {
+        createdAt: "desc",
+      }
     });
     if (image_detector.length === 0) {
       return NextResponse.json({ message: "image_detector not found!" }, { status: 404 });
