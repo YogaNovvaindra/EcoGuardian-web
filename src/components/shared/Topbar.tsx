@@ -14,12 +14,15 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
+import { useSession } from "next-auth/react";
 
 interface TopbarProps {
   // title?: string
 }
 
 const Topbar: FC<TopbarProps> = ({}) => {
+  const { data: session } = useSession();
+
   const [currentDate, setCurrentDate] = useState(new Date());
 
   // useEffect(() => {
@@ -122,15 +125,16 @@ const Topbar: FC<TopbarProps> = ({}) => {
       </Dialog>
       <Link
         href={"/profile"}
-        className="w-8 h-8 bg-red-500 rounded-full overflow-clip"
+        className=""
       >
-        <Image
+        <p className="text-white">{session?.user.name || "no login"}</p>
+        {/* <Image
           alt=""
           src="/public/../assets/img/example-user.jpeg"
           width={24}
           height={24}
           className="object-cover w-full h-full"
-        />
+        /> */}
       </Link>
       {/* {session ? (
         <Button variant="outline" onClick={() => signOut()}>

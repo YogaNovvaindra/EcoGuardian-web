@@ -19,7 +19,6 @@ type Props = {};
 const Page = () => {
   const { data: session } = useSession();
 
-  if (session) console.log("data session: ", session);
 
   const { onOpen } = useModal();
   const pathname = usePathname();
