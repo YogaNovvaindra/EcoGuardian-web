@@ -2,11 +2,11 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { DataTableColumnHeader } from "./data-table-column-header";
-import { DataTableRowActions } from "./data-table-row-action";
+import { DataTableColumnHeader } from "../component/data-table-column-header";
+import { DataTableRowActions } from "../component/data-table-row-action";
 import { User } from "@prisma/client";
 
-export const columns: ColumnDef<User>[] = [
+export const columnsUser: ColumnDef<User>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (

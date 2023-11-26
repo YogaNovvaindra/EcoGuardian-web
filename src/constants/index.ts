@@ -23,12 +23,12 @@ export const sidebarLinks = [
   // },
   {
     imgUrl: "/assets/capture.svg",
-    route: "/image",
+    route: "/image/realtime",
     label: "AP Image Detector",
   },
   {
     imgUrl: "/assets/capture.svg",
-    route: "/image",
+    route: "/detailforecast/historyforecast",
     label: "Detail Forecast",
   },
   {
@@ -87,6 +87,19 @@ export const informationMonitoringDashboard = [
 ];
 
 export const informationMonitoringOverview = [
+  {
+    name_esp: "ESP All",
+    link_esp: `${CHART_URL}/d/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m`,
+    link_panel: [
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=10`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=9`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=4`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=3`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=11`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=12`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=5`,
+    ],
+  },
   {
     name_esp: "ESP Biru",
     link_esp: `${CHART_URL}/d/d947ab1d-2142-493e-a531-87895c6aed82/esp-biru?orgId=1&refresh=1m`,
@@ -179,13 +192,33 @@ export const informationMonitoringOverview = [
   },
 ];
 
-export const selectItemFeedbackQuestions = [
-  "Agimul Karim",
-  "Ikhwanul Karim",
-  "Zeinul Karim",
-  "Irsad Maulana",
-  "Alvin Yanuar",
-  "Ammar TV",
+export const informationMonitoringDetailForecast = [
+  {
+    name_esp: "Average",
+    link_esp: `${CHART_URL}/d/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m`,
+    link_panel: [
+      `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=1`,
+      `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=2`,
+      `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=4`,
+      `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=3`,
+      `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=4`,
+      `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=6`,
+      `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=5`,
+    ],
+  },
+  {
+    name_esp: "ESP All",
+    link_esp: `${CHART_URL}/d/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m`,
+    link_panel: [
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=10`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=9`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=4`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=3`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=11`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=12`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=5`,
+    ],
+  },
 ];
 
 export const TableHeaderUser = [
