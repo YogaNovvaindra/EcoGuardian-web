@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { MdAdd } from "react-icons/md";
 import { DataTable } from "@/components/common/table/user/component/data-table";
-import { columns } from "@/components/common/table/user/component/columns";
+import { columnsUser } from "@/components/common/table/user/columns/user";
 
 type Props = {};
 const Page = () => {
@@ -50,7 +50,7 @@ const Page = () => {
           <p>Error: Failed to fetch data</p>
         ) : (
           // <TableUser userData={userData} />
-          <DataTable columns={columns} data={userData} />
+          <DataTable columns={columnsUser} data={userData} />
         )}
       </div>
       <Button
