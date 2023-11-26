@@ -57,7 +57,7 @@ export const DeleteUserModal = () => {
       <DialogContent className="bg-neutral text-black p-0 overflow-hidden px-4">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Delete Esp
+            Delete User
           </DialogTitle>
         </DialogHeader>
         <p className="text-center">
