@@ -34,6 +34,16 @@ export const columnsImageDetector: ColumnDef<image_detector>[] = [
   },
 
   {
+    accessorKey: "createdAt",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last detect" />
+    ),
+    cell: ({ row }) => (
+      <div className="w-[80px]">{row.getValue("createdAt")}</div>
+    ),
+  },
+
+  {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row.original} />,
   },
