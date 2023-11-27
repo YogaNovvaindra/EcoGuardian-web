@@ -45,7 +45,7 @@ const Page = (props: Props) => {
           ) : (
             <>
               <div className="w-full">
-                <DataTable columns={columnsImageDetector} data={detectorData} />
+                <DataTable columns={columnsImageDetector} data={detectorData}   />
               </div>
               {/* <ImageDetector item={detectorData} /> */}
             </>

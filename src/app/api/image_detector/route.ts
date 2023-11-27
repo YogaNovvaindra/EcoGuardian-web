@@ -13,7 +13,18 @@ export async function GET() {
     if (image_detector.length === 0) {
       return NextResponse.json({ message: "image_detector not found!" }, { status: 404 });
     }
-    return NextResponse.json(image_detector, { status: 200 });
+    // alter all createat time to utc+7
+    const formattedImageDetector = image_detector.map((detector) => {
+      const formattedConfidence = detector.confidence?.toFixed(2);
+      const formattedCreatedAt = detector.createdAt.toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
+      return {
+        ...detector,
+        confidence: formattedConfidence,
+        createdAt: formattedCreatedAt,
+      };
+    });
+    
+    return NextResponse.json(formattedImageDetector, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "Something went wrong!" },
