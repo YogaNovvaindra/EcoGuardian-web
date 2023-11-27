@@ -26,9 +26,9 @@ import { Label } from "../../ui/label";
 const formSchema = z.object({
   nama: z
     .string()
-    .min(3, { message: "Kandang name must be at least 3 characters long" })
+    .min(3, { message: "ESP name must be at least 3 characters long" })
     .refine((value) => !!value.trim(), {
-      message: "Kandang name is required and must not be empty",
+      message: "ESP name is required and must not be empty",
       path: [],
     }),
   // latitude: z.number(),
@@ -108,7 +108,7 @@ export const CreateEspModal = () => {
       <DialogContent className="bg-neutral-100 text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Edit Kandang
+            Create ESP
           </DialogTitle>
         </DialogHeader>
 
@@ -117,12 +117,12 @@ export const CreateEspModal = () => {
           className="flex flex-col gap-10 px-6"
         >
           <div className="flex flex-col gap-2">
-            <Label htmlFor="nama	">Nama Kandang</Label>
+            <Label htmlFor="nama	">ESP Name</Label>
             <Input
               id="nama"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="text"
-              placeholder="Nama Kandang"
+              placeholder="ESP Name"
               defaultValue={esp?.nama ? esp?.nama : ""}
               {...register("nama")}
             />
@@ -160,7 +160,7 @@ export const CreateEspModal = () => {
               id="image"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="text"
-              placeholder="Nama Kandang"
+              placeholder="Image ESP"
               defaultValue={esp?.image ? esp?.image : ""}
               {...register("image")}
             />
@@ -178,7 +178,7 @@ export const CreateEspModal = () => {
             </Button>
 
             <Button type="submit" variant="themeMode">
-              Tambah Kandang
+              Create ESP
             </Button>
           </DialogFooter>
         </form>

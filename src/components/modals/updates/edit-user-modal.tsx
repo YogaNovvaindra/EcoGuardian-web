@@ -33,16 +33,16 @@ import { userRole } from "@prisma/client";
 const formSchema = z.object({
   name: z
     .string()
-    .min(3, { message: "Kandang name must be at least 3 characters long" })
+    .min(3, { message: "name must be at least 3 characters long" })
     .refine((value) => !!value.trim(), {
-      message: "Kandang name is required and must not be empty",
+      message: "name is required and must not be empty",
       path: [],
     }),
   username: z
     .string()
-    .min(3, { message: "Kandang name must be at least 3 characters long" })
+    .min(3, { message: "name must be at least 3 characters long" })
     .refine((value) => !!value.trim(), {
-      message: "Kandang name is required and must not be empty",
+      message: "name is required and must not be empty",
       path: [],
     }),
   email: z.string(),

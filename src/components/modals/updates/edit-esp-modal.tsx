@@ -132,12 +132,12 @@ export const EditEspModal = () => {
           className="flex flex-col gap-10 px-6"
         >
           <div className="flex flex-col gap-2">
-            <Label htmlFor="nama">Nama Esp</Label>
+            <Label htmlFor="nama">Esp Name</Label>
             <Input
               id="nama"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="text"
-              placeholder="Nama Kandang"
+              placeholder="ESP Name"
               defaultValue={esp?.nama ? esp?.nama : ""}
               {...register("nama")}
             />
@@ -149,7 +149,7 @@ export const EditEspModal = () => {
               id="latitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="text"
-              placeholder="Nama Kandang"
+              placeholder="Latitude"
               defaultValue={esp?.latitude ? esp?.latitude : ""}
               {...register("latitude")}
             />
@@ -161,7 +161,7 @@ export const EditEspModal = () => {
               id="longitude"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="text"
-              placeholder="Nama Kandang"
+              placeholder="Longitude"
               defaultValue={esp?.longitude ? esp?.longitude : ""}
               {...register("longitude")}
             />
@@ -173,7 +173,7 @@ export const EditEspModal = () => {
               id="image"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="text"
-              placeholder="Nama Kandang"
+              placeholder="Image ESP"
               defaultValue={esp?.image ? esp?.image : ""}
               {...register("image")}
             />

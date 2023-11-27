@@ -37,16 +37,16 @@ import ImageUser from "@/app/(root)/(authenticated)/user/imageuser/page";
 const formSchema = z.object({
   nama: z
     .string()
-    .min(3, { message: "Kandang name must be at least 3 characters long" })
+    .min(3, { message: "name must be at least 3 characters long" })
     .refine((value) => !!value.trim(), {
-      message: "Kandang name is required and must not be empty",
+      message: "name is required and must not be empty",
       path: [],
     }),
   username: z
     .string()
-    .min(3, { message: "Kandang name must be at least 3 characters long" })
+    .min(3, { message: "name must be at least 3 characters long" })
     .refine((value) => !!value.trim(), {
-      message: "Kandang name is required and must not be empty",
+      message: "name is required and must not be empty",
       path: [],
     }),
   email: z.string(),
@@ -133,7 +133,7 @@ export const CreateUserModal = () => {
       <DialogContent className="bg-neutral-100 text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Edit User
+            Add User
           </DialogTitle>
         </DialogHeader>
 
@@ -154,12 +154,12 @@ export const CreateUserModal = () => {
             {errors.username && <div>{errors.username.message}</div>}
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="name">Nama</Label>
+            <Label htmlFor="name">Fullname</Label>
             <Input
               id="name"
               className="bg-neutral-200 outline-none border-none focus:border-none"
               type="text"
-              placeholder="Nama"
+              placeholder="fullname"
               defaultValue={User?.name ? User?.name : ""}
               {...register("nama")}
             />
@@ -191,7 +191,7 @@ export const CreateUserModal = () => {
             {errors.password && <div>{errors.password.message}</div>}
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="confirmpassword">Konfirmasi Password</Label>
+            <Label htmlFor="confirmpassword">Password Confirmation</Label>
             <Input
               id="confirmpassword"
               className="bg-neutral-200 outline-none border-none focus:border-none"
@@ -234,7 +234,7 @@ export const CreateUserModal = () => {
             </Button>
 
             <Button type="submit" variant="themeMode">
-              Tambah User
+              Add User
             </Button>
           </DialogFooter>
         </form>
