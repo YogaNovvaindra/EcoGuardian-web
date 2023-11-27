@@ -91,7 +91,7 @@ export const informationMonitoringDashboard = [
     unit: "",
     link: [
       "http://192.168.192.207:5000/video_feed",
-      "http://192.168.192.207:5000/object_info",
+      "http://192.168.192.207:5000/object_info_display",
     ],
   },
 ];
