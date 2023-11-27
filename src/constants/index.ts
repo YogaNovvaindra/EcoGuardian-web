@@ -82,6 +82,7 @@ export const informationMonitoringDashboard = [
     title: "Air Pollution Image",
     data: "image_status",
     forecast: "",
+    unit: "",
     link: "",
   },
 ];
