@@ -89,12 +89,7 @@ const Page = (props: Props) => {
                   <div>
                     {item.data in dashboardData ? (
                       <p className="text-heading2-bold">
-                        {/* {dashboardData[item.data].toFixed(2)} {item.unit} */}
-                        {typeof dashboardData[item.data] === "number"
-                          ? dashboardData[item.data].toFixed(2) +
-                            " " +
-                            item.unit
-                          : dashboardData[item.data] + " " + item.unit}
+                        {dashboardData[item.data]} {item.unit}
                       </p>
                     ) : (
                       <p className="text-heading2-bold">-</p>
@@ -104,7 +99,7 @@ const Page = (props: Props) => {
                   <div className="flex flex-col items-end">
                     {item.forecast in dashboardData ? (
                       <p className="text-heading3-bold opacity-70">
-                        {dashboardData[item.forecast].toFixed(2)} {item.unit}
+                        {dashboardData[item.forecast]} {item.unit}
                       </p>
                     ) : (
                       <p className="text-heading3-bold">-</p>
