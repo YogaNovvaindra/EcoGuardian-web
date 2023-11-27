@@ -63,27 +63,36 @@ export const informationMonitoringDashboard = [
     data: "roundtemperature",
     unit: "°C",
     forecast: "roundforecast_temperature",
-    link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=3`,
+    link: [
+      `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=3`,
+    ],
   },
   {
     title: "Humidity",
     data: "roundhumidity",
     unit: "%",
     forecast: "roundforecast_humidity",
-    link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=4`,
+    link: [
+      `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=4`,
+    ],
   },
   {
     title: "Air Quality",
     data: "roundispu",
     forecast: "roundforecast_ispu",
-    link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=5`,
+    link: [
+      `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=5`,
+    ],
   },
   {
     title: "Air Pollution Image",
     data: "image_status",
     forecast: "",
     unit: "",
-    link: "",
+    link: [
+      "http://192.168.192.207:5000/video_feed",
+      "http://192.168.192.207:5000/object_info",
+    ],
   },
 ];
 
@@ -220,6 +229,12 @@ export const informationMonitoringDetailForecast = [
       `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=5`,
     ],
   },
+];
+
+export const informationMonitoringIspu = [
+  `${CHART_URL}/d-solo/e9220e36-1a94-4262-8493-69fd8d93008d/ispu?orgId=1&theme=light&panelId=1`,
+  `${CHART_URL}/d-solo/e9220e36-1a94-4262-8493-69fd8d93008d/ispu?orgId=1&theme=light&panelId=2`,
+  `${CHART_URL}/d-solo/e9220e36-1a94-4262-8493-69fd8d93008d/ispu?orgId=1&theme=light&panelId=3`,
 ];
 
 export const TableHeaderUser = [

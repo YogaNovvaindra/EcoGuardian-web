@@ -47,20 +47,37 @@ const Page = (props: Props) => {
         <h1 className="text-heading1-semibold">Dashboard</h1>
         <span>{pathname}</span>
       </div>
-      <div className="w-full bg-light-1 flex rounded-md overflow-hidden h-40">
-        <div>
-          <Image
-            src="/public/../assets/vector-people-mointoring.png"
-            alt=""
-            width={100}
-            height={100}
-          />
+      {isLoading ? (
+        <p>loading</p>
+      ) : isError ? (
+        <p>Error: Failed to fetch data</p>
+      ) : (
+        <div className="w-full bg-light-1 flex rounded-md overflow-hidden min-h-fit">
+          <div className="h-full w-32 bg-blue">
+            <Image
+              src="/public/../assets/vector-people-mointoring.png"
+              alt=""
+              width={100}
+              height={100}
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col gap-1 px-4 py-2">
+            <h3 className="text-heading3-bold">
+              What is the air quality at Jember State Polytechnic now?
+            </h3>
+            <ul className="h-60">
+              {dashboardData.desc.map((item: string, index: number) => (
+                <li key={index} className="flex gap-2">
+                  <span className="">&#8226;</span>
+                  <span className="">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className="px-4 py-2">
-          <h3>What is the air quality at Jember State Polytechnic now?</h3>
-          <p>Deskripsi</p>
-        </div>
-      </div>
+      )}
+
       <div className="w-full flex gap-6 flex-wrap">
         {isLoading ? (
           <>
@@ -112,13 +129,16 @@ const Page = (props: Props) => {
           </>
         )}
       </div>
-      <div className="h-full bg-light-1">
-        <iframe
-          src={showChart.link}
-          width="100%"
-          height="100%"
-          frameBorder="0"
-        ></iframe>
+      <div className="flex gap-1 h-full bg-light-1">
+        {showChart.link.map((item, index) => (
+          <iframe
+            key={index}
+            src={item}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+          />
+        ))}
       </div>
     </section>
   );

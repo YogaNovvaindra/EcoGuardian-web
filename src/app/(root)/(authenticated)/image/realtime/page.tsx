@@ -14,7 +14,9 @@ const Page = (props: Props) => {
   useEffect(() => {
     const source = new EventSource("http://192.168.192.207:5000/object_info");
     source.onmessage = function (event) {
-      setObjectInfo(event.data);
+      const newData = event.data;
+      setObjectInfo(newData);
+      console.log("newData: ", newData);
     };
 
     // Cleanup event source on component unmount
@@ -29,14 +31,19 @@ const Page = (props: Props) => {
       </div>
       <div className="flex flex-col h-full overflow-auto">
         <NavbarImageDetector />
-        <div className="w-full h-full bg-light-1 flex flex-col gap-4 rounded-md h-40 p-6 overflow-auto">
-          <p>{objectInfo}</p>
+        <div className="w-full h-full flex gap-2 bg-light-1 rounded-md h-40 p-6 overflow-auto">
           <iframe
             src="http://192.168.192.207:5000/video_feed"
             width="100%"
             height="100%"
             frameBorder="0"
-          ></iframe>
+          />
+          <iframe
+            src="http://192.168.192.207:5000/object_info"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+          />
         </div>
       </div>
     </section>
