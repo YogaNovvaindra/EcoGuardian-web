@@ -31,13 +31,68 @@ export async function GET() {
         }
 
         const temperature = data?.temperature;
+        const roundtemperature = temperature?.toFixed(1);
         const humidity = data?.humidity;
+        const roundhumidity = humidity?.toFixed(1);
         const forecast_temperature = forecast[30].temperature;
+        const roundforecast_temperature = forecast_temperature?.toFixed(1);
         const forecast_humidity = forecast[30].humidity;
+        const roundforecast_humidity = forecast_humidity?.toFixed(1);
         const ispu = ispu_mean?.ispu;
+        const roundispu = ispu?.toFixed(1);
         const forecast_ispu = ispu_forecast[30].ispu;
+        const roundforecast_ispu = forecast_ispu?.toFixed(1);
         const forecast_createdAt = forecast[30].createdAt.toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
         const ispu_createdAt = ispu_forecast[30].createdAt.toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
+
+        let smoke_status;
+        let image_status;
+        let desc = [];
+
+        if (temperature !== null &&temperature !== undefined) {
+            if (temperature < 15) {
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's cold outside. Please wear a jacket");
+            }
+            else if (temperature >= 15 && temperature < 25) {
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's a good weather outside. Enjoy your day!");
+            }
+            else if (temperature >= 25 && temperature < 35) {
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's hot outside. Please drink more water");
+            }
+            else if (temperature >= 35) {
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's very hot outside. Please stay hydrated and stay inside whenever possible");
+            }
+        }
+
+        if (humidity !== null && humidity !== undefined) {
+            if (humidity < 40) {
+                desc.push("Humidity right now is "+roundhumidity+"%, it's dry outside. Please drink more water");
+            }
+            else if (humidity >= 40 && humidity < 70) {
+                desc.push("Humidity right now is "+roundhumidity+"%, it's a good weather outside. Enjoy your day!");
+            }
+            else if (humidity >= 70) {
+                desc.push("Humidity right now is "+roundhumidity+"%, it's humid outside. Please wear a comfortable clothes when going outside");
+            }
+        }
+
+        if (ispu !== null && ispu !== undefined) {
+            if (ispu < 51) {
+                desc.push("Air Pollution Index right now is "+roundispu+", it's a good air quality outside. Enjoy your day!");
+            }
+            else if (ispu >= 51 && ispu < 101) {
+                desc.push("Air Pollution Index right now is "+roundispu+", it's a moderate air quality outside. It may be effected for some people like children, elderly, and people with lung disease");
+            }
+            else if (ispu >= 101 && ispu < 201) {
+                desc.push("Air Pollution Index right now is "+roundispu+", it's an unhealthy air quality outside. Please wear a mask when going outside");
+            }
+            else if (ispu >= 201 && ispu < 301) {
+                desc.push("Air Pollution Index right now is "+roundispu+", it's a very unhealthy air quality outside. It can cause health problems for everyone, please reduce any outdoor activities");
+            }
+            else if (ispu >= 301) {
+                desc.push("Air Pollution Index right now is "+roundispu+", it's a hazardous air quality outside. Please stay inside whenever possible and wear a mask if you really have to go outside");
+            }
+        }
 
         const now = new Date().toUTCString();  // Get the current date in UTC
         const imageCreatedAt = new Date(image_detector[0].createdAt);
@@ -45,17 +100,24 @@ export async function GET() {
         const timeDifference = Math.abs(new Date(now).getTime() - imageCreatedAt.getTime());
         const minutesDifference = Math.floor(timeDifference / (1000 * 60));
 
-        let smoke_status;
-
         if (minutesDifference > 5) {
-            smoke_status = "No Smoke Detected";
+            image_status = "No Smoke Detected";
+            desc.push("No smoke detected in the last 5 minutes");
         } else {
-            // Handle the case where the time difference is 5 minutes or less (smoke detected)
-            // You can set smoke_status to something else or perform additional actions.
             smoke_status = image_detector[0].label;
+            if (smoke_status !== null && smoke_status !== undefined) {
+                if (smoke_status === "low_smoke") {
+                    desc.push ("There is a low smoke detected in the last 5 minutes. Please check the camera for more information");
+                    image_status = "Low Smoke Detected";
+                } else if (smoke_status === "medium_smoke") {
+                    desc.push("There is a medium smoke detected in the last 5 minutes. Please check the camera for more information");
+                    image_status = "Medium Smoke Detected";
+                } else if (smoke_status === "high_smoke") {
+                    desc.push("There is a high smoke detected in the last 5 minutes. Please check the camera for more information");
+                    image_status = "High Smoke Detected";
+                }
+            }
         }
-
-        // Now, smoke_status contains the result based on the time difference
 
         let ispu_status;
         if (ispu !== null && ispu !== undefined) {
@@ -73,14 +135,15 @@ export async function GET() {
         }
 
         const result = {
-            temperature,
-            humidity,
-            forecast_temperature,
-            forecast_humidity,
-            smoke_status,
-            ispu,
+            desc,
+            roundtemperature,
+            roundhumidity,
+            roundforecast_temperature,
+            roundforecast_humidity,
+            roundispu,
+            roundforecast_ispu,
             ispu_status,
-            forecast_ispu,
+            image_status,
             forecast_createdAt,
             ispu_createdAt
         }

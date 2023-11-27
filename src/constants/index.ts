@@ -60,29 +60,29 @@ export const listNavigationBar = [
 export const informationMonitoringDashboard = [
   {
     title: "Temperature",
-    data: "temperature",
+    data: "roundtemperature",
     unit: "°C",
-    forecast: "forecast_temperature",
+    forecast: "roundforecast_temperature",
     link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=3`,
   },
   {
     title: "Humidity",
-    data: "humidity",
+    data: "roundhumidity",
     unit: "%",
-    forecast: "forecast_humidity",
+    forecast: "roundforecast_humidity",
     link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=4`,
   },
   {
-    title: "Air Pollution Image",
-    data: "",
-    forecast: "",
-    link: "",
+    title: "Air Quality",
+    data: "roundispu",
+    forecast: "roundforecast_ispu",
+    link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=5`,
   },
   {
-    title: "Air Quality",
-    data: "ispu",
-    forecast: "forecast_ispu",
-    link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=5`,
+    title: "Air Pollution Image",
+    data: "image_status",
+    forecast: "",
+    link: "",
   },
 ];
 
