@@ -74,14 +74,16 @@ export const informationMonitoringDashboard = [
   },
   {
     title: "Air Pollution Image",
-    data: "",
+    data: "smoke_status",
     forecast: "",
+    unit: "",
     link: "",
   },
   {
     title: "Air Quality",
     data: "ispu",
     forecast: "forecast_ispu",
+    unit: "",
     link: `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=5`,
   },
 ];

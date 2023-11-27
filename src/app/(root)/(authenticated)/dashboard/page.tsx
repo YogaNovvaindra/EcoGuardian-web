@@ -89,7 +89,12 @@ const Page = (props: Props) => {
                   <div>
                     {item.data in dashboardData ? (
                       <p className="text-heading2-bold">
-                        {dashboardData[item.data].toFixed(2)} {item.unit}
+                        {/* {dashboardData[item.data].toFixed(2)} {item.unit} */}
+                        {typeof dashboardData[item.data] === "number"
+                          ? dashboardData[item.data].toFixed(2) +
+                            " " +
+                            item.unit
+                          : dashboardData[item.data] + " " + item.unit}
                       </p>
                     ) : (
                       <p className="text-heading2-bold">-</p>
