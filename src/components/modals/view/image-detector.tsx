@@ -20,6 +20,7 @@ import { useModal } from "@/hooks/use-modal-store";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { imageOptimizer } from "next/dist/server/image-optimizer";
 
 
 
@@ -47,6 +48,9 @@ export const ViewImageDetector = () => {
           </DialogTitle>
         </DialogHeader>
           <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
+              <p className="text-black">{imageDetectorData}</p>
+            </div>
            <Image
                 src={`/api/image_detector/image/${imageDetectorData}`}
                 alt="Detected Image"
