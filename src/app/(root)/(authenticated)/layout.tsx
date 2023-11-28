@@ -49,8 +49,8 @@ const AuthenticatedLayout: FC<AuthenticatedLayoutProps> = async ({
             <Leftsidebar />
             <div className="flex flex-col w-full h-screen">
               <Topbar />
-              <section className="main-container h-full overflow-auto">
-                <div className="w-full h-full overflow-auto">
+              <section className="main-container h-full md:overflow-auto">
+                <div className="w-full h-full md:overflow-auto">
                   <SocketProvider>
                     <QueryProvider>
                       <Notifikasi apiUrl={apiUrl} />

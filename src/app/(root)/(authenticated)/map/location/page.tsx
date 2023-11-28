@@ -22,10 +22,10 @@ const Page = (props: Props) => {
 
   return (
     <section className="flex flex-col gap-4 h-full overflow-auto">
-      <div>
+      {/* <div>
         <h1 className="text-heading1-semibold">Map Monitoring IOT</h1>
         <span>{pathname}</span>
-      </div>
+      </div> */}
       <div className="flex flex-col h-full rounded-md overflow-auto">
         <NavbarMap />
         <div className="bg-light-1 p-6 h-full gap-6 overflow-auto">

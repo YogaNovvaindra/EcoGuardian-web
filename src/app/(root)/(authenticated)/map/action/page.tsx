@@ -36,10 +36,10 @@ const Page = () => {
 
   return (
     <section className="flex flex-col gap-4 h-full overflow-auto">
-      <div>
+      {/* <div>
         <h1 className="text-heading1-semibold">Map Monitoring IOT</h1>
         <span>{pathname}</span>
-      </div>
+      </div> */}
       <div className="flex flex-col h-full rounded-md overflow-auto">
         <NavbarMap />
         <div className="grid bg-light-1 p-6 grid-cols-1 h-full xl:grid-cols-2 gap-6 overflow-auto">

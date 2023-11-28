@@ -19,16 +19,15 @@ type Props = {};
 const Page = () => {
   const { data: session } = useSession();
 
-
   const { onOpen } = useModal();
   const pathname = usePathname();
 
   return (
     <section className="h-full w-full flex flex-col gap-4 md:overflow-auto">
-      <div>
+      {/* <div>
         <h1 className="text-heading1-semibold">Profile</h1>
         <span>{pathname}</span>
-      </div>
+      </div> */}
       <div className="w-full h-full bg-light-1 flex flex-col gap-4 rounded-md h-40 p-6 overflow-auto">
         <div className="flex flex-col gap-2">
           <h2 className="text-heading2-semibold">Profile Setting</h2>
