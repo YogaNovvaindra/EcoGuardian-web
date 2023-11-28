@@ -18,6 +18,15 @@ import { EyeImage } from "@/components/modals/view/open";
 export const columnsImageDetector: ColumnDef<image_detector>[] = [
   
   {
+    accessorKey: "id",
+    header: ({ column }) => (
+      <DataTableColumnHeader className="hidden" column={column} title="id" />
+    ),
+    cell: ({ row }) => 
+    <div
+     className="w-[80px] hidden">{row.getValue("id")}</div>,
+  },
+  {
     accessorKey: "label",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="label" />
