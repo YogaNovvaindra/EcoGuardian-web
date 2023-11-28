@@ -42,7 +42,8 @@ const Page = (props: Props) => {
   };
 
   return (
-    <section className="h-full w-full flex flex-col gap-4 md:overflow-auto">
+    <section className="h-full w-full flex flex-col gap-4">
+
       <div>
         <h1 className="text-heading1-semibold">Dashboard</h1>
         <span>{pathname}</span>
@@ -52,21 +53,21 @@ const Page = (props: Props) => {
       ) : isError ? (
         <p>Error: Failed to fetch data</p>
       ) : (
-        <div className="w-full bg-light-1 flex rounded-md overflow-hidden min-h-fit">
-          <div className="h-full w-32 bg-blue">
+        <div className="w-full bg-light-1 flex rounded-md ">
+          <div className="h-full w-32 ">
             <Image
               src="/public/../assets/vector-people-mointoring.png"
               alt=""
               width={100}
               height={100}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
             />
           </div>
           <div className="flex flex-col gap-1 px-4 py-2">
             <h3 className="text-heading3-bold">
               What is the air quality at Jember State Polytechnic now?
             </h3>
-            <ul className="h-60">
+            <ul className="">
               {dashboardData.desc.map((item: string, index: number) => (
                 <li key={index} className="flex gap-2">
                   <span className="">&#8226;</span>
@@ -77,6 +78,7 @@ const Page = (props: Props) => {
           </div>
         </div>
       )}
+
 
       <div className="w-full flex gap-6 flex-wrap">
         {isLoading ? (
@@ -134,6 +136,7 @@ const Page = (props: Props) => {
           <iframe
             key={index}
             src={item}
+            // className="h-[300px]"
             width="100%"
             height="100%"
             frameBorder="0"
