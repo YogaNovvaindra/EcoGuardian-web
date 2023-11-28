@@ -8,6 +8,7 @@ import { EditEspModal } from "@/components/modals/updates/edit-esp-modal";
 import { CreateUserModal } from "../modals/creates/create-user-modal";
 import { EditUserModal } from "../modals/updates/edit-user-modal";
 import { DeleteUserModal } from "../modals/delete/delete-user-modal";
+import { ViewImageDetector } from "@/components/modals/view/image-detector";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -28,6 +29,7 @@ export const ModalProvider = () => {
       <CreateEspModal />
       <EditEspModal />
       <DeleteEspModal />
+      <ViewImageDetector/>
     </>
   );
 };

@@ -6,8 +6,26 @@ import { DataTableColumnHeader } from "../component/data-table-column-header";
 import { DataTableRowActions } from "../component/data-table-row-action";
 import { image_detector } from "@prisma/client";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useModal } from "@/hooks/use-modal-store";
+import { Button } from "@/components/ui/button";
+import { Eye } from "lucide-react";
+import { EyeImage } from "@/components/modals/view/open";
+
+
+// const { onOpen } = useModal();
+
 
 export const columnsImageDetector: ColumnDef<image_detector>[] = [
+  
+  {
+    accessorKey: "id",
+    header: ({ column }) => (
+      <DataTableColumnHeader className="hidden" column={column} title="id" />
+    ),
+    cell: ({ row }) => 
+    <div
+     className="w-[80px] hidden">{row.getValue("id")}</div>,
+  },
   {
     accessorKey: "label",
     header: ({ column }) => (
@@ -30,11 +48,25 @@ export const columnsImageDetector: ColumnDef<image_detector>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="image" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("image")}</div>,
+    cell: ({ row }) => 
+    <div
+     className="w-[80px]">{row.getValue("image")}</div>,
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <EyeImage id={row.getValue("id")} />,
   },
 
   {
-    id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row.original} />,
+    accessorKey: "createdAt",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last detect" />
+    ),
+    cell: ({ row }) => (
+      <div className="w-[80px]">{row.getValue("createdAt")}</div>
+    ),
   },
+
+
+
 ];

@@ -11,7 +11,8 @@ import { DataTable } from "@/components/common/table/user/component/data-table";
 import { columnsImageDetector } from "@/components/common/table/user/columns/imagedetector";
 import ImageDetector from "@/components/common/Image/image-detector";
 
-type Props = {};
+type Props = {}
+;
 
 const Page = (props: Props) => {
   const [objectInfo, setObjectInfo] = useState("");
@@ -37,7 +38,7 @@ const Page = (props: Props) => {
       </div>
       <div className="flex flex-col h-full overflow-auto">
         <NavbarImageDetector />
-        <div className="w-full h-full bg-light-1 flex gap-4 rounded-md h-40 p-6 overflow-auto">
+        <div className="w-full h-full bg-light-1 flex gap-4 rounded-md p-6 overflow-auto">
           {isLoading ? (
             <p className="text-black">Loading...</p>
           ) : isError ? (

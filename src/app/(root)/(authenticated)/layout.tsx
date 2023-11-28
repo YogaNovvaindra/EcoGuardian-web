@@ -45,7 +45,7 @@ const AuthenticatedLayout: FC<AuthenticatedLayoutProps> = async ({
             disableTransitionOnChange
             // storageKey="discord-theme"
           > */}
-          <main className="flex h-screen flex-row overflow-auto">
+          <main className="flex h-screen flex-row">
             <Leftsidebar />
             <div className="flex flex-col w-full h-screen">
               <Topbar />
