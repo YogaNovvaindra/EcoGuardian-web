@@ -80,7 +80,7 @@
 @layer components {
   /* main */
   .main-container {
-    @apply flex  flex-1 flex-col items-start bg-neutral-300/90 dark:bg-dark-1 px-6 py-10 max-md:pb-32 sm:px-10;
+    @apply flex  flex-1 flex-col items-start bg-neutral-300/90 dark:bg-dark-1 px-6 py-4 md:py-10 max-md:pb-32 sm:px-10;
   }
 
   /* Head Text */
@@ -134,7 +134,7 @@
   }
 
   .topbar {
-    @apply sticky top-0 md:static z-30 flex w-full bg-green-gradient dark:bg-dark-gradient items-center gap-4 justify-end px-6 py-3;
+    @apply sticky top-0 z-30 flex w-full bg-green-gradient dark:bg-dark-gradient items-center gap-4 justify-end px-6 py-3;
   }
 
   .bottombar {

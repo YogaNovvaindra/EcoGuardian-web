@@ -45,7 +45,7 @@ export const listNavigationBar = [
   },
   {
     link: "MonitoringLandingPage",
-    label: "Moitoring",
+    label: "Monitoring",
   },
   {
     link: "AboutLandingPage",

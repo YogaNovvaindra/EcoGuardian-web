@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { data } from "@prisma/client";
 import { DataTable } from "@/components/common/table/user/component/data-table";
 import { columnsImageDetector } from "@/components/common/table/user/columns/imagedetector";
