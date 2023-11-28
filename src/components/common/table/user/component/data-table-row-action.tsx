@@ -12,9 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { taskSchema } from "../data/schema";
 import { useModal } from "@/hooks/use-modal-store";
-import { User } from "@prisma/client";
 
 interface DataTableRowActionsProps<TData> {
   row: any;

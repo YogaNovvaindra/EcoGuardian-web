@@ -14,12 +14,19 @@ export type ModalType =
   | "deleteEsp"
   | "deleteFeedbackQuestions"
   | "deleteFeedbackResponse"
-  | "deleteUser";
+  | "deleteUser"
+  | "imageDetector"
+  ;
 
+  export type imageDetectorData =
+  {
+    id: string;
+  }
 interface ModalData {
   esp?: esp;
   User?: User;
   apiUrl?: string;
+  imageDetectorData?: string;
   query?: Record<string, any>;
 }
 
