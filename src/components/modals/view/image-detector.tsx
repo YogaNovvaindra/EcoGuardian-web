@@ -22,10 +22,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { imageOptimizer } from "next/dist/server/image-optimizer";
 
-
-
-
-
 export const ViewImageDetector = () => {
   const { isOpen, onClose, type, data } = useModal();
 
@@ -41,24 +37,25 @@ export const ViewImageDetector = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent className="bg-neutral-100 text-black p-0 overflow-hidden w-72">
+      <DialogContent className="bg-neutral-100 text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
             Image Detector
           </DialogTitle>
         </DialogHeader>
+        <div className="flex flex-col gap-2">
           <div className="flex flex-col gap-2">
-            <div className="flex flex-col gap-2">
-              <p className="text-black">{imageDetectorData}</p>
-            </div>
-           <Image
-                src={`/api/image_detector/image/${imageDetectorData}`}
-                alt="Detected Image"
-                width={1920}
-                height={1080}
-                />
-
-          
+            <p className="text-black">{imageDetectorData}</p>
+          </div>
+          <div className="w-full h-full">
+            <Image
+              src={`/api/image_detector/image/${imageDetectorData}`}
+              alt="Detected Image"
+              width={100}
+              height={100}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
       </DialogContent>
     </Dialog>

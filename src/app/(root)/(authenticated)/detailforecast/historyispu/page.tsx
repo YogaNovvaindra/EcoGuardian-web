@@ -36,10 +36,10 @@ const Page = (props: Props) => {
 
   return (
     <section className="flex flex-col gap-4 h-full overflow-auto">
-      <div>
+      {/* <div>
         <h1 className="text-heading1-semibold">Detail Overview</h1>
         <span>{pathname}</span>
-      </div>
+      </div> */}
       <div className="flex flex-col h-full overflow-auto">
         <NavbarDetailForecast />
         <div className="h-full p-6 flex flex-col bg-light-1 rounded-md overflow-auto gap-2 box-border">

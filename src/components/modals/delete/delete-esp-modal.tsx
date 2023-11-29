@@ -55,16 +55,11 @@ export const DeleteEspModal = () => {
         </DialogHeader>
         <p className="text-center">Apakah Anda yakin menghapus {esp?.nama}</p>
         <DialogFooter className="px-6 pb-8">
-          <Button
-            type="button"
-            variant="default"
-            className="bg-neutral-800 hover:bg-neutral-800/80 text-light-2"
-            onClick={handleClose}
-          >
+          <Button type="button" onClick={handleClose} variant="ghost">
             Cancel
           </Button>
 
-          <Button type="button" onClick={onSubmit} variant="themeMode">
+          <Button type="button" onClick={onSubmit} variant="destructive">
             Delete Esp
           </Button>
         </DialogFooter>

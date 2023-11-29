@@ -2,7 +2,7 @@ import SignInForm from '@/components/common/form/SignInForm';
 
 const page = () => {
   return (
-    <div className='max-w-[400px]'>
+    <div className=''>
       <SignInForm />
     </div>
   );

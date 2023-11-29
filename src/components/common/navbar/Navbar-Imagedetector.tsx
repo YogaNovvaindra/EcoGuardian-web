@@ -11,8 +11,8 @@ const NavbarImageDetector = () => {
           <button
             className={`${
               pathname === "/image/realtime"
-                ? "bg-black text-light-1"
-                : "bg-light-1"
+                ? "bg-light-1"
+                : "bg-black text-light-1"
             } px-4 py-2 rounded-tl-md`}
           >
             Real-Time
@@ -25,8 +25,8 @@ const NavbarImageDetector = () => {
           <button
             className={`${
               pathname === "/image/result"
-                ? "bg-black text-light-1"
-                : "bg-light-1"
+                ? "bg-light-1"
+                : "bg-black text-light-1"
             } px-4 py-2 rounded-tr-md`}
           >
             Result

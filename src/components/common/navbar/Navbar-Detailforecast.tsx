@@ -11,8 +11,8 @@ const NavbarDetailForecast = () => {
           <button
             className={`${
               pathname === "/detailforecast/historyforecast"
-                ? "bg-black text-light-1"
-                : "bg-light-1"
+                ? "bg-light-1"
+                : "bg-black text-light-1"
             } px-4 py-2 rounded-tl-md`}
           >
             Forecast
@@ -25,8 +25,8 @@ const NavbarDetailForecast = () => {
           <button
             className={`${
               pathname === "/detailforecast/historyispu"
-                ? "bg-black text-light-1"
-                : "bg-light-1"
+                ? "bg-light-1"
+                : "bg-black text-light-1"
             } px-4 py-2 rounded-tr-md`}
           >
             Ispu

@@ -35,10 +35,10 @@ const Page = () => {
 
   return (
     <section className="h-full w-full flex flex-col gap-4 md:overflow-auto">
-      <div>
+      {/* <div>
         <h1 className="text-heading1-semibold">User</h1>
         <span>{pathname}</span>
-      </div>
+      </div> */}
       <div className="w-full h-full bg-light-1 flex flex-col gap-4 rounded-md p-6 overflow-auto">
         <div className="flex flex-col gap-1">
           <h2 className="text-heading2-semibold">User Data Table</h2>

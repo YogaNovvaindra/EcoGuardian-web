@@ -168,18 +168,11 @@ export const CreateEspModal = () => {
           </div>
 
           <DialogFooter className="px-6 pb-8">
-            <Button
-              type="button"
-              variant="default"
-              className="bg-neutral-800 hover:bg-neutral-800/80 text-light-2"
-              onClick={handleClose}
-            >
+            <Button type="button" variant="ghost" onClick={handleClose}>
               Cancel
             </Button>
 
-            <Button type="submit" variant="themeMode">
-              Create ESP
-            </Button>
+            <Button type="submit">Create ESP</Button>
           </DialogFooter>
         </form>
       </DialogContent>

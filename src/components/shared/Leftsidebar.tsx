@@ -25,26 +25,35 @@ const Leftsidebar: FC<LeftsidebarProps> = ({}) => {
 
   // const { userId } = useAuth();
   return (
-    <section className="custom-scrollbar leftsidebar greens-gradient dark:darks-gradient">
+    <section className="custom-scrollbar leftsidebar blue-gradient">
       <div className="flex w-full flex-1 flex-col gap-6 px-6">
         <Link href="/dashboard" className="flex items-center gap-4">
-          <Image src="/logo.svg" alt="logo" width={28} height={28} />
+          <Image
+            src="/public/../assets/img/logoEco.png"
+            alt="logo"
+            width={56}
+            height={56}
+          />
           <p className="text-heading3-bold text-light-1 hidden lg:inline-block">
             Eco Guardian
           </p>
         </Link>
         {sidebarLinks.map((link) => {
-          const isActive =
-            (pathname?.includes(link.route) && link.route.length > 1) ||
-            pathname === link.route;
+          // const isActive =
+          //   (pathname?.includes(link.route) && link.route.length > 1) ||
+          //   pathname === link.route;
+          const isActive = link.route.some((route) =>
+            pathname?.includes(route)
+          );
 
           // if (link.route === "/profile") link.route = `${link.route}/${userId}`;
           return (
             <Link
-              href={link.route}
+              // href={link.route}
+              href={isActive ? link.route[0] : link.route[0]}
               key={link.label}
               className={`leftsidebar_link ${
-                isActive && "bg-[#01C577] dark:bg-red-500"
+                isActive && "bg-[#5593f0] dark:bg-red-500"
               }`}
             >
               <Image

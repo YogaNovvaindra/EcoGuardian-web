@@ -6,27 +6,28 @@ import { usePathname } from "next/navigation";
 
 import { sidebarLinks } from "@/constants";
 
-import { FC } from 'react'
-
+import { FC } from "react";
 
 interface BottombarProps {
   // title?: string
 }
 
-const Bottombar: FC<BottombarProps> = ({ }) => {
-
+const Bottombar: FC<BottombarProps> = ({}) => {
   const pathname = usePathname();
   return (
-    <section className='bottombar'>
-      <div className='bottombar_container'>
+    <section className="bottombar">
+      <div className="bottombar_container">
         {sidebarLinks.map((link) => {
-          const isActive =
-            // (pathname.includes(link.route) && link.route.length > 1) ||
-            pathname === link.route;
+          // const isActive =
+          // (pathname.includes(link.route) && link.route.length > 1) ||
+          // pathname === link.route;
+          const isActive = link.route.some((route) =>
+            pathname?.includes(route)
+          );
 
           return (
             <Link
-              href={link.route}
+              href={isActive ? link.route[0] : link.route[0]}
               key={link.label}
               className={`bottombar_link ${isActive && "bg-primary-500"}`}
             >
@@ -35,10 +36,10 @@ const Bottombar: FC<BottombarProps> = ({ }) => {
                 alt={link.label}
                 width={16}
                 height={16}
-                className='object-contain'
+                className="object-contain"
               />
 
-              <p className='text-subtle-medium text-light-1 max-sm:hidden'>
+              <p className="text-subtle-medium text-light-1 max-sm:hidden">
                 {link.label.split(/\s+/)[0]}
               </p>
             </Link>
@@ -46,7 +47,7 @@ const Bottombar: FC<BottombarProps> = ({ }) => {
         })}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Bottombar
+export default Bottombar;
