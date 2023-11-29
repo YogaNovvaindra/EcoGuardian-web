@@ -34,7 +34,7 @@ const Page = () => {
           <p>Lorem ipsum dolor sit amet.</p>
         </div>
         <div className="flex gap-10">
-          <div className="w-96 bg-red-500">
+          {/* <div className="w-96 bg-red-500">
             <div>
               <Image
                 alt=""
@@ -43,7 +43,7 @@ const Page = () => {
                 height={400}
               />
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col gap-6 w-full">
             <div className="flex flex-col gap-4">
               {/* <div className="flex flex-col gap-2">

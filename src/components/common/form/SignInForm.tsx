@@ -67,12 +67,10 @@ const SignInForm = () => {
     }
   };
   return (
-    <Card>
+    <Card className="w-[450px]">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl text-center">Sign In</CardTitle>
-        <CardDescription>
-          Welcome back! Please enter your email to sign in.
-        </CardDescription>
+        <CardTitle className="text-2xl">Sign In</CardTitle>
+        <CardDescription>Sign in to continue</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
         <Form {...form}>
@@ -121,14 +119,14 @@ const SignInForm = () => {
           </form>
         </Form>
       </CardContent>
-      <CardFooter>
+      {/* <CardFooter>
         <p className="text-center text-sm text-gray-600 ">
           If you don&apos;t have an account, please&nbsp;
-          <Link className="text-blue-500 hover:underline" href="/sign-up">
-            Sign up
+          <Link className="text-blue text-base-medium hover:underline" href="/sign-up">
+            Sign Up
           </Link>
         </p>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 };

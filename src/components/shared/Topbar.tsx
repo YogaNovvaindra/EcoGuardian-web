@@ -97,7 +97,7 @@ const Topbar: FC<TopbarProps> = ({}) => {
   return (
     <nav className="topbar">
       <p className="text-light-1">kosongi sek</p>
-      <Dialog>
+      {/* <Dialog>
         <DialogTrigger>
           <div className="relative">
             <div className="w-6 h-6 bg-red-500 absolute top-1 right-1 flex justify-center items-center rounded-full">
@@ -122,12 +122,9 @@ const Topbar: FC<TopbarProps> = ({}) => {
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
-      </Dialog>
-      <Link
-        href={"/profile"}
-        className=""
-      >
-        <p className="text-white">{session?.user.name || "no login"}</p>
+      </Dialog> */}
+      <Link href={"/profile"} className="">
+        <p className="">{session?.user.name || "Belum Login"}</p>
         {/* <Image
           alt=""
           src="/public/../assets/img/example-user.jpeg"

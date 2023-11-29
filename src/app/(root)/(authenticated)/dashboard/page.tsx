@@ -42,7 +42,6 @@ const Page = (props: Props) => {
   };
 
   return (
-
     <section className="h-full w-full flex flex-col gap-2 md:gap-4 md:overflow-auto">
       {/* <div>
         <h1 className="text-heading1-semibold">Dashboard</h1>
@@ -53,21 +52,21 @@ const Page = (props: Props) => {
       ) : isError ? (
         <p>Error: Failed to fetch data</p>
       ) : (
-        <div className=" w-full bg-light-1 flex flex-col md:flex-row rounded-md md:overflow-hidden">
-          <div className="hidden lg:block h-full w-32 bg-blue">
+        <div className=" w-full  bg-light-1 flex flex-col md:flex-row rounded-md ">
+          <div className=" hidden lg:block w-32 bg-blue">
             <Image
               src="/public/../assets/vector-people-mointoring.png"
               alt=""
               width={100}
               height={100}
-              className="h-full w-full object-contain"
+              className="h-full w-full object-cover"
             />
           </div>
           <div className="flex flex-col gap-1 px-4 py-2">
             <h3 className="text-body-bold md:text-heading3-bold">
               What is the air quality at Jember State Polytechnic now?
             </h3>
-            <ul className="">
+            <ul className="lg:h">
               {dashboardData.desc.map((item: string, index: number) => (
                 <li key={index} className="flex gap-2">
                   <span className="">&#8226;</span>
@@ -97,31 +96,63 @@ const Page = (props: Props) => {
               <div
                 key={index}
                 className={`grow h-32 min-w-[150px] p-4 rounded-md ${
-                  index === activeCard ? "bg-green-500" : "bg-white"
+                  index === activeCard ? "card-dashboard-active" : "bg-white"
                 }`}
                 onClick={() => handleCardClick(index)}
               >
-                <p>{item.title}</p>
+                <p className={`${index === activeCard ? "text-white" : ""}`}>
+                  {item.title}
+                </p>
                 <div className="flex justify-between">
                   <div>
                     {item.data in dashboardData ? (
-                      <p className="text-body-bold md:text-heading2-bold">
+                      <p
+                        className={`text-body-bold md:text-heading2-bold ${
+                          index === activeCard ? "text-white" : ""
+                        }`}
+                      >
                         {dashboardData[item.data]} {item.unit}
                       </p>
                     ) : (
-                      <p className="text-heading2-bold">-</p>
+                      <p
+                        className={` ${
+                          index === activeCard ? "text-white" : ""
+                        }`}
+                      >
+                        -
+                      </p>
                     )}
-                    <p className="md:text-base-regular">Now</p>
+                    <p
+                      className={`md:text-base-regular ${
+                        index === activeCard ? "text-white" : ""
+                      }`}
+                    >
+                      Now
+                    </p>
                   </div>
                   <div className="flex flex-col items-end">
                     {item.forecast in dashboardData ? (
-                      <p className="text-body-normal md:text-heading3-bold opacity-70">
+                      <p
+                        className={`text-body-normal md:text-heading3-bold opacity-70 ${
+                          index === activeCard ? "text-white" : ""
+                        }`}
+                      >
                         {dashboardData[item.forecast]} {item.unit}
                       </p>
                     ) : (
-                      <p className="text-heading3-bold">-</p>
+                      <p
+                        className={`text-heading3-bold ${
+                          index === activeCard ? "text-white" : ""
+                        }`}
+                      >
+                        -
+                      </p>
                     )}
-                    <p className="text-[12px] md:text-small-regular opacity-70">
+                    <p
+                      className={`text-[12px] md:text-small-regular opacity-70 ${
+                        index === activeCard ? "text-white" : ""
+                      }`}
+                    >
                       +1 hour
                     </p>
                   </div>

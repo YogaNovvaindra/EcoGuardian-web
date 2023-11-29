@@ -5,8 +5,7 @@ import { useState } from "react";
 import { listNavigationBar } from "@/constants";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { signOut } from 'next-auth/react'
-
+import { signOut } from "next-auth/react";
 
 const NavbarLandingPage = () => {
   const [activeClass, setActiveClass] = useState<boolean>(false);
@@ -18,9 +17,15 @@ const NavbarLandingPage = () => {
   const activeStyle = "bg-white";
   return (
     <nav className="w-screen bg-blue flex flex-col md:flex-row justify-between py-2 px-6 items-center h-min fixed">
-      <div className="flex w-full md:w-min justify-between">
-        <div className="">
-          <Image alt="" src="/" width={100} height={50} />
+      <div className="flex w-full justify-between">
+        <div className="flex gap-2 w-full items-center">
+          <Image
+            alt="logo"
+            src="/assets/img/logoEco.png"
+            width={60}
+            height={60}
+          />
+          <p className="text-heading3-bold text-white">Eco Guardian</p>
         </div>
         <button onClick={onToggle} className="md:hidden">
           <Image
@@ -34,7 +39,7 @@ const NavbarLandingPage = () => {
       <div
         className={`${
           isOpen ? "flex" : "hidden"
-        } flex-col md:flex md:flex-row gap-8`}
+        } flex-col w-full md:flex md:flex-row gap-8 justify-end`}
       >
         <ul className="flex flex-col md:flex-row gap-6 items-center">
           {listNavigationBar.map((item: { link: string; label: string }) => (

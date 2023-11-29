@@ -9,7 +9,7 @@ const HeroLandingPage = () => {
     >
       <div className="md:order-2 w-full">
         <Image
-          src={"/public/../assets/vector.png"}
+          src={"/assets/vector.png"}
           alt="vector"
           width={1000}
           height={1000}

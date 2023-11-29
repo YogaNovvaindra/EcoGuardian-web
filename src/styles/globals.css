@@ -134,7 +134,7 @@
   }
 
   .topbar {
-    @apply sticky top-0 z-30 flex w-full bg-green-gradient dark:bg-dark-gradient items-center gap-4 justify-end px-6 py-3;
+    @apply sticky h-16 top-0 z-30 flex w-full items-center gap-4 justify-end px-6 py-3;
   }
 
   .bottombar {
@@ -150,7 +150,7 @@
   }
 
   .leftsidebar {
-    @apply sticky left-0 top-0 z-20 flex h-screen w-fit flex-col justify-between overflow-auto border-r dark:border-r-dark-4 border-light-4 bg-green-gradient dark:bg-dark-gradient pb-5 pt-4 max-md:hidden;
+    @apply sticky left-0 top-0 z-20 flex h-screen flex-col min-w-max justify-between overflow-auto  border-light-4 bg-green-gradient dark:bg-dark-gradient pb-5 pt-4 max-md:hidden;
   }
 
   .leftsidebar_link {
@@ -173,12 +173,12 @@
     @apply p-3;
   }
 
-  .bg-greens-gradient {
-    background: linear-gradient(90.13deg, #00492c 1.9%, #00a762 97.5%);
+  .bg-blue-gradient {
+    background: linear-gradient(90.13deg, #052658 1.9%, #2f78e4 97.5%);
     background: -webkit-linear-gradient(
       -160.13deg,
-      #00492c 1.9%,
-      #00a762 97.9%
+      #052658 1.9%,
+      #2f78e4 97.9%
     );
   }
   /* .bg-greens-gradient hover */
@@ -197,14 +197,25 @@
     background: -webkit-linear-gradient(-160.13deg, #ff0000 33%, #ff0000 140%);
   }
 
-  .greens-gradient {
-    background: #00a762;
-    background: linear-gradient(-110.13deg, #00492c 1.9%, #00a762 90.5%);
-    background: -webkit-linear-gradient(90.13deg, #00492c 1.9%, #00a762 90%);
+  .blue-gradient {
+    background: #0d6efd;
+    background: linear-gradient(-110.13deg, #052658 1.9%, #2f78e4 90.5%);
+    background: -webkit-linear-gradient(90.13deg, #052658 1.9%, #2f78e4 90%);
   }
+
   .darks-gradient {
     background: #101012; /* Fallback background color */
     background: linear-gradient(-110.13deg, #101012 1.9%, #121417 90.6%);
     background: -webkit-linear-gradient(90deg, #101012 1.9%, #121417 90%);
+  }
+
+  .card-dashboard-active {
+    background: #2f78e4;
+    background: linear-gradient(-110.13deg, #0f50b3 1.9%, #377de7 90.5%);
+    background: -webkit-linear-gradient(
+      -110.13deg,
+      #0f50b3 1.9%,
+      #377de7 90.5%
+    );
   }
 }
