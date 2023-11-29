@@ -40,10 +40,10 @@ const Page = (props: Props) => {
 
   return (
     <section className="h-full w-full flex flex-col gap-4 md:overflow-auto">
-      <div>
+      {/* <div>
         <h1 className="text-heading1-semibold">Air Pollution Image Detector</h1>
         <span>{pathname}</span>
-      </div>
+      </div> */}
       <div className="flex flex-col h-full overflow-auto">
         <NavbarImageDetector />
         <div className="w-full h-full flex gap-2 bg-light-1 rounded-md p-6 overflow-auto">

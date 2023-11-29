@@ -11,8 +11,8 @@ const NavbarMap = () => {
           <button
             className={`${
               pathname === "/map/location"
-                ? "bg-black text-light-1"
-                : "bg-light-1"
+                ? "bg-light-1"
+                : "bg-black text-light-1"
             } px-4 py-2 rounded-tl-md`}
           >
             Location
@@ -25,8 +25,8 @@ const NavbarMap = () => {
           <button
             className={`${
               pathname === "/map/action"
-                ? "bg-black text-light-1"
-                : "bg-light-1"
+                ? "bg-light-1"
+                : "bg-black text-light-1"
             } px-4 py-2 rounded-tr-md`}
           >
             Action

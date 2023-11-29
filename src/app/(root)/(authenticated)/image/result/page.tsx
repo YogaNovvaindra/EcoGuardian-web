@@ -11,8 +11,7 @@ import { DataTable } from "@/components/common/table/user/component/data-table";
 import { columnsImageDetector } from "@/components/common/table/user/columns/imagedetector";
 import ImageDetector from "@/components/common/Image/image-detector";
 
-type Props = {}
-;
+type Props = {};
 
 const Page = (props: Props) => {
   const [objectInfo, setObjectInfo] = useState("");
@@ -32,10 +31,10 @@ const Page = (props: Props) => {
   console.log("data image detector: ", detectorData);
   return (
     <section className="h-full w-full flex flex-col gap-4 md:overflow-auto">
-      <div>
+      {/* <div>
         <h1 className="text-heading1-semibold">Air Pollution Image Detector</h1>
         <span>{pathname}</span>
-      </div>
+      </div> */}
       <div className="flex flex-col h-full overflow-auto">
         <NavbarImageDetector />
         <div className="w-full h-full bg-light-1 flex gap-4 rounded-md p-6 overflow-auto">
@@ -46,7 +45,7 @@ const Page = (props: Props) => {
           ) : (
             <>
               <div className="w-full">
-                <DataTable columns={columnsImageDetector} data={detectorData}   />
+                <DataTable columns={columnsImageDetector} data={detectorData} />
               </div>
               {/* <ImageDetector item={detectorData} /> */}
             </>

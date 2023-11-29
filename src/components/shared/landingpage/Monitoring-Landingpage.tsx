@@ -46,7 +46,7 @@ const MonitoringLandingPage = () => {
     // mengatur interval untuk pembaruan data setiap 60 detik (1 menit)
     const intervalId = setInterval(() => {
       fetchData();
-    }, 1000);
+    }, 60000);
 
     // Membersihkan interval saat komponen dibongkar
     return () => clearInterval(intervalId);
@@ -62,7 +62,7 @@ const MonitoringLandingPage = () => {
 
   return (
     <section
-      id="monitoring"
+      id="MonitoringLandingPage"
       className="h-screen w-full flex flex-col gap-4 md:overflow-auto landingpage"
     >
       {/* <h1 className="text-heading3-bold text-center">Monitoring</h1>
@@ -116,31 +116,65 @@ const MonitoringLandingPage = () => {
               <div
                 key={index}
                 className={`grow h-32 min-w-[150px] p-4 rounded-md ${
-                  index === activeCard ? "bg-green-500" : "bg-white"
+                  index === activeCard ? "card-dashboard-active" : "bg-white"
                 }`}
                 onClick={() => handleCardClick(index)}
               >
-                <p>{item.title}</p>
+                <p className={`${index === activeCard ? "text-white" : ""}`}>
+                  {item.title}
+                </p>
                 <div className="flex justify-between">
                   <div>
                     {item.data in dashboardData ? (
-                      <p className="text-heading2-bold">
+                      <p
+                        className={`text-body-bold md:text-heading2-bold ${
+                          index === activeCard ? "text-white" : ""
+                        }`}
+                      >
                         {dashboardData[item.data]} {item.unit}
                       </p>
                     ) : (
-                      <p className="text-heading2-bold">-</p>
+                      <p
+                        className={` ${
+                          index === activeCard ? "text-white" : ""
+                        }`}
+                      >
+                        -
+                      </p>
                     )}
-                    <p>Now</p>
+                    <p
+                      className={`md:text-base-regular ${
+                        index === activeCard ? "text-white" : ""
+                      }`}
+                    >
+                      Now
+                    </p>
                   </div>
                   <div className="flex flex-col items-end">
                     {item.forecast in dashboardData ? (
-                      <p className="text-heading3-bold opacity-70">
+                      <p
+                        className={`text-body-normal md:text-heading3-bold opacity-70 ${
+                          index === activeCard ? "text-white" : ""
+                        }`}
+                      >
                         {dashboardData[item.forecast]} {item.unit}
                       </p>
                     ) : (
-                      <p className="text-heading3-bold">-</p>
+                      <p
+                        className={`text-heading3-bold ${
+                          index === activeCard ? "text-white" : ""
+                        }`}
+                      >
+                        -
+                      </p>
                     )}
-                    <p className="opacity-70">+1 hour</p>
+                    <p
+                      className={`text-[12px] md:text-small-regular opacity-70 ${
+                        index === activeCard ? "text-white" : ""
+                      }`}
+                    >
+                      +1 hour
+                    </p>
                   </div>
                 </div>
               </div>

@@ -12,7 +12,6 @@ import { Eye } from "lucide-react";
 import { EyeImage } from "@/components/modals/view/open";
 
 
-// const { onOpen } = useModal();
 
 
 export const columnsImageDetector: ColumnDef<image_detector>[] = [
@@ -52,6 +51,7 @@ export const columnsImageDetector: ColumnDef<image_detector>[] = [
     <div
      className="w-[80px]">{row.getValue("image")}</div>,
   },
+  
   {
     id: "actions",
     cell: ({ row }) => <EyeImage id={row.getValue("id")} />,

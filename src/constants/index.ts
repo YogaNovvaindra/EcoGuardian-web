@@ -3,17 +3,17 @@ import { CHART_URL } from "@/utils/url";
 export const sidebarLinks = [
   {
     imgUrl: "/assets/dashboard.svg",
-    route: "/dashboard",
+    route: ["/dashboard"],
     label: "Dashboard",
   },
   {
     imgUrl: "/assets/map.svg",
-    route: "/map/location",
-    label: "Map Monitoring IOT",
+    route: ["/map/location", "/map/action"],
+    label: "Map IOT",
   },
   {
     imgUrl: "/assets/overview.svg",
-    route: "/overview",
+    route: ["/history"],
     label: "History",
   },
   // {
@@ -23,17 +23,17 @@ export const sidebarLinks = [
   // },
   {
     imgUrl: "/assets/capture.svg",
-    route: "/image/realtime",
+    route: ["/image/realtime","/image/result"],
     label: "AP Image Detector",
   },
   {
-    imgUrl: "/assets/capture.svg",
-    route: "/detailforecast/historyforecast",
-    label: "Detail Forecast",
+    imgUrl: "/assets/forecast.svg",
+    route: ["/detailforecast/historyforecast", "/detailforecast/historyispu"],
+    label: "Forecast & ISPU",
   },
   {
     imgUrl: "/assets/user.svg",
-    route: "/user",
+    route: ["/user"],
     label: "User",
   },
 ];
