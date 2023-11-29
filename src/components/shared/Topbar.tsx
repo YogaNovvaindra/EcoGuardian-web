@@ -96,7 +96,7 @@ const Topbar: FC<TopbarProps> = ({}) => {
 
   return (
     <nav className="topbar">
-      <p className="text-light-1">kosongi sek</p>
+      <p className="text-light-1"></p>
       {/* <Dialog>
         <DialogTrigger>
           <div className="relative">
