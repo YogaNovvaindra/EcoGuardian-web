@@ -22,7 +22,7 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   const { onOpen } = useModal();
-
+  console.log("row: ", row);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

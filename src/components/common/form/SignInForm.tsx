@@ -29,6 +29,7 @@ import { loginValidation } from "@/lib/validation/user-validation";
 import Image from "next/image";
 
 const SignInForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof loginValidation>>({
     resolver: zodResolver(loginValidation),
@@ -42,6 +43,7 @@ const SignInForm = () => {
   const onSubmit = async (values: z.infer<typeof loginValidation>) => {
     console.log("pw sign-in: ", values.password);
     try {
+      setIsLoading(true);
       const result = await signIn("credentials", {
         email: values.email,
         password: values.password,
@@ -49,20 +51,31 @@ const SignInForm = () => {
       });
       if (result?.error) {
         setError(result.error);
+        setIsLoading(false);
       } else {
         // Redirect to home page
         router.refresh();
         router.push("/dashboard");
       }
+      setIsLoading(true);
     } catch (error) {
+
       const errorMessage = error as string;
       if (errorMessage) {
+        setIsLoading(false);
+
         const { email, password } = JSON.parse(errorMessage);
         if (email) {
+          setIsLoading(false);
+
           setError(email);
         } else if (password) {
+          setIsLoading(false);
+
           setError(password);
         } else {
+          setIsLoading(false);
+
           setError("Something went wrong. Please try again later.");
         }
       }
@@ -124,9 +137,18 @@ const SignInForm = () => {
               </div>
             </div>
             <div className="text-2xl">{error}</div>
-            <Button className="w-full mt-5" type="submit">
+            {isLoading ? (
+              <Button disabled className="w-full mt-5">
+                Loading...
+              </Button>
+            ) : (
+              <Button type="submit" className="w-full mt-5">
+                Sign In
+              </Button>
+            )}
+            {/* <Button className="w-full mt-5" type="submit">
               Sign In
-            </Button>
+            </Button> */}
           </form>
         </Form>
       </CardContent>

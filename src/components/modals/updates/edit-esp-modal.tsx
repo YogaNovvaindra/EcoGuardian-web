@@ -56,6 +56,8 @@ export const EditEspModal = () => {
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = useState(false);
+
   // menampung state error
 
   const isModalOpen = isOpen && type === "editEsp";
@@ -90,6 +92,8 @@ export const EditEspModal = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const { nama, latitude, longitude, image } = data;
+    setIsLoading(true);
+
     const response = {
       nama: nama,
       latitude: parseFloat(latitude),
@@ -101,6 +105,7 @@ export const EditEspModal = () => {
       console.log("data", esp?.id, "Berhasil Edit");
       reset();
       onClose();
+      setIsLoading(false);
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -180,16 +185,14 @@ export const EditEspModal = () => {
             {errors.image && <div>{errors.image.message}</div>}
           </div>
           <DialogFooter className="px-6 pb-8">
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={handleClose}
-            >
+            <Button type="button" variant="ghost" onClick={handleClose}>
               Cancel
             </Button>
-            <Button type="submit">
-              Edit Esp
-            </Button>
+            {isLoading ? (
+              <Button disabled>Loading...</Button>
+            ) : (
+              <Button type="submit">Edit ESP</Button>
+            )}
           </DialogFooter>
         </form>
       </DialogContent>

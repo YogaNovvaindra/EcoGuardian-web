@@ -14,7 +14,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 interface TopbarProps {
   // title?: string
@@ -22,6 +22,7 @@ interface TopbarProps {
 
 const Topbar: FC<TopbarProps> = ({}) => {
   const { data: session } = useSession();
+  console.log("Data session: ", session?.user);
 
   const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -123,16 +124,40 @@ const Topbar: FC<TopbarProps> = ({}) => {
           </DialogHeader>
         </DialogContent>
       </Dialog> */}
-      <Link href={"/profile"} className="">
-        <p className="">{session?.user.name || "Belum Login"}</p>
-        {/* <Image
+      {session ? (
+        <Link href={"/profile"} className="">
+          <p className="">{session?.user.username}</p>
+          {/* <Image
           alt=""
           src="/public/../assets/img/example-user.jpeg"
           width={24}
           height={24}
           className="object-cover w-full h-full"
         /> */}
-      </Link>
+        </Link>
+      ) : (
+        <Link href={"/sign-in"} className="">
+          <Button
+            onClick={() =>
+              signOut({
+                redirect: true,
+                callbackUrl: `/sign-in`,
+              })
+            }
+            className="flex cursor-pointer gap-4 p-4"
+          >
+            <p className="text-light-2 max-lg:hidden">Sign In</p>
+          </Button>
+          {/* <Image
+          alt=""
+          src="/public/../assets/img/example-user.jpeg"
+          width={24}
+          height={24}
+          className="object-cover w-full h-full"
+        /> */}
+        </Link>
+      )}
+
       {/* {session ? (
         <Button variant="outline" onClick={() => signOut()}>
           Sign Out
