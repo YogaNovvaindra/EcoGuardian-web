@@ -52,7 +52,9 @@ const Page = (props: Props) => {
       {isLoading ? (
         <Skeleton className="w-full h-60" />
       ) : isError ? (
-        <p>Error: Failed to fetch data</p>
+        <div className="bg-light-1 rounded-md w-full h-60 p-4">
+          Error: Failed to fetch data
+        </div>
       ) : (
         <div className=" w-full  bg-light-1 flex flex-col md:flex-row rounded-md ">
           <div className=" hidden lg:block w-32">
@@ -90,7 +92,16 @@ const Page = (props: Props) => {
             ))}
           </>
         ) : isError ? (
-          <p>Error: Failed to fetch data</p>
+          <>
+            {informationMonitoringDashboard.map((item, index) => (
+              <div
+                key={index}
+                className="bg-light-1 grow h-32 min-w-[150px] p-4 rounded-md"
+              >
+                Error: Failed to fetch data
+              </div>
+            ))}
+          </>
         ) : (
           <>
             {" "}

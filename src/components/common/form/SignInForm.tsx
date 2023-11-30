@@ -26,6 +26,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { loginValidation } from "@/lib/validation/user-validation";
+import Image from "next/image";
 
 const SignInForm = () => {
   const router = useRouter();
@@ -39,6 +40,7 @@ const SignInForm = () => {
   const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async (values: z.infer<typeof loginValidation>) => {
+    console.log("pw sign-in: ", values.password);
     try {
       const result = await signIn("credentials", {
         email: values.email,
@@ -67,8 +69,17 @@ const SignInForm = () => {
     }
   };
   return (
-    <Card className="w-[450px]">
+    <Card className="md:w-[450px]">
       <CardHeader className="space-y-1">
+        <div className="flex w-full justify-center">
+          <Image
+            alt="logo"
+            src={"/assets/img/logoEco.png"}
+            height={150}
+            width={150}
+            className="w-52 md:w-72"
+          />
+        </div>
         <CardTitle className="text-2xl">Sign In</CardTitle>
         <CardDescription>Sign in to continue</CardDescription>
       </CardHeader>

@@ -50,7 +50,13 @@ const formSchema = z.object({
       path: [],
     }),
   email: z.string(),
-  password: z.string(),
+  password: z
+    .string()
+    .min(8, { message: "Need 8 Characters" })
+    .refine((value) => !!value.trim(), {
+      message: "name is required and must not be empty",
+      path: [],
+    }),
   confirmPassword: z.string(),
   // image: z.any(),
 });
