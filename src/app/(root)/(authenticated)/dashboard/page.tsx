@@ -1,9 +1,7 @@
 "use client";
 
 import { SocketIndicator } from "@/components/common/Socket-indicator";
-import Temperature from "@/components/common/chart/temperature";
-import Chart from "@/components/common/chart/Chart-Dashboard";
-import MonitoringLandingPage from "@/components/shared/landingpage/Monitoring-Landingpage";
+
 import { informationMonitoringDashboard } from "@/constants";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -14,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { HoverCard, HoverCardTrigger } from "@radix-ui/react-hover-card";
 import { Button } from "@/components/ui/button";
 import { HoverCardContent } from "@/components/ui/hover-card";
+import { BsInfoCircle } from "react-icons/bs";
 
 type Props = {};
 
@@ -103,31 +102,46 @@ const Page = (props: Props) => {
                 }`}
                 onClick={() => handleCardClick(index)}
               >
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
                   <p className={`${index === activeCard ? "text-white" : ""}`}>
                     {item.title}
                   </p>
-                  <HoverCard>
-                    <HoverCardTrigger asChild>
-                      <Button variant="link">info</Button>
-                    </HoverCardTrigger>
-                    <HoverCardContent className="w-80">
-                      <div className="flex justify-between space-x-4">
-                        <div className="space-y-1">
-                          <h4 className="text-sm font-semibold">Info</h4>
-                          <p className="text-sm">
-                            The React Framework – created and maintained by
-                            @vercel.
-                          </p>
-                          <div className="flex items-center pt-2">
-                            <span className="text-xs text-muted-foreground">
-                              Joined December 2021
-                            </span>
+                  {item.info && item.info.length > 0 && (
+                    <HoverCard>
+                      <HoverCardTrigger>
+                        <BsInfoCircle />
+                      </HoverCardTrigger>
+                      <HoverCardContent className="flex flex-col gap-2 w-[350px]">
+                        {item.info.map((itemInfo, index) => (
+                          <div
+                            key={index}
+                            className="flex justify-between space-x-4"
+                          >
+                            <div
+                              className={`bg-[${itemInfo.color}] flex justify-center w-16 h-12 rounded-full`}
+                            >
+                              <Image
+                                alt="gambar emoticon"
+                                src={itemInfo.url_image}
+                                width={32}
+                                height={32}
+                              />
+                            </div>
+                            <div
+                              className={`bg-[${itemInfo.color}] flex gap-3 rounded-full px-4 py-2 items-center w-full justify-between`}
+                            >
+                              <p className="text-base-semibold text-white">
+                                {itemInfo.kategori}
+                              </p>
+                              <p className="text-base-semibold text-white opacity-70">
+                                {itemInfo.number}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </HoverCardContent>
-                  </HoverCard>
+                        ))}
+                      </HoverCardContent>
+                    </HoverCard>
+                  )}
                 </div>
                 <div className="flex justify-between">
                   <div>
@@ -157,30 +171,24 @@ const Page = (props: Props) => {
                     </p>
                   </div>
                   <div className="flex flex-col items-end">
-                    {item.forecast in dashboardData ? (
-                      <p
-                        className={`text-body-normal md:text-heading3-bold opacity-70 ${
-                          index === activeCard ? "text-white" : ""
-                        }`}
-                      >
-                        {dashboardData[item.forecast]} {item.unit}
-                      </p>
-                    ) : (
-                      <p
-                        className={`text-heading3-bold ${
-                          index === activeCard ? "text-white" : ""
-                        }`}
-                      >
-                        -
-                      </p>
+                    {item.forecast && (
+                      <>
+                        <p
+                          className={`text-body-normal md:text-heading3-bold opacity-70 ${
+                            index === activeCard ? "text-white" : ""
+                          }`}
+                        >
+                          {dashboardData[item.forecast]} {item.unit}
+                        </p>
+                        <p
+                          className={`text-[12px] md:text-small-regular opacity-70 ${
+                            index === activeCard ? "text-white" : ""
+                          }`}
+                        >
+                          +1 hour
+                        </p>
+                      </>
                     )}
-                    <p
-                      className={`text-[12px] md:text-small-regular opacity-70 ${
-                        index === activeCard ? "text-white" : ""
-                      }`}
-                    >
-                      +1 hour
-                    </p>
                   </div>
                 </div>
               </div>
