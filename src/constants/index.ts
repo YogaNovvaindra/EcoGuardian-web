@@ -89,12 +89,16 @@ export const informationMonitoringDashboard = [
     data: "image_status",
     forecast: "",
     unit: "",
+    info: [
+
+    ],
     link: [
       "http://192.168.192.207:5000/video_feed",
       "http://192.168.192.207:5000/object_info_display",
     ],
   },
 ];
+
 
 export const informationMonitoringOverview = [
   {
