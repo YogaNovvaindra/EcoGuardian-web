@@ -11,6 +11,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Skeleton } from "@/components/ui/skeleton";
+import { HoverCard, HoverCardTrigger } from "@radix-ui/react-hover-card";
+import { Button } from "@/components/ui/button";
+import { HoverCardContent } from "@/components/ui/hover-card";
 
 type Props = {};
 
@@ -53,7 +56,7 @@ const Page = (props: Props) => {
         <p>Error: Failed to fetch data</p>
       ) : (
         <div className=" w-full  bg-light-1 flex flex-col md:flex-row rounded-md ">
-          <div className=" hidden lg:block w-32 bg-blue">
+          <div className=" hidden lg:block w-32">
             <Image
               src="/public/../assets/vector-people-mointoring.png"
               alt=""
@@ -100,9 +103,32 @@ const Page = (props: Props) => {
                 }`}
                 onClick={() => handleCardClick(index)}
               >
-                <p className={`${index === activeCard ? "text-white" : ""}`}>
-                  {item.title}
-                </p>
+                <div className="flex gap-2">
+                  <p className={`${index === activeCard ? "text-white" : ""}`}>
+                    {item.title}
+                  </p>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <Button variant="link">info</Button>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <div className="flex justify-between space-x-4">
+                        <div className="space-y-1">
+                          <h4 className="text-sm font-semibold">Info</h4>
+                          <p className="text-sm">
+                            The React Framework – created and maintained by
+                            @vercel.
+                          </p>
+                          <div className="flex items-center pt-2">
+                            <span className="text-xs text-muted-foreground">
+                              Joined December 2021
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </HoverCardContent>
+                  </HoverCard>
+                </div>
                 <div className="flex justify-between">
                   <div>
                     {item.data in dashboardData ? (

@@ -1,5 +1,4 @@
 "use client";
-import ChartOverview from "@/components/common/chart/Chart-Overview";
 import NavbarDetailForecast from "@/components/common/navbar/Navbar-Detailforecast";
 import {
   Select,
@@ -10,11 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  informationMonitoringDetailForecast,
-  informationMonitoringIspu,
-} from "@/constants";
-import { CHART_URL } from "@/utils/url";
+import { informationMonitoringDetailForecast } from "@/constants";
 
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
@@ -23,7 +18,7 @@ type Props = {};
 
 const Page = (props: Props) => {
   const [selectTime, setSelectTime] = useState("&from=now-18h&to=now%2B6h");
-  const [selectEsp, setSelectEsp] = useState("Average");
+  const [selectEsp, setSelectEsp] = useState("Average Forecast");
   const pathname = usePathname();
 
   const handlerSelectedESP = (selectedesp: String) => {
@@ -67,21 +62,21 @@ const Page = (props: Props) => {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            {/* <Select onValueChange={setSelectEsp}>
+            <Select onValueChange={setSelectEsp}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Average" />
+                <SelectValue placeholder="Average Forecast" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>ESP</SelectLabel>
-                  <SelectItem value="Avergae">Average</SelectItem>
-                  <SelectItem value="ESP All">All ESP</SelectItem>
+                  <SelectItem value="Average Forecast">Average Forecast</SelectItem>
+                  <SelectItem value="Forecast All">Forecast All</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select> */}
+            </Select>
           </div>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-            {informationMonitoringIspu.map((item: string, index: number) => (
+            {selectedEsp?.link_panel.map((item, index) => (
               <iframe
                 key={index}
                 src={`${item}${selectTime}`}
