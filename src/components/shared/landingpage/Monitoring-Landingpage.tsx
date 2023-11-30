@@ -2,55 +2,72 @@
 import Page from "@/app/(root)/(authenticated)/dashboard/page";
 import { Skeleton } from "@/components/ui/skeleton";
 import { informationMonitoringDashboard } from "@/constants";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { fetchData } from "next-auth/client/_utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const MonitoringLandingPage = () => {
-  const [dashboardData, setDashboardData] = useState({
-    desc: [],
-    roundtemperature: "",
-    roundhumidity: "",
-    roundforecast_temperature: "",
-    roundforecast_humidity: "",
-    roundispu: "",
-    roundforecast_ispu: "",
-    ispu_status: "",
-    image_status: "",
-    forecast_createdAt: "",
-    ispu_createdAt: "",
-  });
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  // const [dashboardData, setDashboardData] = useState({
+  //   desc: [],
+  //   roundtemperature: "",
+  //   roundhumidity: "",
+  //   roundforecast_temperature: "",
+  //   roundforecast_humidity: "",
+  //   roundispu: "",
+  //   roundforecast_ispu: "",
+  //   ispu_status: "",
+  //   image_status: "",
+  //   forecast_createdAt: "",
+  //   ispu_createdAt: "",
+  // });
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [isError, setIsError] = useState(false);
   const [activeCard, setActiveCard] = useState(0);
   const [showChart, setShowChart] = useState(informationMonitoringDashboard[0]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/api/dashboard");
-        setDashboardData(response.data);
-        setIsLoading(false);
-        setIsError(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setIsLoading(false);
-        setIsError(true);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get("http://localhost:3000/api/dashboard");
+  //       setDashboardData(response.data);
+  //       setIsLoading(false);
+  //       setIsError(false);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //       setIsLoading(false);
+  //       setIsError(true);
+  //     }
+  //   };
 
-    fetchData(); // Panggil fungsi fetchData saat komponen dipasang
+  //   fetchData(); // Panggil fungsi fetchData saat komponen dipasang
 
-    // Jika Anda ingin menggunakan refetchInterval seperti useQuery, Anda dapat
-    // mengatur interval untuk pembaruan data setiap 60 detik (1 menit)
-    const intervalId = setInterval(() => {
-      fetchData();
-    }, 60000);
+  //   // Jika Anda ingin menggunakan refetchInterval seperti useQuery, Anda dapat
+  //   // mengatur interval untuk pembaruan data setiap 60 detik (1 menit)
+  //   const intervalId = setInterval(() => {
+  //     fetchData();
+  //   }, 60000);
 
-    // Membersihkan interval saat komponen dibongkar
-    return () => clearInterval(intervalId);
-  }, [fetchData]);
+  //   // Membersihkan interval saat komponen dibongkar
+  //   return () => clearInterval(intervalId);
+  // }, [fetchData]);
+
+  const {
+    data: dashboardData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["dashboard"],
+    queryFn: async () => {
+      const { data } = await axios.get("/api/dashboard");
+
+      console.log("data dashboard: ", data);
+
+      return data;
+    },
+    refetchInterval: 60000,
+  });
 
   console.log("Data monitoring dashboard: ", dashboardData);
 
@@ -65,7 +82,7 @@ const MonitoringLandingPage = () => {
       id="MonitoringLandingPage"
       className="h-screen w-full flex flex-col gap-4 md:overflow-auto landingpage"
     >
-      {/* <h1 className="text-heading3-bold text-center">Monitoring</h1>
+      <h1 className="text-heading3-bold text-center">Monitoring</h1>
       {isLoading ? (
         <p>loading</p>
       ) : isError ? (
@@ -192,7 +209,7 @@ const MonitoringLandingPage = () => {
             frameBorder="0"
           />
         ))}
-      </div> */}
+      </div>
     </section>
   );
 };
