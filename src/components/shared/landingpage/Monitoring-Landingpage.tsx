@@ -47,7 +47,6 @@ const MonitoringLandingPage = () => {
   //   // mengatur interval untuk pembaruan data setiap 60 detik (1 menit)
   //   const intervalId = setInterval(() => {
   //     fetchData();
-  //   }, 60000);
 
   //   // Membersihkan interval saat komponen dibongkar
   //   return () => clearInterval(intervalId);

@@ -45,14 +45,14 @@ export const ViewImageDetector = () => {
         </DialogHeader>
         <div className="flex flex-col gap-2">
           <div className="flex flex-col gap-2">
-            <p className="text-black">{imageDetectorData}</p>
+            <p className="text-center">ID: {imageDetectorData}</p>
           </div>
           <div className="w-full h-full">
             <Image
               src={`/api/image_detector/image/${imageDetectorData}`}
               alt="Detected Image"
-              width={100}
-              height={100}
+              width={1920}
+              height={1080}
               className="h-full w-full object-cover"
             />
           </div>
