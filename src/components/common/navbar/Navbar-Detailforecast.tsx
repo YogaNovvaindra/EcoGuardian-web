@@ -6,11 +6,11 @@ const NavbarDetailForecast = () => {
   return (
     <ul className="flex">
       <li>
-        <Link href="/detailforecast/historyforecast">
+        <Link href="/detailforecast/forecast">
           {" "}
           <button
             className={`${
-              pathname === "/detailforecast/historyforecast"
+              pathname === "/detailforecast/forecast"
                 ? "bg-light-1"
                 : "bg-black text-light-1"
             } px-4 py-2 rounded-tl-md`}
@@ -20,11 +20,11 @@ const NavbarDetailForecast = () => {
         </Link>
       </li>
       <li>
-        <Link href="/detailforecast/historyispu">
+        <Link href="/detailforecast/ispu">
           {" "}
           <button
             className={`${
-              pathname === "/detailforecast/historyispu"
+              pathname === "/detailforecast/ispu"
                 ? "bg-light-1"
                 : "bg-black text-light-1"
             } px-4 py-2 rounded-tr-md`}

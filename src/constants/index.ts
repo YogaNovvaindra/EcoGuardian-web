@@ -28,7 +28,7 @@ export const sidebarLinks = [
   },
   {
     imgUrl: "/assets/forecast.svg",
-    route: ["/detailforecast/historyforecast", "/detailforecast/historyispu"],
+    route: ["/detailforecast/forecast", "/detailforecast/ispu"],
     label: "Forecast & ISPU",
   },
   {
@@ -139,6 +139,12 @@ export const informationMonitoringOverview = [
       `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=3`,
       `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=11`,
       `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=12`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=13`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=14`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=15`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=16`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=17`,
+      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=18`,
       `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=5`,
     ],
   },
@@ -236,29 +242,26 @@ export const informationMonitoringOverview = [
 
 export const informationMonitoringDetailForecast = [
   {
-    name_esp: "Average",
+    name_esp: "Average Forecast",
     link_esp: `${CHART_URL}/d/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m`,
     link_panel: [
       `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=1`,
       `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=2`,
       `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=4`,
       `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=3`,
-      `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=4`,
       `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=6`,
       `${CHART_URL}/d-solo/ed6c5836-baba-4024-aef9-5fa6a1e019df/forecast?orgId=1&refresh=1m&theme=light&panelId=5`,
     ],
   },
   {
-    name_esp: "ESP All",
-    link_esp: `${CHART_URL}/d/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m`,
+    name_esp: "Forecast All",
+    link_esp: `${CHART_URL}/d/dac1a306-a8a6-4fb9-9aa8-5165b6eb7185/forecast-all?orgId=1&refresh=1m`,
     link_panel: [
-      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=10`,
-      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=9`,
-      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=4`,
-      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=3`,
-      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=11`,
-      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=12`,
-      `${CHART_URL}/d-solo/cfb3de2e-f8df-4bd2-801b-ece99c9688f2/esp-all?orgId=1&refresh=1m&theme=light&panelId=5`,
+      `${CHART_URL}/d-solo/dac1a306-a8a6-4fb9-9aa8-5165b6eb7185/forecast-all?orgId=1&refresh=1m&theme=light&panelId=1`,
+      `${CHART_URL}/d-solo/dac1a306-a8a6-4fb9-9aa8-5165b6eb7185/forecast-all?orgId=1&refresh=1m&theme=light&panelId=2`,
+      `${CHART_URL}/d-solo/dac1a306-a8a6-4fb9-9aa8-5165b6eb7185/forecast-all?orgId=1&refresh=1m&theme=light&panelId=5`,
+      `${CHART_URL}/d-solo/dac1a306-a8a6-4fb9-9aa8-5165b6eb7185/forecast-all?orgId=1&refresh=1m&theme=light&panelId=4`,
+      `${CHART_URL}/d-solo/dac1a306-a8a6-4fb9-9aa8-5165b6eb7185/forecast-all?orgId=1&refresh=1m&theme=light&panelId=3`,
     ],
   },
 ];

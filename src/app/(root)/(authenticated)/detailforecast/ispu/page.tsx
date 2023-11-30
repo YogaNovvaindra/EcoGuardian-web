@@ -10,7 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { informationMonitoringDetailForecast } from "@/constants";
+import {
+  informationMonitoringDetailForecast,
+  informationMonitoringIspu,
+} from "@/constants";
 import { CHART_URL } from "@/utils/url";
 
 import { usePathname } from "next/navigation";
@@ -19,7 +22,7 @@ import React, { useState } from "react";
 type Props = {};
 
 const Page = (props: Props) => {
-  const [selectTime, setSelectTime] = useState("&from=now-18h&to=now%2B6h");
+  const [selectTime, setSelectTime] = useState("&from=now-24h&to=now"); 
   const [selectEsp, setSelectEsp] = useState("Average");
   const pathname = usePathname();
 
@@ -43,14 +46,11 @@ const Page = (props: Props) => {
           <div className="flex gap-2">
             <Select onValueChange={setSelectTime}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="+6 Hours" />
+                <SelectValue placeholder="Today" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="&from=now-18h&to=now%2B6h">
-                    +6 Hours
-                  </SelectItem>
-                  <SelectItem value="&from=now-24h&to=now-1m">Today</SelectItem>
+                  <SelectItem value="&from=now-24h&to=now">Today</SelectItem>
                   <SelectItem value="&from=now-1h&to=now">
                     1 hour ago
                   </SelectItem>
@@ -64,7 +64,7 @@ const Page = (props: Props) => {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            <Select onValueChange={setSelectEsp}>
+            {/* <Select onValueChange={setSelectEsp}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Average" />
               </SelectTrigger>
@@ -75,10 +75,10 @@ const Page = (props: Props) => {
                   <SelectItem value="ESP All">All ESP</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-            {selectedEsp?.link_panel.map((item, index) => (
+            {informationMonitoringIspu.map((item: string, index: number) => (
               <iframe
                 key={index}
                 src={`${item}${selectTime}`}

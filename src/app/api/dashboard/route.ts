@@ -56,8 +56,11 @@ export async function GET() {
             else if (temperature >= 15 && temperature < 25) {
                 desc.push("Temperature right now is "+roundtemperature+"°C, it's a good weather outside. Enjoy your day!");
             }
-            else if (temperature >= 25 && temperature < 35) {
-                desc.push("Temperature right now is "+roundtemperature+"°C, it's hot outside. Please drink more water!");
+            else if (temperature >= 25 && temperature < 30) {
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's a little bit hot outside. Don't forget to drink water!");
+            }
+            else if (temperature >= 30 && temperature < 35) {
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's hot outside. Please stay hydrated!");
             }
             else if (temperature >= 35) {
                 desc.push("Temperature right now is "+roundtemperature+"°C, it's very hot outside. Please stay hydrated and stay inside whenever possible!");
