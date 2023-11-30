@@ -27,6 +27,8 @@ export const DeleteUserModal = () => {
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = useState(false);
+
   // menampung state error
 
   const isModalOpen = isOpen && type === "deleteUser";
@@ -34,10 +36,14 @@ export const DeleteUserModal = () => {
   const { User } = data;
 
   const onSubmit = async () => {
+    setIsLoading(true);
+
     console.log(User?.id);
     console.log(data);
 
     const response = await axios.delete(`/api/user/${User?.id}`);
+
+    setIsLoading(false);
 
     // consol log
     console.log(response.data);
@@ -68,9 +74,19 @@ export const DeleteUserModal = () => {
             Cancel
           </Button>
 
-          <Button type="button" onClick={onSubmit} variant="destructive">
+          {isLoading ? (
+            <Button variant="destructive" disabled>
+              Loading...
+            </Button>
+          ) : (
+            <Button type="button" onClick={onSubmit} variant="destructive">
+              Delete User
+            </Button>
+          )}
+
+          {/* <Button type="button" onClick={onSubmit} variant="destructive">
             Delete User
-          </Button>
+          </Button> */}
         </DialogFooter>
       </DialogContent>
     </Dialog>

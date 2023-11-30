@@ -15,11 +15,14 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 export const DeleteEspModal = () => {
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = useState(false);
+
   // menampung state error
 
   const isModalOpen = isOpen && type === "deleteEsp";
@@ -27,10 +30,13 @@ export const DeleteEspModal = () => {
   const { esp } = data;
 
   const onSubmit = async () => {
+    setIsLoading(true);
+
     console.log("esp id: ", esp?.id);
     console.log(data);
 
     const response = await axios.delete(`/api/esp/${esp?.id}`);
+    setIsLoading(false);
 
     // consol log
     console.log(response.data);
@@ -58,10 +64,18 @@ export const DeleteEspModal = () => {
           <Button type="button" onClick={handleClose} variant="ghost">
             Cancel
           </Button>
-
-          <Button type="button" onClick={onSubmit} variant="destructive">
+          {isLoading ? (
+            <Button variant="destructive" disabled>
+              Loading...
+            </Button>
+          ) : (
+            <Button type="button" onClick={onSubmit} variant="destructive">
+              Delete ESP
+            </Button>
+          )}
+          {/* <Button type="button" onClick={onSubmit} variant="destructive">
             Delete Esp
-          </Button>
+          </Button> */}
         </DialogFooter>
       </DialogContent>
     </Dialog>

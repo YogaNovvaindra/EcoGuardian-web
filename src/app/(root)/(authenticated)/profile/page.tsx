@@ -79,10 +79,15 @@ const Page = () => {
                 <Input type="text" value={session?.user.role} disabled />
               </div>
             </div>
-            <div className="flex justify-end gap-4">
+            {/* <div className="flex justify-end gap-4">
               <Button variant="destructive">Delete</Button>
-              <Button variant="default">Update</Button>
-            </div>
+              <Button
+                variant="default"
+                onClick={() => onOpen("editUser", session?.user)}
+              >
+                Update
+              </Button>
+            </div> */}
           </div>
         </div>
       </div>
