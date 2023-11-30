@@ -120,36 +120,103 @@ const Page = (props: Props) => {
                   {item.info && item.info.length > 0 && (
                     <HoverCard>
                       <HoverCardTrigger>
-                        <BsInfoCircle />
+                        <BsInfoCircle
+                          className={`${
+                            index === activeCard ? "text-white" : ""
+                          }`}
+                        />
                       </HoverCardTrigger>
                       <HoverCardContent className="flex flex-col gap-2 w-[350px]">
-                        {item.info.map((itemInfo, index) => (
-                          <div
-                            key={index}
-                            className="flex justify-between space-x-4"
-                          >
-                            <div
-                              className={`bg-[${itemInfo.color}] flex justify-center w-16 h-12 rounded-full`}
-                            >
-                              <Image
-                                alt="gambar emoticon"
-                                src={itemInfo.url_image}
-                                width={32}
-                                height={32}
-                              />
-                            </div>
-                            <div
-                              className={`bg-[${itemInfo.color}] flex gap-3 rounded-full px-4 py-2 items-center w-full justify-between`}
-                            >
-                              <p className="text-base-semibold text-white">
-                                {itemInfo.kategori}
-                              </p>
-                              <p className="text-base-semibold text-white opacity-70">
-                                {itemInfo.number}
-                              </p>
-                            </div>
+                        <div className="flex justify-between space-x-4">
+                          <div className="bg-[#5BB318] flex justify-center w-16 h-12 rounded-full">
+                            <Image
+                              alt="gambar emoticon"
+                              src={item.info[0].url_image}
+                              width={32}
+                              height={32}
+                            />
                           </div>
-                        ))}
+                          <div className="bg-[#5BB318] flex gap-3 rounded-full px-4 py-2 items-center w-full justify-between">
+                            <p className="text-base-semibold text-white">
+                              {item.info[0].kategori}
+                            </p>
+                            <p className="text-base-semibold text-white opacity-70">
+                              {item.info[0].number}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex justify-between space-x-4">
+                          <div className="bg-[#377de7] flex justify-center w-16 h-12 rounded-full">
+                            <Image
+                              alt="gambar emoticon"
+                              src={item.info[1].url_image}
+                              width={32}
+                              height={32}
+                            />
+                          </div>
+                          <div className="bg-[#377de7] flex gap-3 rounded-full px-4 py-2 items-center w-full justify-between">
+                            <p className="text-base-semibold text-white">
+                              {item.info[1].kategori}
+                            </p>
+                            <p className="text-base-semibold text-white opacity-70">
+                              {item.info[1].number}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex justify-between space-x-4">
+                          <div className="bg-[#FFC436] flex justify-center w-16 h-12 rounded-full">
+                            <Image
+                              alt="gambar emoticon"
+                              src={item.info[2].url_image}
+                              width={32}
+                              height={32}
+                            />
+                          </div>
+                          <div className="bg-[#FFC436] flex gap-3 rounded-full px-4 py-2 items-center w-full justify-between">
+                            <p className="text-base-semibold text-white">
+                              {item.info[2].kategori}
+                            </p>
+                            <p className="text-base-semibold text-white opacity-70">
+                              {item.info[2].number}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex justify-between space-x-4">
+                          <div className="bg-[#990000] flex justify-center w-16 h-12 rounded-full">
+                            <Image
+                              alt="gambar emoticon"
+                              src={item.info[3].url_image}
+                              width={32}
+                              height={32}
+                            />
+                          </div>
+                          <div className="bg-[#990000] flex gap-3 rounded-full px-4 py-2 items-center w-full justify-between">
+                            <p className="text-base-semibold text-white">
+                              {item.info[3].kategori}
+                            </p>
+                            <p className="text-base-semibold text-white opacity-70">
+                              {item.info[3].number}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex justify-between space-x-4">
+                          <div className="bg-[#000000] flex justify-center w-16 h-12 rounded-full">
+                            <Image
+                              alt="gambar emoticon"
+                              src={item.info[4].url_image}
+                              width={32}
+                              height={32}
+                            />
+                          </div>
+                          <div className="bg-[#000000] flex gap-3 rounded-full px-4 py-2 items-center w-full justify-between">
+                            <p className="text-base-semibold text-white">
+                              {item.info[4].kategori}
+                            </p>
+                            <p className="text-base-semibold text-white opacity-70">
+                              {item.info[4].number}
+                            </p>
+                          </div>
+                        </div>
                       </HoverCardContent>
                     </HoverCard>
                   )}

@@ -94,26 +94,20 @@ export const CreateUserModal = () => {
     // console.log("file gambar: ", image[0]);
 
     if (password == confirmPassword) {
-      setPasswordUser(password);
+      console.log("Password Sama!!!");
     } else {
       return console.log("Salah Blok!");
     }
-
-    // const formData = new FormData();
-    // formData.append("nama", nama);
-    // formData.append("username", username);
-    // formData.append("email", email);
-    // // formData.append("image", image[0]);
-    // formData.append("passwordUser", passwordUser);
 
     const response = {
       nama: nama,
       username: username,
       email: email,
-      password: passwordUser,
+      password: password,
     };
 
     console.log("Proses...");
+    console.log("response data: ", response);
 
     try {
       await axios.post("/api/user", response);

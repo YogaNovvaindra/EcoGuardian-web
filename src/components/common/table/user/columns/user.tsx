@@ -7,14 +7,14 @@ import { DataTableRowActions } from "../component/data-table-row-action";
 import { User } from "@prisma/client";
 
 export const columnsUser: ColumnDef<User>[] = [
-  {
-    accessorKey: "id",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="id" />
-    ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
-    enableSorting: false,
-  },
+  // {
+  //   accessorKey: "id",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="id" />
+  //   ),
+  //   cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
+  //   enableSorting: false,
+  // },
   {
     accessorKey: "username",
     header: ({ column }) => (
