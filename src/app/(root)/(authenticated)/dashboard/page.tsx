@@ -56,7 +56,7 @@ const Page = (props: Props) => {
         <p>Error: Failed to fetch data</p>
       ) : (
         <div className=" w-full  bg-light-1 flex flex-col md:flex-row rounded-md ">
-          <div className=" hidden lg:block w-32 bg-blue">
+          <div className=" hidden lg:block w-32">
             <Image
               src="/public/../assets/vector-people-mointoring.png"
               alt=""
