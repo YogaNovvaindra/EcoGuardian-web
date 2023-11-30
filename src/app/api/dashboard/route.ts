@@ -51,49 +51,49 @@ export async function GET() {
 
         if (temperature !== null &&temperature !== undefined) {
             if (temperature < 15) {
-                desc.push("Temperature right now is "+roundtemperature+"°C, it's cold outside. Please wear a jacket!");
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's cold. Please wear a jacket!");
             }
             else if (temperature >= 15 && temperature < 25) {
-                desc.push("Temperature right now is "+roundtemperature+"°C, it's a good weather outside. Enjoy your day!");
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's a good weather. Enjoy your day!");
             }
             else if (temperature >= 25 && temperature < 30) {
-                desc.push("Temperature right now is "+roundtemperature+"°C, it's a little bit hot outside. Don't forget to drink water!");
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's a little bit hot. Don't forget to drink water!");
             }
             else if (temperature >= 30 && temperature < 35) {
-                desc.push("Temperature right now is "+roundtemperature+"°C, it's hot outside. Please stay hydrated!");
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's hot. Please stay hydrated!");
             }
             else if (temperature >= 35) {
-                desc.push("Temperature right now is "+roundtemperature+"°C, it's very hot outside. Please stay hydrated and stay inside whenever possible!");
+                desc.push("Temperature right now is "+roundtemperature+"°C, it's very hot. Please stay hydrated and stay inside whenever possible!");
             }
         }
 
         if (humidity !== null && humidity !== undefined) {
             if (humidity < 40) {
-                desc.push("Humidity right now is "+roundhumidity+"%, it's dry outside. Please drink more water!");
+                desc.push("Humidity right now is "+roundhumidity+"%, it's dry. Please drink more water!");
             }
             else if (humidity >= 40 && humidity < 70) {
-                desc.push("Humidity right now is "+roundhumidity+"%, it's a good weather outside. Enjoy your day!");
+                desc.push("Humidity right now is "+roundhumidity+"%, it's a good weather. Enjoy your day!");
             }
             else if (humidity >= 70) {
-                desc.push("Humidity right now is "+roundhumidity+"%, it's humid outside. Please wear a comfortable clothes when going outside!");
+                desc.push("Humidity right now is "+roundhumidity+"%, it's humid. Please wear a comfortable clothes when going outside!");
             }
         }
 
         if (ispu !== null && ispu !== undefined) {
             if (ispu < 51) {
-                desc.push("Air Pollution Index right now is "+roundispu+", it's a good air quality outside. Enjoy your day!");
+                desc.push("Air Pollution Index right now is "+roundispu+", it's a good air quality. Enjoy your day!");
             }
             else if (ispu >= 51 && ispu < 101) {
-                desc.push("Air Pollution Index right now is "+roundispu+", it's a moderate air quality outside. It may be effected for some people like children, elderly, and people with lung disease.");
+                desc.push("Air Pollution Index right now is "+roundispu+", it's a moderate air quality. It may be effected for some people like children, elderly, and people with lung disease.");
             }
             else if (ispu >= 101 && ispu < 201) {
-                desc.push("Air Pollution Index right now is "+roundispu+", it's an unhealthy air quality outside. Please wear a mask when going outside!");
+                desc.push("Air Pollution Index right now is "+roundispu+", it's an unhealthy air quality. Please wear a mask when going outside!");
             }
             else if (ispu >= 201 && ispu < 301) {
-                desc.push("Air Pollution Index right now is "+roundispu+", it's a very unhealthy air quality outside. It can cause health problems for everyone, please reduce any outdoor activities!");
+                desc.push("Air Pollution Index right now is "+roundispu+", it's a very unhealthy air quality. It can cause health problems for everyone, please reduce any outdoor activities!");
             }
             else if (ispu >= 301) {
-                desc.push("Air Pollution Index right now is "+roundispu+", it's a hazardous air quality outside. Please stay inside whenever possible and wear a mask if you really have to go outside!");
+                desc.push("Air Pollution Index right now is "+roundispu+", it's a hazardous air quality. Please stay inside whenever possible and wear a mask if you really have to go outside!");
             }
         }
 
