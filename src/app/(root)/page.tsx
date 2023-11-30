@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <NavbarLandingPage />
       <HeroLandingPage />
-      <MonitoringLandingPage />
+      {/* <MonitoringLandingPage /> */}
       <AboutLandingPage />
       <CustomerServicesLandingPage />
       <FooterLandingPage />
