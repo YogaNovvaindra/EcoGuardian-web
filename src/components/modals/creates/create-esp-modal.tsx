@@ -55,8 +55,7 @@ type FormData = z.infer<typeof formSchema>;
 export const CreateEspModal = () => {
   const { isOpen, onClose, type, data } = useModal();
   const queryClient = useQueryClient();
-  const [thisLongitude, setThisLongitude] = useState();
-  const [thisLatitude, setThisLatitude] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   // menampung state error
 
   const isModalOpen = isOpen && type === "createEsp";
@@ -85,12 +84,13 @@ export const CreateEspModal = () => {
       longitude: parseFloat(longitude),
       image: image,
     };
-
+    setIsLoading(true);
     try {
       await axios.post("/api/esp", response);
       console.log("Data Berhasil Ditambahkan!!");
       reset();
       onClose();
+      setIsLoading(false);
 
       queryClient.invalidateQueries(["esp"]);
     } catch (error) {
@@ -171,8 +171,11 @@ export const CreateEspModal = () => {
             <Button type="button" variant="ghost" onClick={handleClose}>
               Cancel
             </Button>
-
-            <Button type="submit">Create ESP</Button>
+            {isLoading ? (
+              <Button disabled>Loading...</Button>
+            ) : (
+              <Button type="submit">Create Esp</Button>
+            )}
           </DialogFooter>
         </form>
       </DialogContent>

@@ -56,11 +56,13 @@ export const EditUserModal = () => {
   const { isOpen, onClose, type, data } = useModal();
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = useState(false);
 
   const isModalOpen = isOpen && type === "editUser";
 
   const { User } = data;
   console.log("Id Select User: ", User?.id);
+  console.log("nama user: ", User?.name);
   const {
     register,
     handleSubmit,
@@ -92,6 +94,7 @@ export const EditUserModal = () => {
     const { username, name, email, password, role } = data;
     console.log("password lama: ", User?.password);
     console.log("password baru: ", password);
+    setIsLoading(true);
 
     const response = {
       username: username,
@@ -107,6 +110,7 @@ export const EditUserModal = () => {
       console.log("data", User?.id, "Berhasil Edit");
       reset();
       onClose();
+      setIsLoading(false);
 
       queryClient.invalidateQueries(["User"]);
     } catch (error) {
@@ -215,7 +219,11 @@ export const EditUserModal = () => {
               Cancel
             </Button>
 
-            <Button type="submit">Edit User</Button>
+            {isLoading ? (
+              <Button disabled>Loading...</Button>
+            ) : (
+              <Button type="submit">Edit User</Button>
+            )}
           </DialogFooter>
         </form>
       </DialogContent>

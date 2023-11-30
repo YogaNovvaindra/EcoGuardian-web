@@ -35,7 +35,7 @@ import { useState } from "react";
 import ImageUser from "@/app/(root)/(authenticated)/user/imageuser/page";
 
 const formSchema = z.object({
-  nama: z
+  name: z
     .string()
     .min(3, { message: "name must be at least 3 characters long" })
     .refine((value) => !!value.trim(), {
@@ -52,7 +52,7 @@ const formSchema = z.object({
   email: z.string(),
   password: z
     .string()
-    .min(8, { message: "Need 8 Characters" })
+    .min(8, { message: "minimal 8 Characters" })
     .refine((value) => !!value.trim(), {
       message: "name is required and must not be empty",
       path: [],
@@ -64,10 +64,9 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export const CreateUserModal = () => {
-  const [passwordUser, setPasswordUser] = useState("");
   const { isOpen, onClose, type, data } = useModal();
-  const router = useRouter();
   const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = useState(false);
 
   // menampung state error
 
@@ -89,39 +88,34 @@ export const CreateUserModal = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const { nama, username, email, password, confirmPassword } = data;
+    const { name, username, email, password, confirmPassword } = data;
 
     // console.log("file gambar: ", image[0]);
+    setIsLoading(true);
 
     if (password == confirmPassword) {
-      setPasswordUser(password);
+      console.log("Password Sama!!!");
     } else {
+      setIsLoading(false);
       return console.log("Salah Blok!");
     }
 
-    // const formData = new FormData();
-    // formData.append("nama", nama);
-    // formData.append("username", username);
-    // formData.append("email", email);
-    // // formData.append("image", image[0]);
-    // formData.append("passwordUser", passwordUser);
-
     const response = {
-      nama: nama,
+      name: name,
       username: username,
       email: email,
-      password: passwordUser,
+      password: password,
     };
 
-    console.log("Proses...");
+    console.log("nama user: ", name);
 
     try {
       await axios.post("/api/user", response);
 
-      console.log("Data Berhasil Ditambahkan!!");
-      console.log("id user: ", User?.id);
+      console.log("Data Berhasil Ditambahkan!!", response);
       reset();
       onClose();
+      setIsLoading(false);
 
       queryClient.invalidateQueries(["User"]);
     } catch (error) {
@@ -167,9 +161,9 @@ export const CreateUserModal = () => {
               type="text"
               placeholder="fullname"
               defaultValue={User?.name ? User?.name : ""}
-              {...register("nama")}
+              {...register("name")}
             />
-            {errors.nama && <div>{errors.nama.message}</div>}
+            {errors.name && <div>{errors.name.message}</div>}
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
@@ -234,7 +228,11 @@ export const CreateUserModal = () => {
               Cancel
             </Button>
 
-            <Button type="submit">Add User</Button>
+            {isLoading ? (
+              <Button disabled>Loading...</Button>
+            ) : (
+              <Button type="submit">Add User</Button>
+            )}
           </DialogFooter>
         </form>
       </DialogContent>
