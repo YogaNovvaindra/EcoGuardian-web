@@ -80,6 +80,39 @@ export const informationMonitoringDashboard = [
     title: "Air Quality",
     data: "roundispu",
     forecast: "roundforecast_ispu",
+    info: [
+      {
+        url_image:
+          "/assets/emoticon/emoticon-square-smiling-face-with-closed-eyes.svg",
+        kategori: "Good",
+        color: "#5BB318",
+        number: "1-50",
+      },
+      {
+        url_image: "/assets/emoticon/emoticon-smile.svg",
+        kategori: "Moderate",
+        color: "#377de7",
+        number: "51-100",
+      },
+      {
+        url_image: "/assets/emoticon/emoticon-neutral.svg",
+        kategori: "Unhealthy",
+        color: "#FFC436",
+        number: "101-200",
+      },
+      {
+        url_image: "/assets/emoticon/emoticon-sad.svg",
+        kategori: "Very Unhealthy",
+        color: "#990000",
+        number: "201-300",
+      },
+      {
+        url_image: "/assets/emoticon/emoticon-confused.svg",
+        kategori: "Hazardous",
+        color: "#000000",
+        number: ">300",
+      },
+    ],
     link: [
       `${CHART_URL}/d-solo/a26b7290-c3b2-407b-9407-ec6e10471eda/dash?orgId=1&refresh=1m&theme=light&panelId=5`,
     ],
@@ -87,18 +120,13 @@ export const informationMonitoringDashboard = [
   {
     title: "Air Pollution Image",
     data: "image_status",
-    forecast: "",
-    unit: "",
-    info: [
 
-    ],
     link: [
       "http://192.168.192.207:5000/video_feed",
       "http://192.168.192.207:5000/object_info_display",
     ],
   },
 ];
-
 
 export const informationMonitoringOverview = [
   {

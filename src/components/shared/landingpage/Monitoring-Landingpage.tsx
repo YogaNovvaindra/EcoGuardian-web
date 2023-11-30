@@ -8,67 +8,67 @@ import { fetchData } from "next-auth/client/_utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+// interface DashboardData {
+//   desc: string[];
+//   roundtemperature: string;
+//   roundhumidity: string;
+//   roundforecast_temperature: string;
+//   roundforecast_humidity: string;
+//   roundispu: string;
+//   roundforecast_ispu: string;
+//   ispu_status: string;
+//   image_status: string;
+//   forecast_createdAt: string;
+//   ispu_createdAt: string;
+//   [key: string]: string; // Tanda indeks
+// }
+
 const MonitoringLandingPage = () => {
-  // const [dashboardData, setDashboardData] = useState({
-  //   desc: [],
-  //   roundtemperature: "",
-  //   roundhumidity: "",
-  //   roundforecast_temperature: "",
-  //   roundforecast_humidity: "",
-  //   roundispu: "",
-  //   roundforecast_ispu: "",
-  //   ispu_status: "",
-  //   image_status: "",
-  //   forecast_createdAt: "",
-  //   ispu_createdAt: "",
-  // });
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [isError, setIsError] = useState(false);
+  const [dashboardData, setDashboardData] = useState<any>({
+    desc: [],
+    roundtemperature: "",
+    roundhumidity: "",
+    roundforecast_temperature: "",
+    roundforecast_humidity: "",
+    roundispu: "",
+    roundforecast_ispu: "",
+    ispu_status: "",
+    image_status: "",
+    forecast_createdAt: "",
+    ispu_createdAt: "",
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [activeCard, setActiveCard] = useState(0);
   const [showChart, setShowChart] = useState(informationMonitoringDashboard[0]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:3000/api/dashboard");
-  //       setDashboardData(response.data);
-  //       setIsLoading(false);
-  //       setIsError(false);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //       setIsLoading(false);
-  //       setIsError(true);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/dashboard");
+        setDashboardData(response.data);
+        setIsLoading(false);
+        setIsError(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+        setIsError(true);
+      }
+    };
 
-  //   fetchData(); // Panggil fungsi fetchData saat komponen dipasang
+    fetchData(); // Panggil fungsi fetchData saat komponen dipasang
 
-  //   // Jika Anda ingin menggunakan refetchInterval seperti useQuery, Anda dapat
-  //   // mengatur interval untuk pembaruan data setiap 60 detik (1 menit)
-  //   const intervalId = setInterval(() => {
-  //     fetchData();
+    // Jika Anda ingin menggunakan refetchInterval seperti useQuery, Anda dapat
+    // mengatur interval untuk pembaruan data setiap 60 detik (1 menit)
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 60000);
 
-  //   // Membersihkan interval saat komponen dibongkar
-  //   return () => clearInterval(intervalId);
-  // }, [fetchData]);
+    // Membersihkan interval saat komponen dibongkar
+    return () => clearInterval(intervalId);
+  }, []);
 
-  const {
-    data: dashboardData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["dashboard"],
-    queryFn: async () => {
-      const { data } = await axios.get("/api/dashboard");
-
-      console.log("data dashboard: ", data);
-
-      return data;
-    },
-    refetchInterval: 60000,
-  });
-
-  console.log("Data monitoring dashboard: ", dashboardData);
+  // console.log("Data monitoring dashboard: ", dashboardData);
 
   const handleCardClick = (index: any) => {
     setActiveCard(index);
@@ -87,7 +87,7 @@ const MonitoringLandingPage = () => {
       ) : isError ? (
         <p>Error: Failed to fetch data</p>
       ) : (
-        <div className="w-full bg-light-1 flex rounded-md overflow-hidden min-h-fit">
+        <div className="w-full bg-light-1 flex rounded-md overflow-hidden min-h-fit shadow">
           <div className="h-full w-32 bg-blue">
             <Image
               src="/public/../assets/vector-people-mointoring.png"
@@ -131,7 +131,7 @@ const MonitoringLandingPage = () => {
             {informationMonitoringDashboard.map((item, index) => (
               <div
                 key={index}
-                className={`grow h-32 min-w-[150px] p-4 rounded-md ${
+                className={`grow h-32 min-w-[150px] p-4 rounded-md shadow ${
                   index === activeCard ? "card-dashboard-active" : "bg-white"
                 }`}
                 onClick={() => handleCardClick(index)}
@@ -167,21 +167,13 @@ const MonitoringLandingPage = () => {
                     </p>
                   </div>
                   <div className="flex flex-col items-end">
-                    {item.forecast in dashboardData ? (
+                    {item.forecast && (
                       <p
                         className={`text-body-normal md:text-heading3-bold opacity-70 ${
                           index === activeCard ? "text-white" : ""
                         }`}
                       >
                         {dashboardData[item.forecast]} {item.unit}
-                      </p>
-                    ) : (
-                      <p
-                        className={`text-heading3-bold ${
-                          index === activeCard ? "text-white" : ""
-                        }`}
-                      >
-                        -
                       </p>
                     )}
                     <p
@@ -198,7 +190,7 @@ const MonitoringLandingPage = () => {
           </>
         )}
       </div>
-      <div className="flex gap-1 h-full bg-light-1">
+      <div className="flex gap-1 h-full bg-light-1 shadow">
         {showChart.link.map((item, index) => (
           <iframe
             key={index}
